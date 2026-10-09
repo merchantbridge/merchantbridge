@@ -9,9 +9,9 @@ node_modules
 .vercel
 .env*
 
-# GiftGrid local work / backups
-.giftgrid-*/
-.giftgrid-*
+# Merchant Bridge local work / backups
+.merchantbridge-*/
+.merchantbridge-*
 middleware.ts.backup-*
 public/_unused-assets-*/
 

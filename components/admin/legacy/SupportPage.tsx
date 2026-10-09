@@ -2,7 +2,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {
-  title: "Support — GiftGrid Admin",
+  title: "Support — Merchant Bridge Admin",
 };
 
 async function updateTicket(formData: FormData) {

@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {
-  title: "Messages — GiftGrid Admin",
+  title: "Messages — Merchant Bridge Admin",
 };
 
 export default async function AdminMessagesPage() {
@@ -62,7 +62,7 @@ export default async function AdminMessagesPage() {
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <h2 className="font-bold text-slate-950">
-                      {thread.subject || "GiftGrid conversation"}
+                      {thread.subject || "Merchant Bridge conversation"}
                     </h2>
 
                     <p className="mt-1 text-sm text-slate-500">

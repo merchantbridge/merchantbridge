@@ -11,7 +11,7 @@ const storage={
  async removeItem(key:string){const previous=await SecureStore.getItemAsync(key);await SecureStore.deleteItemAsync(key);if(previous){const old=JSON.parse(previous);await Promise.all(Array.from({length:old.count},(_,i)=>SecureStore.deleteItemAsync(key+'.'+old.id+'.'+i)));}}
 };
 export const supabase=createClient(url||'https://not-configured.supabase.co',key||'not-configured',{auth:{storage,persistSession:true,autoRefreshToken:true,detectSessionInUrl:false,lock:processLock}});
-export const origin=(process.env.EXPO_PUBLIC_API_ORIGIN||'https://community.degiftgrid.com').replace(/\/$/,'');
+export const origin=(process.env.EXPO_PUBLIC_API_ORIGIN||'https://community.demerchantbridge.com').replace(/\/$/,'');
 export const asset=(value?:string|null)=>value?(value.startsWith('/')?origin+value:value):undefined;
 export async function api(path:string,method='GET',body?:unknown):Promise<any>{
  const {data:{session}}=await supabase.auth.getSession();

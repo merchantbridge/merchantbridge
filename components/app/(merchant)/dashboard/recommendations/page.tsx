@@ -1,7 +1,7 @@
 import { createServerClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 
-export const metadata = { title: 'Recommendations — GiftGrid' }
+export const metadata = { title: 'Recommendations — Merchant Bridge' }
 
 const STATUS_STYLE: Record<string, { label: string; color: string }> = {
   open: { label: 'Open', color: '#FACC15' },
@@ -43,7 +43,7 @@ export default async function RecommendationsPage() {
     <>
       <div className="page-header">
         <p className="eyebrow">Recommendations</p>
-        <h1 className="page-title">What GiftGrid Recommends</h1>
+        <h1 className="page-title">What Merchant Bridge Recommends</h1>
         <p className="page-sub">
           Every recommendation answers three questions: what the issue is, why it matters, and what can be done.
         </p>

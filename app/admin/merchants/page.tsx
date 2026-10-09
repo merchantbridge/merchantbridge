@@ -2,7 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {
-  title: "Merchants — GiftGrid Admin",
+  title: "Merchants — Merchant Bridge Admin",
 };
 
 export default async function AdminMerchantsPage() {
@@ -25,7 +25,7 @@ export default async function AdminMerchantsPage() {
           Merchant Directory
         </h1>
         <p className="mt-2 text-sm text-slate-500">
-          Every merchant account in the GiftGrid platform.
+          Every merchant account in the Merchant Bridge platform.
         </p>
       </div>
 

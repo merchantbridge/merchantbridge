@@ -1,9 +1,9 @@
-const CACHE = "giftgrid-shell-v1";
+const CACHE = "merchantbridge-shell-v1";
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(["/", "/images/logo-full.png"])).then(() => self.skipWaiting()));
 });
 self.addEventListener("activate", event => {
-  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith("giftgrid-shell-") && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim()));
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith("merchantbridge-shell-") && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim()));
 });
 self.addEventListener("fetch", event => {
   const request = event.request;

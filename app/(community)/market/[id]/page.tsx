@@ -16,7 +16,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       <div className="min-w-0 p-6 sm:p-8">
         <p className="text-sm text-blue-600">{product.category}</p>
         <h1 className="mt-3 break-words text-3xl font-bold text-slate-950">{product.title}</h1>
-        <p className="mt-2 text-sm text-slate-500">{product.supplier?.name || product.merchant_profiles?.business_name || "GiftGrid merchant"}</p>
+        <p className="mt-2 text-sm text-slate-500">{product.supplier?.name || product.merchant_profiles?.business_name || "Merchant Bridge merchant"}</p>
         {product.supplier && <p className="mt-2 text-sm font-semibold text-amber-800">External supplier · {product.supplier.source}</p>}
         <p className="mt-5 break-words whitespace-pre-wrap text-sm leading-7 text-slate-600">{product.description || product.short_description}</p>
         <p className="mt-6 font-bold text-slate-900">{product.price_range || (product.supplier ? "Check supplier pricing" : "Contact the merchant for pricing")}</p>
@@ -32,7 +32,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         {product.customization_available && <p className="mt-2 text-sm text-slate-600">Customization available</p>}
         {product.supplier ? <>
           <p className="mt-3 text-sm text-slate-600">{product.supplier.availability === "in_stock" ? "Supplier reported in stock" : "Confirm stock with the supplier"} · Checked {product.supplier.checked_at.slice(0, 10)}.</p>
-          <p className="mt-2 text-sm leading-6 text-slate-600">Ordering, shipping, taxes, returns, and final availability are handled by the supplier. This product is sold outside GiftGrid.</p>
+          <p className="mt-2 text-sm leading-6 text-slate-600">Ordering, shipping, taxes, returns, and final availability are handled by the supplier. This product is sold outside Merchant Bridge.</p>
           <a href={product.supplier.url} target="_blank" rel="noopener noreferrer sponsored" className="mt-6 inline-flex rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white">View on {product.supplier.source}</a>
         </> : <Link href={`/dashboard?listing=${id}`} className="mt-6 inline-flex rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white">Request a quote</Link>}
       </div>

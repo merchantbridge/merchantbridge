@@ -1,11 +1,11 @@
 {
   "slug": "getting-started-your-first-visit",
-  "intro": "Welcome to GiftGrid’s Getting Started guide. This document walks you through your first visit to the community, explains how to explore content, interact with members, and understand the platform’s rules around listings and profiles. By the end you’ll know how to navigate the site, what actions require authentication, and how to handle common hiccups without losing progress.",
+  "intro": "Welcome to Merchant Bridge’s Getting Started guide. This document walks you through your first visit to the community, explains how to explore content, interact with members, and understand the platform’s rules around listings and profiles. By the end you’ll know how to navigate the site, what actions require authentication, and how to handle common hiccups without losing progress.",
   "sections": [
     {
       "heading": "1. Landing on the Community Home",
       "paragraphs": [
-        "When you first open https://community.degiftgrid.com, the Home page presents a curated feed of public posts. Each post shows the author’s public profile, a brief excerpt, and engagement counts. The layout is responsive, so whether you’re on a phone or a desktop you’ll see the same content hierarchy: headline, snippet, author card, and engagement icons. The top navigation bar offers links to Home, Connect, and Docs. No sign‑in is required to view posts, but you’ll be limited to reading only until you authenticate. The Home page also displays a prominent banner that invites you to sign up or log in if you wish to participate further.",
+        "When you first open https://community.demerchantbridge.com, the Home page presents a curated feed of public posts. Each post shows the author’s public profile, a brief excerpt, and engagement counts. The layout is responsive, so whether you’re on a phone or a desktop you’ll see the same content hierarchy: headline, snippet, author card, and engagement icons. The top navigation bar offers links to Home, Connect, and Docs. No sign‑in is required to view posts, but you’ll be limited to reading only until you authenticate. The Home page also displays a prominent banner that invites you to sign up or log in if you wish to participate further.",
         "If you scroll to the bottom of the page, you’ll find pagination controls. Clicking “Next” loads the next batch of posts via a GET request to /api/community/posts. The API returns a JSON array of post objects, each containing an id, title, body, authorId, and timestamps. The client automatically updates the UI without a full page reload. This seamless experience lets you skim through community discussions before deciding to engage."
       ]
     },
@@ -19,7 +19,7 @@
     {
       "heading": "3. Signing In to Unlock Interactions",
       "paragraphs": [
-        "To like, comment, follow, or message, you must authenticate. The sign‑in flow starts at /auth/sign‑in, where you choose between buyer and merchant options. The choice card is remembered in a cookie, so subsequent sign‑ins default to your last role. After entering credentials, the server issues a session cookie and a bearer token for API calls. The token is stored in localStorage under GIFTGRID_API_KEY and used for protected endpoints such as /api/developer/apps and /messages.",
+        "To like, comment, follow, or message, you must authenticate. The sign‑in flow starts at /auth/sign‑in, where you choose between buyer and merchant options. The choice card is remembered in a cookie, so subsequent sign‑ins default to your last role. After entering credentials, the server issues a session cookie and a bearer token for API calls. The token is stored in localStorage under MERCHANTBRIDGE_API_KEY and used for protected endpoints such as /api/developer/apps and /messages.",
         "If you forget your password, the /auth/forgot-password route triggers a reset email. The email contains a time‑limited link that redirects back to /auth/sign‑in with a token prefilled. This flow ensures that only the account owner can reset the password. After resetting, you can immediately sign in and resume browsing. The sign‑in process is stateless; no server‑side session persistence beyond the cookie, so you can close the browser and return later without losing your place."
       ]
     },

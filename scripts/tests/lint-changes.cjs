@@ -7,7 +7,7 @@ async function main() {
   const git = (...args) => execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
   const files = [...new Set((git('diff', '--name-only') + '\n' + git('ls-files', '--others', '--exclude-standard')).split(/\r?\n/))]
     .filter(file => /\.(tsx?|jsx?|[cm]js)$/.test(file) && fs.existsSync(file));
-  const previousPaths = { 'app/(community)/community/page.tsx': 'app/(public)/community/page.tsx', 'app/(community)/giftgrid/page.tsx': 'app/giftgrid/page.tsx' };
+  const previousPaths = { 'app/(community)/community/page.tsx': 'app/(public)/community/page.tsx', 'app/(community)/merchantbridge/page.tsx': 'app/merchantbridge/page.tsx' };
   let newErrors = 0, existingErrors = 0;
   for (const file of files) {
     const [current] = await eslint.lintText(fs.readFileSync(file, 'utf8'), { filePath: file });

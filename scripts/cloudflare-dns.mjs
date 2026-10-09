@@ -6,7 +6,7 @@ const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application
 const base = `https://api.cloudflare.com/client/v4/zones/${zoneId}/dns_records`;
 const target = process.env.VERCEL_CNAME_TARGET || "cname.vercel-dns.com";
 
-for (const name of ["community.degiftgrid.com", "console.degiftgrid.com"]) {
+for (const name of ["community.demerchantbridge.com", "console.demerchantbridge.com"]) {
   const query = await fetch(`${base}?type=CNAME&name=${encodeURIComponent(name)}`, { headers });
   const listed = await query.json();
   if (!listed.success) throw new Error(`Cloudflare lookup failed for ${name}: ${JSON.stringify(listed.errors || [])}`);

@@ -4,11 +4,11 @@ import { createAdminClient } from "@/lib/supabase/admin";
 export const maxDuration = 60;
 
 const MESSAGES = [
-  "Hi, this is GiftGrid Support checking in — anything we can help you source today?",
-  "Quick note from GiftGrid Support: reply here if you need help with a brief or listing.",
-  "GiftGrid Support here. This chat continues whenever you reply — how is your sourcing going?",
-  "Hello from GiftGrid Support. We noticed new activity on your account — need a hand?",
-  "GiftGrid Support checking back in. Reply to continue the conversation.",
+  "Hi, this is Merchant Bridge Support checking in — anything we can help you source today?",
+  "Quick note from Merchant Bridge Support: reply here if you need help with a brief or listing.",
+  "Merchant Bridge Support here. This chat continues whenever you reply — how is your sourcing going?",
+  "Hello from Merchant Bridge Support. We noticed new activity on your account — need a hand?",
+  "Merchant Bridge Support checking back in. Reply to continue the conversation.",
 ];
 
 export async function GET(request: Request) {
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
     const message = MESSAGES[sent % MESSAGES.length];
     const { error } = await admin.from("support_outreach").insert({ profile_id: profile.id, message });
     if (error) continue;
-    await admin.from("notifications").insert({ profile_id: profile.id, title: "GiftGrid Support", body: message });
+    await admin.from("notifications").insert({ profile_id: profile.id, title: "Merchant Bridge Support", body: message });
     sent += 1;
     if (sent >= 500) break;
   }

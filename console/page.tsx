@@ -1,8 +1,8 @@
 /**
  * /app/console/page.tsx
  *
- * GiftGrid Developer Console — Home
- * Live at: degiftgrid.com/console
+ * Merchant Bridge Developer Console — Home
+ * Live at: demerchantbridge.com/console
  *
  * Layers:
  *   Layer 1 — Overview    : stats, environment switcher, quick links
@@ -21,8 +21,8 @@ import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "Developer Console — GiftGrid",
-  description: "Build on the GiftGrid platform. Manage API keys, webhooks, sandbox, and integrations.",
+  title: "Developer Console — Merchant Bridge",
+  description: "Build on the Merchant Bridge platform. Manage API keys, webhooks, sandbox, and integrations.",
 };
 
 const LAYERS = [
@@ -102,7 +102,7 @@ export default async function ConsolePage() {
         <div>
           <h1 className="text-2xl font-bold text-slate-950">Developer Console</h1>
           <p className="mt-1 text-sm text-slate-500">
-            Build, test, and manage your GiftGrid integrations.
+            Build, test, and manage your Merchant Bridge integrations.
           </p>
         </div>
         {/* Environment pill */}
@@ -162,16 +162,16 @@ export default async function ConsolePage() {
           Quick start
         </p>
         <pre className="overflow-x-auto text-sm leading-7 text-slate-100">
-{`curl https://api.degiftgrid.com/v1/merchants \\
+{`curl https://api.demerchantbridge.com/v1/merchants \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
-  -H "GiftGrid-Environment: sandbox"`}
+  -H "MerchantBridge-Environment: sandbox"`}
         </pre>
       </div>
 
       {/* Docs link */}
       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
         <p className="font-semibold text-emerald-800">
-          New to the GiftGrid API?
+          New to the Merchant Bridge API?
         </p>
         <p className="mt-1 text-sm text-emerald-700">
           Start with Authentication, then explore Scopes to understand what each key can access.

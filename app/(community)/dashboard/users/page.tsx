@@ -58,7 +58,7 @@ export default async function UsersPage() {
         </h1>
 
         <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-500">
-          Manage GiftGrid application roles directly from the
+          Manage Merchant Bridge application roles directly from the
           dashboard.
         </p>
       </section>

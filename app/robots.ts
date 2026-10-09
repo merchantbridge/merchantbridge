@@ -13,7 +13,7 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://www.degiftgrid.com/sitemap.xml",
-    host: "https://www.degiftgrid.com",
+    sitemap: "https://www.demerchantbridge.com/sitemap.xml",
+    host: "https://www.demerchantbridge.com",
   };
 }

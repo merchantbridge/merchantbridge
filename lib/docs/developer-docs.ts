@@ -1,5 +1,5 @@
 export const developerDocs = [
-  ["getting-started", "Getting started", "Create a GiftGrid app, choose an environment, and make your first authenticated request."],
+  ["getting-started", "Getting started", "Create a Merchant Bridge app, choose an environment, and make your first authenticated request."],
   ["authentication", "Authentication", "Use scoped sandbox and production credentials without exposing secrets in client code."],
   ["projects", "Projects", "Organize integrations into projects with separate settings, owners, and deployment history."],
   ["sandbox", "Sandbox", "Test webhooks, chatbots, automations, and merchant workflows using isolated test data."],
@@ -12,7 +12,7 @@ export const developerDocs = [
   ["retries", "Retries and idempotency", "Make network retries safe and prevent duplicate applications and posts."],
   ["cron", "Cron jobs", "Schedule recurring jobs with explicit timezones, run history, and failure handling."],
   ["automations", "Automations", "Design automations that remain observable, reversible, and within granted scopes."],
-  ["chatbots", "Chatbots", "Add a GiftGrid chatbot while keeping prompts, user data, and actions inside policy boundaries."],
+  ["chatbots", "Chatbots", "Add a Merchant Bridge chatbot while keeping prompts, user data, and actions inside policy boundaries."],
   ["rate-limits", "Rate limits", "Read usage headers, back off correctly, and avoid noisy retry loops."],
   ["errors", "Errors", "Interpret API errors and return useful user-facing messages without leaking internals."],
   ["security", "Security", "Protect keys, validate signatures, redact logs, and report suspected abuse."],

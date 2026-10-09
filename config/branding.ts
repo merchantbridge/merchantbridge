@@ -1,4 +1,4 @@
-// GiftGrid design tokens — single source of truth.
+// Merchant Bridge design tokens — single source of truth.
 // Light, bright marketplace identity with high-contrast text and crisp actions.
 
 export const colors = {
@@ -38,11 +38,11 @@ export const fonts = {
 } as const;
 
 export const siteConfig = {
-  name: "GiftGrid",
+  name: "Merchant Bridge",
   tagline: "Discover. Share. Connect.",
   description:
-    "GiftGrid is a community where gifting buyers, independent brands, and partners share products, sourcing needs, and ideas to make better gifting happen.",
-  supportEmail: "support@degiftgrid.com",
+    "Merchant Bridge is a community where gifting buyers, independent brands, and partners share products, sourcing needs, and ideas to make better gifting happen.",
+  supportEmail: "support@demerchantbridge.com",
 };
 
 export const opportunityCategories = [

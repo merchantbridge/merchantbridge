@@ -4,8 +4,8 @@ export function signInDestination(role: string | null | undefined, requested: st
   try {
     const decoded = decodeURIComponent(requested);
     if (decoded.startsWith("//") || /[\\\u0000-\u0020]/.test(decoded)) return fallback;
-    const url = new URL(requested, "https://giftgrid.invalid");
-    if (url.origin !== "https://giftgrid.invalid" || url.pathname.startsWith("/auth/")) return fallback;
+    const url = new URL(requested, "https://merchantbridge.invalid");
+    if (url.origin !== "https://merchantbridge.invalid" || url.pathname.startsWith("/auth/")) return fallback;
     return url.pathname + url.search + url.hash;
   } catch { return fallback; }
 }

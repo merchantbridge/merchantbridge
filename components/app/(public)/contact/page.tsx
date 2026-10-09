@@ -37,7 +37,7 @@ export default function ContactPage() {
           <div className="mx-auto max-w-[760px] px-7">
             <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-accent">Contact</span>
             <h1 className="mt-5 font-display text-[clamp(32px,5vw,52px)] font-semibold leading-[1.1] tracking-tight">
-              Talk to the GiftGrid team.
+              Talk to the Merchant Bridge team.
             </h1>
             <p className="mt-6 text-[17px] leading-relaxed text-textSecondary">
               Questions about applying, a store you'd like reviewed, or a partnership inquiry — reach out directly.

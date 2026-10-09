@@ -1,5 +1,5 @@
 -- ============================================================
--- GiftGrid Native Booking System
+-- Merchant Bridge Native Booking System
 -- ============================================================
 
 create extension if not exists btree_gist;
@@ -89,7 +89,7 @@ create table if not exists public.bookings (
       )
     ),
 
-  meeting_type text not null default 'giftgrid_consultation',
+  meeting_type text not null default 'merchantbridge_consultation',
 
   merchant_notes text,
   admin_notes text,
@@ -236,7 +236,7 @@ values
 (
   'Store Audit Review',
   'store-audit-review',
-  'Review your GiftGrid store audit and understand the highest-impact improvements.',
+  'Review your Merchant Bridge store audit and understand the highest-impact improvements.',
   30,
   0,
   10,
@@ -266,7 +266,7 @@ values
 (
   'Expert Strategy Session',
   'expert-strategy-session',
-  'A deeper strategy session with a GiftGrid expert.',
+  'A deeper strategy session with a Merchant Bridge expert.',
   60,
   0,
   15,

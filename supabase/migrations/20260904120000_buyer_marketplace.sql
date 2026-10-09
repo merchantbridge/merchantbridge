@@ -1,4 +1,4 @@
--- GiftGrid buyer-to-merchant marketplace (payments intentionally excluded).
+-- Merchant Bridge buyer-to-merchant marketplace (payments intentionally excluded).
 -- Apply after 0001_init_schema.sql and 0002_rls_policies.sql.
 
 create table if not exists public.buyer_profiles (
@@ -135,7 +135,7 @@ create policy "connection_participants_write" on public.connection_messages for 
   with check (sender_id = auth.uid() and inquiry_id in (select id from public.buyer_inquiries));
 
 -- Creates the correct workspace record directly from sign-up metadata.
-create or replace function public.handle_new_giftgrid_user()
+create or replace function public.handle_new_merchantbridge_user()
 returns trigger language plpgsql security definer set search_path = public as $$
 declare
   requested_role text := coalesce(new.raw_user_meta_data->>'account_type', 'merchant');
@@ -181,6 +181,6 @@ begin
 end;
 $$;
 
-drop trigger if exists on_auth_user_created_giftgrid on auth.users;
-create trigger on_auth_user_created_giftgrid
-  after insert on auth.users for each row execute procedure public.handle_new_giftgrid_user();
+drop trigger if exists on_auth_user_created_merchantbridge on auth.users;
+create trigger on_auth_user_created_merchantbridge
+  after insert on auth.users for each row execute procedure public.handle_new_merchantbridge_user();

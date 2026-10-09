@@ -16,15 +16,15 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
-  metadataBase: new URL("https://www.degiftgrid.com"),
+  metadataBase: new URL("https://www.demerchantbridge.com"),
   title: {
-    default: "GiftGrid | The Community for Better Gifting",
-    template: "%s | GiftGrid",
+    default: "Merchant Bridge | The Community for Better Gifting",
+    template: "%s | Merchant Bridge",
   },
   description:
-    "Meet gifting buyers, independent brands, and partners. Share products, sourcing needs, and ideas in the GiftGrid community.",
+    "Meet gifting buyers, independent brands, and partners. Share products, sourcing needs, and ideas in the Merchant Bridge community.",
   alternates: {
-    canonical: "https://www.degiftgrid.com/",
+    canonical: "https://www.demerchantbridge.com/",
   },
   icons: {
     icon: [
@@ -34,24 +34,24 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "GiftGrid | The Community for Better Gifting",
+    title: "Merchant Bridge | The Community for Better Gifting",
     description:
-      "Meet gifting buyers, independent brands, and partners. Share products, sourcing needs, and ideas in the GiftGrid community.",
-    url: "https://www.degiftgrid.com/",
-    siteName: "GiftGrid",
+      "Meet gifting buyers, independent brands, and partners. Share products, sourcing needs, and ideas in the Merchant Bridge community.",
+    url: "https://www.demerchantbridge.com/",
+    siteName: "Merchant Bridge",
     images: [
       {
         url: "/images/logo-horizontal.png",
-        alt: "GiftGrid",
+        alt: "Merchant Bridge",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "GiftGrid | The Community for Better Gifting",
+    title: "Merchant Bridge | The Community for Better Gifting",
     description:
-      "Meet gifting buyers, independent brands, and partners. Share products, sourcing needs, and ideas in the GiftGrid community.",
+      "Meet gifting buyers, independent brands, and partners. Share products, sourcing needs, and ideas in the Merchant Bridge community.",
     images: ["/images/logo-horizontal.png"],
   },
 };

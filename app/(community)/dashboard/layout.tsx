@@ -37,7 +37,7 @@ export default async function MerchantLayout({
     <DashboardShell
       avatarUrl={role === "admin" || role === "super_admin" ? "/images/logo-full.png" : undefined}
       role={role}
-      fullName={profile?.full_name || user.email || "GiftGrid User"}
+      fullName={profile?.full_name || user.email || "Merchant Bridge User"}
       email={user.email || ""}
     >
       {children}

@@ -32,7 +32,7 @@ create unique index merchant_listings_shopify_unique on public.merchant_listings
 create function public.protect_shopify_listing_source() returns trigger language plpgsql set search_path=public as $$
 begin
  if current_user not in ('postgres','service_role','supabase_admin') then
-  if TG_OP='INSERT' and (new.shopify_connection_id is not null or new.shopify_product_id is not null) then raise exception 'Shopify products must be imported through GiftGrid'; end if;
+  if TG_OP='INSERT' and (new.shopify_connection_id is not null or new.shopify_product_id is not null) then raise exception 'Shopify products must be imported through Merchant Bridge'; end if;
   if TG_OP='UPDATE' then
    if new.shopify_connection_id is distinct from old.shopify_connection_id or new.shopify_product_id is distinct from old.shopify_product_id or new.shopify_synced_at is distinct from old.shopify_synced_at then raise exception 'Shopify source cannot be changed'; end if;
    if new.shopify_connection_id is not null and new.status in ('archived','rejected') and new.status is distinct from old.status then new.shopify_suppressed:=true; end if;

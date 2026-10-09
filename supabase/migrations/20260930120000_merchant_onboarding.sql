@@ -27,7 +27,7 @@ begin
   if current_user not in ('postgres', 'service_role', 'supabase_admin') and
     (new.onboarding_required is distinct from old.onboarding_required or
      new.onboarding_completed_at is distinct from old.onboarding_completed_at) then
-    raise exception 'Merchant onboarding must be completed through GiftGrid setup';
+    raise exception 'Merchant onboarding must be completed through Merchant Bridge setup';
   end if;
   return new;
 end;

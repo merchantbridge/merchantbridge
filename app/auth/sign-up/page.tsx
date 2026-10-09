@@ -73,7 +73,7 @@ export default function SignUpPage() {
 
       if (!data.user) {
         setError(
-          "GiftGrid could not create your account. Please try again."
+          "Merchant Bridge could not create your account. Please try again."
         );
         return;
       }
@@ -98,7 +98,7 @@ export default function SignUpPage() {
         `/auth/verify?email=${encodeURIComponent(email)}&next=/merchant/setup`
       );
     } catch (err) {
-      console.error("GiftGrid signup error:", err);
+      console.error("Merchant Bridge signup error:", err);
 
       setError(
         err instanceof Error
@@ -184,7 +184,7 @@ export default function SignUpPage() {
         </button>
 
         <p className="text-center text-xs leading-5 text-slate-400">
-          By creating an account, you agree to GiftGrid&apos;s
+          By creating an account, you agree to Merchant Bridge&apos;s
           terms and privacy policy.
         </p>
       </form>

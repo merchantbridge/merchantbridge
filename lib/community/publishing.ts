@@ -8,8 +8,8 @@ export async function publishingActor(request: Request, scope: "community:publis
   const actor = await developerActor(request, scope);
   const { data, error } = await actor.admin.from("profiles").select("role,full_name").eq("id", actor.ownerId).single();
   if (error) throw new ApiError(503, "Unable to verify publishing access.");
-  if (!data) throw new ApiError(403, "A GiftGrid profile is required to publish.");
-  return { ...actor, authorName: data.full_name || "GiftGrid member" };
+  if (!data) throw new ApiError(403, "A Merchant Bridge profile is required to publish.");
+  return { ...actor, authorName: data.full_name || "Merchant Bridge member" };
 }
 
 export function postInput(input: Record<string, unknown>) {
@@ -18,7 +18,7 @@ export function postInput(input: Record<string, unknown>) {
   if (!body || body.length > 2000) throw new ApiError(400, "Write between 1 and 2,000 characters.");
   if (!topic || topic.length > 40) throw new ApiError(400, "Topics must contain 1 to 40 characters.");
   if (["author_id", "author_name", "created_at", "status", "system_key"].some(key => key in input)) {
-    throw new ApiError(400, "Author identity, timestamps, and publication status are managed by GiftGrid.");
+    throw new ApiError(400, "Author identity, timestamps, and publication status are managed by Merchant Bridge.");
   }
   return { body, topic };
 }
@@ -72,10 +72,10 @@ export async function draftPost(input: Record<string, unknown>) {
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       signal: AbortSignal.timeout(25000),
       body: JSON.stringify({
-        model: process.env.GIFTGRID_COMMUNITY_AI_MODEL || "openai/gpt-oss-20b",
+        model: process.env.MERCHANTBRIDGE_COMMUNITY_AI_MODEL || "openai/gpt-oss-20b",
         temperature: 0.4, max_completion_tokens: 2048, response_format: { type: "json_object" },
         messages: [
-          { role: "system", content: 'Write one useful GiftGrid community post using the supplied brief as source material. Do not invent customers, testimonials, activity, prices, stock, statistics, or product claims. Do not impersonate a member. Return JSON with body (1-2000 characters) and topic (1-40 characters). This is an editorial draft for review.' },
+          { role: "system", content: 'Write one useful Merchant Bridge community post using the supplied brief as source material. Do not invent customers, testimonials, activity, prices, stock, statistics, or product claims. Do not impersonate a member. Return JSON with body (1-2000 characters) and topic (1-40 characters). This is an editorial draft for review.' },
           { role: "user", content: brief },
         ],
       }),

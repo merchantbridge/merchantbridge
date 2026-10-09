@@ -5,7 +5,7 @@ import AIListingReview from "@/components/admin/AIListingReview";
 import MarketplaceBulkActions from "@/components/admin/MarketplaceBulkActions";
 import { approveAllListings, deleteAllListings, reviewListing } from "./actions";
 
-export const metadata = { title: "Buyer Marketplace — GiftGrid Admin" };
+export const metadata = { title: "Buyer Marketplace — Merchant Bridge Admin" };
 
 async function reviewBuyer(formData: FormData) {
   "use server";

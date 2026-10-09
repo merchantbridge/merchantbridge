@@ -27,7 +27,7 @@ const views = {
     title: "Keep every opportunity moving together.",
     copy: "Bring recommendations, applications, documents, conversations, and next actions into one clear team workflow.",
     href: "/contact",
-    action: "Contact GiftGrid",
+    action: "Contact Merchant Bridge",
     metrics: [["Tasks completed", "28"], ["In review", "5"], ["Team members", "6"]],
     activity: ["Packaging document uploaded", "Application assigned", "Follow-up scheduled"],
   },
@@ -66,7 +66,7 @@ export default function PlatformShowcase() {
           <div className="bg-slate-950 p-4 sm:p-7">
             <div className="rounded-[20px] border border-slate-800 bg-slate-900 p-4 sm:p-6">
               <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-                <div><p className="text-xs text-slate-500">GiftGrid workspace</p><p className="mt-1 font-semibold text-white">Overview</p></div>
+                <div><p className="text-xs text-slate-500">Merchant Bridge workspace</p><p className="mt-1 font-semibold text-white">Overview</p></div>
                 <span className="h-9 w-9 rounded-full bg-blue-600" />
               </div>
               <div className="mt-5 grid gap-3 sm:grid-cols-3">

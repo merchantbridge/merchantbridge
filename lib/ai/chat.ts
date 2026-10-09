@@ -24,7 +24,7 @@ export async function generateChatReply(system: string, messages: Message[]): Pr
   const chatMessages = [{ role: "system" as const, content: system }, ...messages];
   const providers: Provider[] = [
     // The self-hosted provider is first when configured. This lets Vercel use
-    // GiftGrid's own Ollama/vLLM instance without changing the client API.
+    // Merchant Bridge's own Ollama/vLLM instance without changing the client API.
     openAiProvider(
       process.env.LOCAL_AI_BASE_URL ? (process.env.LOCAL_AI_API_KEY || "local") : undefined,
       `${(process.env.LOCAL_AI_BASE_URL || "").replace(/\/$/, "")}/v1/chat/completions`,
@@ -37,8 +37,8 @@ export async function generateChatReply(system: string, messages: Message[]): Pr
     openAiProvider(process.env.NVIDIA_API_KEY, "https://integrate.api.nvidia.com/v1/chat/completions", process.env.NVIDIA_CHAT_MODEL || "meta/llama-3.1-8b-instruct", chatMessages),
     openAiProvider(process.env.GITHUB_TOKEN, process.env.GITHUB_MODELS_URL || "https://models.github.ai/inference/chat/completions", process.env.GITHUB_CHAT_MODEL || "openai/gpt-4.1-mini", chatMessages),
     openAiProvider(process.env.OPENROUTER_API_KEY, "https://openrouter.ai/api/v1/chat/completions", process.env.OPENROUTER_CHAT_MODEL || "openai/gpt-4o-mini", chatMessages, {
-      "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://www.degiftgrid.com",
-      "X-Title": "GiftGrid Assistant",
+      "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "https://www.demerchantbridge.com",
+      "X-Title": "Merchant Bridge Assistant",
     }),
     openAiProvider(process.env.MISTRAL_API_KEY, "https://api.mistral.ai/v1/chat/completions", process.env.MISTRAL_CHAT_MODEL || "mistral-small-latest", chatMessages),
     openAiProvider(process.env.HF_ACCESS_TOKEN, "https://router.huggingface.co/v1/chat/completions", process.env.HF_CHAT_MODEL || "HuggingFaceH4/zephyr-7b-beta", chatMessages),

@@ -24,7 +24,7 @@ create policy "comments_public_read" on public.community_comments for select
 using (status = 'published' and exists (select 1 from public.community_posts where id = post_id and status = 'published'));
 create policy "comments_member_insert" on public.community_comments for insert to authenticated
 with check (author_id = auth.uid() and status = 'published'
-  and author_name = coalesce((select left(nullif(btrim(full_name),''),120) from public.profiles where id = auth.uid()),'GiftGrid member')
+  and author_name = coalesce((select left(nullif(btrim(full_name),''),120) from public.profiles where id = auth.uid()),'Merchant Bridge member')
   and exists (select 1 from public.community_posts where id = post_id and status = 'published'));
 create policy "comments_owner_delete" on public.community_comments for delete to authenticated using (author_id = auth.uid());
 grant select,insert,delete on public.community_likes to authenticated;

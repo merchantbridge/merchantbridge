@@ -1,7 +1,7 @@
 services:
   ollama:
     image: ollama/ollama:latest
-    container_name: giftgrid-ollama
+    container_name: merchantbridge-ollama
     restart: unless-stopped
     volumes:
       - ollama:/root/.ollama
@@ -11,7 +11,7 @@ services:
 
   ai-gateway:
     image: nginx:1.27-alpine
-    container_name: giftgrid-ai-gateway
+    container_name: merchantbridge-ai-gateway
     restart: unless-stopped
     depends_on:
       - ollama

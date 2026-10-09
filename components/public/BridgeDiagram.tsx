@@ -18,7 +18,7 @@ export default function BridgeDiagram() {
             <path d="M156 130 H 404" className="stroke-accent animate-flowDash" strokeWidth="1.4" fill="none" strokeDasharray="6 6" opacity="0.75" />
 
             <circle cx="460" cy="130" r="54" className="fill-accent stroke-accent" strokeWidth="1.4" />
-            <text x="460" y="126" textAnchor="middle" fill="#FFFFFF" className="text-[13.5px] font-semibold">GiftGrid</text>
+            <text x="460" y="126" textAnchor="middle" fill="#FFFFFF" className="text-[13.5px] font-semibold">Merchant Bridge</text>
             <text x="460" y="143" textAnchor="middle" fill="#FFFFFF" className="text-[11px] uppercase tracking-wide">review + match</text>
 
             <path d="M514 115 C 620 90, 700 68, 800 55" className="stroke-accent animate-flowDash" strokeWidth="1.4" fill="none" strokeDasharray="6 6" opacity="0.75" />
@@ -41,7 +41,7 @@ export default function BridgeDiagram() {
         </div>
 
         <p className="mx-auto max-w-[520px] text-center text-[14.5px] text-textSecondary">
-          GiftGrid reviews your store, then routes qualified merchants into the right opportunities — tracked
+          Merchant Bridge reviews your store, then routes qualified merchants into the right opportunities — tracked
           from submission to response.
         </p>
       </div>

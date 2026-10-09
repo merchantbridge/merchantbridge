@@ -22,7 +22,7 @@ export default async function ConsoleLayout({ children }: { children: React.Reac
       <div className="mx-auto flex min-h-screen max-w-[1600px]">
         <aside className="hidden w-64 shrink-0 border-r border-white/10 bg-[#10172b] p-5 lg:block">
           <Link href="/console" className="block border-b border-white/10 pb-6">
-            <div className="text-lg font-bold tracking-tight">GiftGrid Console</div>
+            <div className="text-lg font-bold tracking-tight">Merchant Bridge Console</div>
             <div className="mt-1 text-xs text-slate-400">Developer platform</div>
           </Link>
           <nav className="mt-6 space-y-1">

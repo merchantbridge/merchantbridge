@@ -51,7 +51,7 @@ export async function POST(request: Request) {
   if (topic.length < 1 || topic.length > 40) return NextResponse.json({ error: "Choose a shorter topic." }, { status: 400 });
 
   const { data: profile } = await supabase.from("profiles").select("full_name").eq("id", user.id).maybeSingle();
-  const authorName = (profile?.full_name || "GiftGrid member").trim().slice(0, 120);
+  const authorName = (profile?.full_name || "Merchant Bridge member").trim().slice(0, 120);
   const { data, error } = await supabase.from("community_posts").insert({ author_id: user.id, author_name: authorName, image_url:imageUrl, topic, body: text }).select("id,author_id,author_name,image_url,topic,body,created_at").single();
   if (error) return NextResponse.json({ error: "Could not publish your post." }, { status: 500 });
   return NextResponse.json({ post: (await withAuthorAvatars([data]))[0] }, { status: 201 });

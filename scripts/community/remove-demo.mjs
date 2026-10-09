@@ -10,7 +10,7 @@ const check = result => { if (result.error) throw new Error(result.error.message
 const users = [];
 for (let page = 1; ; page++) {
   const result = check(await admin.auth.admin.listUsers({ page, perPage: 200 }));
-  users.push(...result.users.filter(user => user.email?.toLowerCase().endsWith("@giftgrid-demo.invalid") && user.user_metadata?.giftgrid_demo === true));
+  users.push(...result.users.filter(user => user.email?.toLowerCase().endsWith("@merchantbridge-demo.invalid") && user.user_metadata?.merchantbridge_demo === true));
   if (result.users.length < 200) break;
 }
 const ids = users.map(user => user.id);
@@ -20,7 +20,7 @@ const fromConnections = ids.length ? check(await admin.from("community_connectio
 const toConnections = ids.length ? check(await admin.from("community_connections").select("id").in("recipient_id", ids)) : [];
 const connectionIds = [...new Set([...fromConnections, ...toConnections].map(connection => connection.id))];
 
-console.log(JSON.stringify({ dryRun: !execute, demoUsers: users.map(user => ({ email: user.email, id: user.id })), demoPosts: postIds.length, demoConversations: connectionIds.length, predicate: "Both giftgrid_demo=true and @giftgrid-demo.invalid are required." }, null, 2));
+console.log(JSON.stringify({ dryRun: !execute, demoUsers: users.map(user => ({ email: user.email, id: user.id })), demoPosts: postIds.length, demoConversations: connectionIds.length, predicate: "Both merchantbridge_demo=true and @merchantbridge-demo.invalid are required." }, null, 2));
 if (!execute || !ids.length) process.exit(0);
 
 if (connectionIds.length) {

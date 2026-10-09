@@ -39,7 +39,7 @@ export default async function DashboardPage() {
       <AdminOverview
         fullName={
           profile.full_name ||
-          "GiftGrid Admin"
+          "Merchant Bridge Admin"
         }
         role={profile.role}
       />
@@ -169,7 +169,7 @@ async function AdminOverview({
             </h1>
 
             <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-500">
-              Manage GiftGrid operations from one live workspace.
+              Manage Merchant Bridge operations from one live workspace.
               These metrics come directly from your Supabase data.
             </p>
           </div>
@@ -289,7 +289,7 @@ async function AdminOverview({
               </p>
 
               <h2 className="mt-2 text-2xl font-bold text-slate-950">
-                Run platform operations without leaving GiftGrid
+                Run platform operations without leaving Merchant Bridge
               </h2>
 
               <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-600">

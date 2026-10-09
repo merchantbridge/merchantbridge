@@ -30,7 +30,7 @@ export default function Footer() {
         <div className="mb-14 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/logo-horizontal.png" alt="GiftGrid" className="h-8 w-auto object-contain" />
+            <img src="/images/logo-horizontal.png" alt="Merchant Bridge" className="h-8 w-auto object-contain" />
             <p className="mt-3.5 max-w-[280px] text-[14px] leading-relaxed text-footerTextSecondary">
               {siteConfig.tagline} {siteConfig.description}
             </p>

@@ -1,4 +1,4 @@
-// GiftGrid design tokens — single source of truth.
+// Merchant Bridge design tokens — single source of truth.
 // Referenced by tailwind.config.ts. Change values here, not in components.
 // Light, colorful marketplace identity (v2) — replaces the dark/gold v1 palette.
 
@@ -39,11 +39,11 @@ export const fonts = {
 } as const;
 
 export const siteConfig = {
-  name: "GiftGrid",
+  name: "Merchant Bridge",
   tagline: "Prepare. Connect. Pursue.",
   description:
-    "GiftGrid helps e-commerce brands prepare, review, and position their stores for opportunities within the corporate gifting ecosystem.",
-  supportEmail: "support@degiftgrid.com",
+    "Merchant Bridge helps e-commerce brands prepare, review, and position their stores for opportunities within the corporate gifting ecosystem.",
+  supportEmail: "support@demerchantbridge.com",
 };
 
 export const opportunityCategories = [
@@ -70,7 +70,7 @@ export const opportunityCategoryDescriptions: Record<(typeof opportunityCategori
   Events: "Conference, trade show, and event organizers sourcing branded merchandise.",
 };
 
-// Real, factual capability claim — GiftGrid can review stores on these
+// Real, factual capability claim — Merchant Bridge can review stores on these
 // platforms. Not a claim of partnership or endorsement.
 export const supportedPlatforms = [
   "Shopify",

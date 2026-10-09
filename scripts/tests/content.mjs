@@ -4,7 +4,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {createRequire} from 'node:module';
 import ts from 'typescript';
-const temp=mkdtempSync(join(tmpdir(),'giftgrid-content-test-'));
+const temp=mkdtempSync(join(tmpdir(),'merchantbridge-content-test-'));
 for(const [source,name] of [['lib/content/site-design.ts','site-design'],['lib/content/site-pages.ts','site-pages'],['lib/blog/types.ts','types']])writeFileSync(join(temp,name+'.js'),ts.transpileModule(readFileSync(source,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText);
 const require=createRequire(import.meta.url);const {normalizePages,defaultPages}=require(join(temp,'site-pages.js'));const {normalizeSiteDesign}=require(join(temp,'site-design.js'));const {validateArticle,articleHtml}=require(join(temp,'types.js'));
 const pages=normalizePages({'/':[{id:'hero',type:'hero',visible:false,title:'Saved title',image:'javascript:alert(1)',buttonUrl:'//evil.test',overlay:999,cards:[null]},{id:'hero',type:'text',title:'Duplicate'},{id:'x',type:'announcement'}]});

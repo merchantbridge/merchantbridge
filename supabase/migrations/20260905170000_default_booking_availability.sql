@@ -1,4 +1,4 @@
--- Give the sole active GiftGrid booking host a useful native schedule.
+-- Give the sole active Merchant Bridge booking host a useful native schedule.
 insert into public.booking_availability
   (booking_admin_id, day_of_week, start_time, end_time, timezone, active)
 select ba.id, weekday, time '09:00', time '17:00', ba.timezone, true

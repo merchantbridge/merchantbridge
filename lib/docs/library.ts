@@ -15,7 +15,7 @@ export const publishedGuides = communityGuides.filter(isLiveGuide).map(guide => 
     { heading: 'What to expect', paragraphs: [guide.context, guide.summary + ' This guide covers ' + steps.length + ' practical actions, in the order they usually happen.'] },
     { heading: 'Do this first', paragraphs: steps.slice(0, half).map((step, i) => step + '.') },
     { heading: 'Then finish with', paragraphs: steps.slice(half).map((step, i) => step + '.') },
-    { heading: 'Good to know', paragraphs: ['Everything here reflects the current GiftGrid interface. Labels and buttons may move as the product evolves, but the flow stays the same: prepare, act on the page this guide references, and confirm the result before moving on.', 'When something does not match what you see, the destination page for this guide is the source of truth.'] },
+    { heading: 'Good to know', paragraphs: ['Everything here reflects the current Merchant Bridge interface. Labels and buttons may move as the product evolves, but the flow stays the same: prepare, act on the page this guide references, and confirm the result before moving on.', 'When something does not match what you see, the destination page for this guide is the source of truth.'] },
   ];
   const wordCount = (guide.summary + ' ' + guide.context + ' ' + steps.join(' ')).split(/\s+/).length + 60;
   return { ...guide, intro: guide.summary + ' ' + guide.context, sections, wordCount };

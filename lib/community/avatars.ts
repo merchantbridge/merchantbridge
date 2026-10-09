@@ -1,6 +1,6 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { GIFTGRID_ADMIN_AVATAR, isGiftGridAdmin } from "@/config/identity";
+import { MERCHANTBRIDGE_ADMIN_AVATAR, isMerchantBridgeAdmin } from "@/config/identity";
 
 type Author = { author_id?: string | null; author_name: string };
 // Resolve roles on every read so past and future posts use the current admin identity.
@@ -19,6 +19,6 @@ export async function withAuthorAvatars<T extends Author>(posts: T[]) {
     for (const member of members.data || []) if (member.avatar_url) avatars.set(member.profile_id, member.avatar_url);
   }
   return posts.map(post => ({ ...post, author_avatar_url:
-    isGiftGridAdmin(roles.get(post.author_id || "")) || (!post.author_id && post.author_name === "GiftGrid")
-      ? GIFTGRID_ADMIN_AVATAR : avatars.get(post.author_id || "") || null }));
+    isMerchantBridgeAdmin(roles.get(post.author_id || "")) || (!post.author_id && post.author_name === "Merchant Bridge")
+      ? MERCHANTBRIDGE_ADMIN_AVATAR : avatars.get(post.author_id || "") || null }));
 }

@@ -24,12 +24,12 @@ export default function TrustSection() {
     <section className="py-24">
       <div className="mx-auto max-w-[1180px] px-7">
         <div className="mb-14 max-w-[600px]">
-          <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-accent">Why Merchants Trust GiftGrid</span>
+          <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-accent">Why Merchants Trust Merchant Bridge</span>
           <h2 className="mt-3.5 font-display text-[clamp(26px,3vw,36px)] font-semibold tracking-tight">
             Built for brands and gifting teams.
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-textSecondary">
-            GiftGrid is early — we&apos;d rather tell you that plainly than manufacture numbers to look established.
+            Merchant Bridge is early — we&apos;d rather tell you that plainly than manufacture numbers to look established.
           </p>
         </div>
 

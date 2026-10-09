@@ -225,7 +225,7 @@ export default function ProfilePage() {
           </p>
 
           <h1 className="mt-2 text-3xl font-bold text-slate-900">
-            Your GiftGrid profile
+            Your Merchant Bridge profile
           </h1>
 
         </div>

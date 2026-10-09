@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import MerchantProfile from "@/components/merchant/MerchantProfile";
 import CommunityProfile from "@/components/community/CommunityProfile";
 import DashboardShell, { type DashboardRole } from "@/components/dashboard/DashboardShell";
-import { GIFTGRID_ADMIN_AVATAR, isGiftGridAdmin } from "@/config/identity";
+import { MERCHANTBRIDGE_ADMIN_AVATAR, isMerchantBridgeAdmin } from "@/config/identity";
 export default async function ProfilePage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -11,7 +11,7 @@ export default async function ProfilePage() {
   const { data: profile, error } = await supabase.from("profiles").select("role,full_name,is_active").eq("id", user.id).single();
   if (error || !profile) throw new Error("Unable to load your account profile.");
   if (profile.is_active === false) redirect("/auth/sign-in");
-  return <DashboardShell role={profile.role as DashboardRole} fullName={profile.full_name || "GiftGrid member"} email={user.email || ""} avatarUrl={isGiftGridAdmin(profile.role) ? GIFTGRID_ADMIN_AVATAR : undefined}>
-    <section className="mx-auto max-w-3xl space-y-6"><h1 className="text-2xl font-bold">Your GiftGrid profile</h1><h2 className="text-xl font-bold">Community profile</h2><CommunityProfile />{profile.role === "merchant" && <MerchantProfile />}</section>
+  return <DashboardShell role={profile.role as DashboardRole} fullName={profile.full_name || "Merchant Bridge member"} email={user.email || ""} avatarUrl={isMerchantBridgeAdmin(profile.role) ? MERCHANTBRIDGE_ADMIN_AVATAR : undefined}>
+    <section className="mx-auto max-w-3xl space-y-6"><h1 className="text-2xl font-bold">Your Merchant Bridge profile</h1><h2 className="text-xl font-bold">Community profile</h2><CommunityProfile />{profile.role === "merchant" && <MerchantProfile />}</section>
   </DashboardShell>;
 }

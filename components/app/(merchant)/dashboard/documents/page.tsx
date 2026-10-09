@@ -1,7 +1,7 @@
 import { createServerClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 
-export const metadata = { title: 'Documents — GiftGrid' }
+export const metadata = { title: 'Documents — Merchant Bridge' }
 
 const DOC_ICON: Record<string, JSX.Element> = {
   report: (
@@ -50,7 +50,7 @@ export default async function DocumentsPage() {
       <div className="page-header">
         <p className="eyebrow">Documents</p>
         <h1 className="page-title">Your Files & Reports</h1>
-        <p className="page-sub">Documents shared by the GiftGrid team — reports, findings, and relevant files.</p>
+        <p className="page-sub">Documents shared by the Merchant Bridge team — reports, findings, and relevant files.</p>
       </div>
 
       {(!docs || docs.length === 0) ? (
@@ -60,7 +60,7 @@ export default async function DocumentsPage() {
             <polyline points="14,2 14,8 20,8" />
           </svg>
           <h2>No documents yet</h2>
-          <p>The GiftGrid team will upload relevant reports and files here when they're ready.</p>
+          <p>The Merchant Bridge team will upload relevant reports and files here when they're ready.</p>
         </div>
       ) : (
         <div className="doc-list">

@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 
 export const metadata = {
-  title: 'Messages — GiftGrid',
+  title: 'Messages — Merchant Bridge',
 }
 
 async function startConversation(formData: FormData) {
@@ -103,11 +103,11 @@ export default async function MessagesPage() {
           </p>
 
           <h1 className="mt-2 text-3xl font-bold text-slate-900">
-            GiftGrid support
+            Merchant Bridge support
           </h1>
 
           <p className="mt-2 text-sm text-slate-500">
-            Contact the GiftGrid team about your account, products or opportunities.
+            Contact the Merchant Bridge team about your account, products or opportunities.
           </p>
         </div>
 
@@ -121,7 +121,7 @@ export default async function MessagesPage() {
                 </h2>
 
                 <p className="mt-2 text-sm text-slate-500">
-                  Start a conversation with GiftGrid support.
+                  Start a conversation with Merchant Bridge support.
                 </p>
               </div>
             ) : (
@@ -137,7 +137,7 @@ export default async function MessagesPage() {
                   >
                     <div className="flex items-center justify-between gap-4">
                       <h2 className="text-sm font-bold text-slate-900">
-                        {thread.subject || 'GiftGrid conversation'}
+                        {thread.subject || 'Merchant Bridge conversation'}
                       </h2>
 
                       <span className="text-[11px] text-slate-400">
@@ -177,7 +177,7 @@ export default async function MessagesPage() {
             </p>
 
             <h2 className="mt-2 text-lg font-bold text-slate-900">
-              Contact GiftGrid
+              Contact Merchant Bridge
             </h2>
 
             <form action={startConversation} className="mt-5 space-y-4">

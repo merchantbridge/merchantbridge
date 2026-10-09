@@ -23,7 +23,7 @@ export default function CommsThread({ messages, merchantName }: Props) {
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
         </svg>
         <h2>No messages yet</h2>
-        <p>When the GiftGrid team sends you a message, it will appear here.</p>
+        <p>When the Merchant Bridge team sends you a message, it will appear here.</p>
 
         <style jsx>{`
           .empty-state {
@@ -51,7 +51,7 @@ export default function CommsThread({ messages, merchantName }: Props) {
             <div key={msg.id} className={`msg ${isFromTeam ? 'from-team' : 'from-merchant'}`}>
               <div className="msg-meta">
                 <span className="msg-sender">
-                  {isFromTeam ? (msg.sender_name ?? 'GiftGrid Team') : merchantName}
+                  {isFromTeam ? (msg.sender_name ?? 'Merchant Bridge Team') : merchantName}
                 </span>
                 {msg.sent_at && (
                   <span className="msg-time">

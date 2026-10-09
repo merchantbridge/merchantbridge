@@ -118,13 +118,13 @@ export default function MerchantSidebar() {
       <div className="flex h-[88px] items-center border-b border-slate-200 px-5">
         <Link
           href="/dashboard"
-          aria-label="GiftGrid dashboard"
+          aria-label="Merchant Bridge dashboard"
           className="flex items-center gap-3"
         >
           <span className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-indigo-100 bg-white shadow-sm">
             <Image
               src="/images/logo-full.png"
-              alt="GiftGrid"
+              alt="Merchant Bridge"
               fill
               priority
               sizes="48px"
@@ -133,7 +133,7 @@ export default function MerchantSidebar() {
           </span>
 
           <span className="text-[18px] font-bold tracking-tight text-slate-900">
-            GiftGrid
+            Merchant Bridge
           </span>
         </Link>
       </div>

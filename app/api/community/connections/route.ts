@@ -9,7 +9,7 @@ export async function GET(){
     const ids=[...new Set((data||[]).flatMap(row=>[row.requester_id,row.recipient_id]).filter(id=>id!==user.id))];
     const {data:profiles,error:profilesError}=ids.length?await admin.from("profiles").select("id,full_name,role").in("id",ids).eq("is_active",true):{data:[],error:null};
     if(profilesError)throw new ApiError(503,"Unable to load conversation names.");
-    return NextResponse.json({userId:user.id,connections:data||[],people:(profiles||[]).map(p=>({id:p.id,full_name:p.full_name||"GiftGrid member",role:p.role}))},{headers:{"Cache-Control":"private, no-store"}});
+    return NextResponse.json({userId:user.id,connections:data||[],people:(profiles||[]).map(p=>({id:p.id,full_name:p.full_name||"Merchant Bridge member",role:p.role}))},{headers:{"Cache-Control":"private, no-store"}});
   }catch(error){return apiFailure(error);}
 }
 export async function POST(request:Request){

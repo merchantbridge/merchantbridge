@@ -8,7 +8,7 @@ import OpenSourcingPanel from "@/components/public/OpenSourcingPanel";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "GiftGrid - The Community for Better Gifting",
+  title: "Merchant Bridge - The Community for Better Gifting",
   description: siteConfig.description,
 };
 

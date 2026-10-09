@@ -2,7 +2,7 @@ import { createServerClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
-export const metadata = { title: 'Dashboard — GiftGrid' }
+export const metadata = { title: 'Dashboard — Merchant Bridge' }
 
 async function getMerchantData(userId: string) {
   const supabase = createServerClient()
@@ -94,7 +94,7 @@ export default async function DashboardPage() {
     <>
       <div className="page-header">
         <h1 className="page-title">Hello, {firstName}.</h1>
-        <p className="page-sub">Here's where your store stands with GiftGrid.</p>
+        <p className="page-sub">Here's where your store stands with Merchant Bridge.</p>
       </div>
 
       {/* STATUS RIBBON */}
@@ -164,7 +164,7 @@ export default async function DashboardPage() {
           <div className="stat-body">
             <p className="stat-label">Messages</p>
             <p className="stat-value">{unreadCount > 0 ? `${unreadCount} unread` : 'All caught up'}</p>
-            <p className="stat-sub">From the GiftGrid team</p>
+            <p className="stat-sub">From the Merchant Bridge team</p>
           </div>
           <span className="stat-arrow">→</span>
         </Link>

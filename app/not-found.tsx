@@ -7,7 +7,7 @@ export default function NotFound() {
         <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
           <img
             src="/images/logo-full.png"
-            alt="GiftGrid"
+            alt="Merchant Bridge"
             className="h-14 w-14 object-contain"
           />
         </div>
@@ -22,7 +22,7 @@ export default function NotFound() {
 
         <p className="mt-5 max-w-xl text-base leading-7 text-slate-600">
           The page you&apos;re looking for may have moved, been removed, or
-          never existed. Let&apos;s get you back to GiftGrid.
+          never existed. Let&apos;s get you back to Merchant Bridge.
         </p>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -30,7 +30,7 @@ export default function NotFound() {
             href="/"
             className="rounded-xl bg-[#0F766E] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#115E59]"
           >
-            Back to GiftGrid
+            Back to Merchant Bridge
           </Link>
 
           <Link

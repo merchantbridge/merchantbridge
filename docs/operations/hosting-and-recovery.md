@@ -21,7 +21,7 @@ Supabase already runs PostgreSQL. A second PostgreSQL service is a recovery dest
 
 ## Cloudflare cutover prerequisites
 
-GiftGrid is a full-stack Next.js application and needs Workers, not static-only Pages. Cloudflare currently recommends vinext (beta); run its compatibility checker before selecting or installing an adapter.
+Merchant Bridge is a full-stack Next.js application and needs Workers, not static-only Pages. Cloudflare currently recommends vinext (beta); run its compatibility checker before selecting or installing an adapter.
 
 Known project work to validate: host-based routing in proxy.ts; server-side Supabase session cookies; uploads and PDF viewing; the mobile release filesystem check in lib/mobile/release.ts; content files; existing Vercel Analytics/Speed Insights; and the daily 09:00 UTC /api/cron/blog schedule in vercel.json. Recreate authenticated scheduled execution once only; avoid two active publishers during cutover.
 

@@ -1,6 +1,6 @@
-# GiftGrid developer plans
+# Merchant Bridge developer plans
 
-Developer plans control platform capacity. A developer's GiftGrid status still controls eligibility, scopes, suspension, and appeal rules. Plan limits apply per developer account unless a plan says otherwise.
+Developer plans control platform capacity. A developer's Merchant Bridge status still controls eligibility, scopes, suspension, and appeal rules. Plan limits apply per developer account unless a plan says otherwise.
 
 | Capability | Starter | Growth | Scale |
 | --- | ---: | ---: | ---: |
@@ -22,6 +22,6 @@ Developer plans control platform capacity. A developer's GiftGrid status still c
 
 All plans receive separate sandbox and production credentials. Production access still depends on the developer's status and approved scopes. Chatbot and automation integrations are monitored on every plan and may be suspended immediately by AI for serious abuse or security risk.
 
-When a plan limit is reached, the console should explain the limit, preserve the request or job state safely, and offer an upgrade path. It must not silently drop webhooks or cron jobs. Rate-limit responses should include a retry time, and failed email notifications follow GiftGrid's provider fallback and retry policy.
+When a plan limit is reached, the console should explain the limit, preserve the request or job state safely, and offer an upgrade path. It must not silently drop webhooks or cron jobs. Rate-limit responses should include a retry time, and failed email notifications follow Merchant Bridge's provider fallback and retry policy.
 
 Scale can later support negotiated limits, dedicated support, custom retention, IP allowlists, signed build attestations, and a separate production region without changing the API contract.

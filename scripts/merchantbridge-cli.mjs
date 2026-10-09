@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 
 /**
- * GiftGrid developer CLI. It intentionally uses only Node's built-in APIs so
+ * Merchant Bridge developer CLI. It intentionally uses only Node's built-in APIs so
  * developers can run it with `npx`/Node without installing another SDK.
  */
 const args = process.argv.slice(2);
-const API_URL = (process.env.GIFTGRID_API_URL || "https://www.degiftgrid.com/api").replace(/\/$/, "");
-const API_KEY = process.env.GIFTGRID_API_KEY;
+const API_URL = (process.env.MERCHANTBRIDGE_API_URL || "https://www.demerchantbridge.com/api").replace(/\/$/, "");
+const API_KEY = process.env.MERCHANTBRIDGE_API_KEY;
 
 function help() {
-  console.log(`GiftGrid Developer CLI
+  console.log(`Merchant Bridge Developer CLI
 
 Usage:
-  npm run giftgrid -- <resource> <action> [options]
+  npm run merchantbridge -- <resource> <action> [options]
 
 Resources and actions:
   status
@@ -28,8 +28,8 @@ Resources and actions:
   webhooks add --app-id <id> --url <https URL> --events <event,...>
 
 Environment:
-  GIFTGRID_API_URL  API root (defaults to https://www.degiftgrid.com/api)
-  GIFTGRID_API_KEY  developer API key (never pass keys as command arguments)
+  MERCHANTBRIDGE_API_URL  API root (defaults to https://www.demerchantbridge.com/api)
+  MERCHANTBRIDGE_API_KEY  developer API key (never pass keys as command arguments)
 `);
 }
 
@@ -45,7 +45,7 @@ function options(values) {
 }
 
 function requireKey() {
-  if (!API_KEY) throw new Error("Set GIFTGRID_API_KEY before running this command.");
+  if (!API_KEY) throw new Error("Set MERCHANTBRIDGE_API_KEY before running this command.");
 }
 
 async function request(path, method = "GET", body, protectedRequest = true, extraHeaders = {}) {
@@ -58,7 +58,7 @@ async function request(path, method = "GET", body, protectedRequest = true, extr
     body: body ? JSON.stringify(body) : undefined,
   });
   const payload = await response.json().catch(() => null);
-  if (!response.ok) throw new Error(`${response.status}: ${payload?.error || payload?.message || "GiftGrid API request failed"}`);
+  if (!response.ok) throw new Error(`${response.status}: ${payload?.error || payload?.message || "Merchant Bridge API request failed"}`);
   return payload;
 }
 
@@ -113,4 +113,4 @@ async function main() {
   print(result);
 }
 
-main().catch((error) => { console.error(`GiftGrid CLI: ${error.message}`); process.exitCode = 1; });
+main().catch((error) => { console.error(`Merchant Bridge CLI: ${error.message}`); process.exitCode = 1; });

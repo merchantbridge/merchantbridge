@@ -7,7 +7,7 @@ type Message = { role: "user" | "assistant"; content: string };
 
 const GREETING: Message = {
   role: "assistant",
-  content: `Hi, I'm the ${siteConfig.name} assistant. I can help you source gifts in bulk, offer gifting products, or understand GiftGrid. What are you looking to do?`,
+  content: `Hi, I'm the ${siteConfig.name} assistant. I can help you source gifts in bulk, offer gifting products, or understand Merchant Bridge. What are you looking to do?`,
 };
 
 export default function ChatWidget() {
@@ -106,7 +106,7 @@ export default function ChatWidget() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
               maxLength={2000}
-              aria-label="Message the GiftGrid assistant"
+              aria-label="Message the Merchant Bridge assistant"
               placeholder="Ask a question..."
               disabled={loading}
               className="flex-1 rounded-full border border-borderCustom bg-primary px-4 py-2 text-[13.5px] text-textPrimary outline-none focus:border-accent disabled:opacity-60"

@@ -1,5 +1,5 @@
 {
-  "name": "giftgrid",
+  "name": "merchantbridge",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "content:generate": "node scripts/content/generate-library.mjs && node scripts/content/build-library.mjs",
-    "giftgrid": "node scripts/giftgrid-cli.mjs",
+    "merchantbridge": "node scripts/merchantbridge-cli.mjs",
     "typecheck": "tsc --noEmit --incremental false"
   },
   "dependencies": {

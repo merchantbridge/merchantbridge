@@ -52,7 +52,7 @@ export const defaultSiteDesign: SiteDesign = {
   mobilePagePadding: 20,
   cardPadding: 28,
   buttonHeight: 50,
-  heroEyebrow: "The GiftGrid community",
+  heroEyebrow: "The Merchant Bridge community",
   heroTitle: "Gifting works better when we work together.",
   heroDescription: "A community for gifting buyers, independent brands, and partners to share products, sourcing needs, and practical ideas.",
   merchantButton: "Explore the community",

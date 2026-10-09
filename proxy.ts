@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 /*
- * GiftGrid middleware intentionally stays lightweight.
+ * Merchant Bridge middleware intentionally stays lightweight.
  *
  * Authentication and authorization are handled inside:
  *   - /dashboard server components/layouts
@@ -13,13 +13,13 @@ import { NextResponse, type NextRequest } from "next/server";
  */
 export function proxy(request: NextRequest) {
   const host = request.headers.get("host")?.split(":")[0];
-  const isCommunityHost = host === "community.giftgrid.com" || host === "community.degiftgrid.com";
+  const isCommunityHost = host === "community.merchantbridge.com" || host === "community.demerchantbridge.com";
   const isAuthRoute = request.nextUrl.pathname.startsWith("/auth");
   const pathname = request.nextUrl.pathname;
-  if (pathname === '/console/docs' || pathname.startsWith('/console/docs/')) return NextResponse.redirect('https://community.degiftgrid.com/docs', 308);
-  if (host === 'console.degiftgrid.com' && (pathname === '/docs' || pathname.startsWith('/docs/'))) return NextResponse.redirect('https://community.degiftgrid.com/docs', 308);
+  if (pathname === '/console/docs' || pathname.startsWith('/console/docs/')) return NextResponse.redirect('https://community.demerchantbridge.com/docs', 308);
+  if (host === 'console.demerchantbridge.com' && (pathname === '/docs' || pathname.startsWith('/docs/'))) return NextResponse.redirect('https://community.demerchantbridge.com/docs', 308);
   if (isCommunityHost && pathname === "/community") return NextResponse.redirect(new URL("/", request.url), 308);
-  if (host === "console.degiftgrid.com" && !isAuthRoute && !request.nextUrl.pathname.startsWith("/console")) {
+  if (host === "console.demerchantbridge.com" && !isAuthRoute && !request.nextUrl.pathname.startsWith("/console")) {
     const url = request.nextUrl.clone();
     url.pathname = `/console${request.nextUrl.pathname === "/" ? "" : request.nextUrl.pathname}`;
     return NextResponse.rewrite(url);
@@ -29,7 +29,7 @@ export function proxy(request: NextRequest) {
     url.pathname = "/community";
     return NextResponse.rewrite(url);
   }
-  if (host === "api.degiftgrid.com" && !pathname.startsWith("/api") && !pathname.startsWith("/_next")) {
+  if (host === "api.demerchantbridge.com" && !pathname.startsWith("/api") && !pathname.startsWith("/_next")) {
     const url = request.nextUrl.clone();
     url.pathname = `/api${pathname === "/" ? "/health" : pathname}`;
     return NextResponse.rewrite(url);

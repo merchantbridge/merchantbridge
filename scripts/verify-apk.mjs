@@ -147,5 +147,5 @@ while (manifestCursor + 8 <= manifest.length) {
   manifestCursor += size;
 }
 if (!packageName) throw new Error("APK application ID could not be read from its manifest.");
-if (packageName !== "com.hellogiftgrid.app") throw new Error(`Unexpected APK application ID: ${packageName}`);
+if (packageName !== "com.hellomerchantbridge.app") throw new Error(`Unexpected APK application ID: ${packageName}`);
 console.log(JSON.stringify({ bytes: apk.length, packageName, signatureScheme: "v2", signatureVerified: true, contentVerified: true, signerSha256: createHash("sha256").update(certificate.raw).digest("hex").toUpperCase() }));

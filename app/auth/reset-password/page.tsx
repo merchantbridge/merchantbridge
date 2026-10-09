@@ -161,7 +161,7 @@ export default function ResetPasswordPage() {
     return (
       <AuthShell
         title="Password updated"
-        subtitle="Your GiftGrid password has been changed successfully."
+        subtitle="Your Merchant Bridge password has been changed successfully."
       >
         <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm leading-6 text-emerald-800">
           Your password has been updated. Redirecting you to
@@ -174,7 +174,7 @@ export default function ResetPasswordPage() {
   return (
     <AuthShell
       title="Create a new password"
-      subtitle="Choose a new password for your GiftGrid merchant account."
+      subtitle="Choose a new password for your Merchant Bridge merchant account."
       footer={
         <Link
           href="/dashboard"

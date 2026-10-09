@@ -2,13 +2,13 @@ export default function WebSiteJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://www.degiftgrid.com/#website",
-    url: "https://www.degiftgrid.com/",
-    name: "GiftGrid",
+    "@id": "https://www.demerchantbridge.com/#website",
+    url: "https://www.demerchantbridge.com/",
+    name: "Merchant Bridge",
     description:
-      "GiftGrid helps e-commerce merchants improve store readiness and prepare for corporate gifting, wholesale, and commercial opportunities.",
+      "Merchant Bridge helps e-commerce merchants improve store readiness and prepare for corporate gifting, wholesale, and commercial opportunities.",
     publisher: {
-      "@id": "https://www.degiftgrid.com/#organization",
+      "@id": "https://www.demerchantbridge.com/#organization",
     },
   };
 

@@ -1,5 +1,5 @@
 import "server-only";
-import { GIFTGRID_ADMIN_AVATAR, isGiftGridAdmin } from "@/config/identity";
+import { MERCHANTBRIDGE_ADMIN_AVATAR, isMerchantBridgeAdmin } from "@/config/identity";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { uuid } from "@/lib/developer/api";
 
@@ -15,17 +15,17 @@ export async function getPublicMember(id: string) {
   if (member.error || merchant.error || account.error) throw new Error("Unable to load this member profile.");
   if (!account.data) return null;
   const business = account.data.role === "merchant" ? merchant.data : null;
-  const name = member.data?.display_name || account.data.full_name || business?.business_name || "GiftGrid member";
+  const name = member.data?.display_name || account.data.full_name || business?.business_name || "Merchant Bridge member";
   const { data: products, error: productsError } = business
     ? await admin.from("merchant_listings").select("id,title,short_description,hero_image_url,price_range,minimum_order_quantity").eq("merchant_id", business.id).eq("status", "published").order("created_at", { ascending: false }).limit(12)
     : { data: [], error: null };
   if (productsError) throw new Error("Unable to load merchant products.");
   return {
-    id, name: name.includes("@") ? "GiftGrid member" : name,
-    kind: isGiftGridAdmin(account.data.role) ? "admin" : account.data.role === "merchant" ? "merchant" : "buyer",
+    id, name: name.includes("@") ? "Merchant Bridge member" : name,
+    kind: isMerchantBridgeAdmin(account.data.role) ? "admin" : account.data.role === "merchant" ? "merchant" : "buyer",
     bio: member.data?.bio || business?.business_description,
     country: member.data?.country || business?.country,
-    avatar: isGiftGridAdmin(account.data.role) ? GIFTGRID_ADMIN_AVATAR : member.data?.avatar_url || business?.avatar_url,
+    avatar: isMerchantBridgeAdmin(account.data.role) ? MERCHANTBRIDGE_ADMIN_AVATAR : member.data?.avatar_url || business?.avatar_url,
     businessName: business?.business_name, category: business?.business_category,
     storeUrl: safeStoreUrl(business?.store_url), products: products || [],
     approved: business?.application_status === "approved",

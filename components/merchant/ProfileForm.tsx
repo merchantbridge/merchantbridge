@@ -75,7 +75,7 @@ export default function ProfileForm({ initialData }: { initialData: MerchantProf
             value={businessName}
             onChange={(e) => setBusinessName(e.target.value)}
             className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-indigo-600 transition-colors"
-            placeholder="e.g. GiftGrid Inc."
+            placeholder="e.g. Merchant Bridge Inc."
           />
         </div>
 

@@ -2,7 +2,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {
-  title: "Opportunities — GiftGrid Admin",
+  title: "Opportunities — Merchant Bridge Admin",
 };
 
 async function toggleOpportunity(formData: FormData) {

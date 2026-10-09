@@ -3,7 +3,7 @@ import { requireSuperAdmin } from '@/lib/admin/require-super-admin';
 import WebsiteDesignEditor from '@/components/admin/WebsiteDesignEditor';
 import { normalizeSiteDesign } from '@/lib/content/site-design';
 import { normalizePages } from '@/lib/content/site-pages';
-export const metadata={title:'Website Editor — GiftGrid Admin'};
+export const metadata={title:'Website Editor — Merchant Bridge Admin'};
 export default async function WebsiteDesignPage(){
  await requireSuperAdmin();const supabase=await createClient();
  const {data,error}=await supabase.from('settings').select('key,value').in('key',['site_design','site_pages','site_sections','site_editor_draft']);

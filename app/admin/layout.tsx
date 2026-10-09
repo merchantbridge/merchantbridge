@@ -23,7 +23,7 @@ export default async function AdminLayout({
             <div className="flex h-16 items-center justify-between px-5 lg:px-8">
               <div>
                 <div className="text-sm font-bold text-slate-950">
-                  GiftGrid Admin
+                  Merchant Bridge Admin
                 </div>
                 <div className="text-xs text-slate-400">
                   Platform operations

@@ -13,7 +13,7 @@ const slices = [
 ];
 
 export const metadata = {
-  title: "GiftGrid Landing Page Design Reference",
+  title: "Merchant Bridge Landing Page Design Reference",
   robots: {
     index: false,
     follow: false,
@@ -26,7 +26,7 @@ export default function DesignReferencePage() {
       <div className="mx-auto max-w-6xl">
         <header className="mb-10">
           <div className="text-xs font-bold uppercase tracking-[0.18em] text-indigo-600">
-            GiftGrid Design Reference
+            Merchant Bridge Design Reference
           </div>
 
           <h1 className="mt-3 text-4xl font-black tracking-tight">
@@ -35,7 +35,7 @@ export default function DesignReferencePage() {
 
           <p className="mt-3 max-w-3xl text-slate-600">
             Protected visual reference and section breakdown used to rebuild
-            the GiftGrid landing page as real responsive interactive UI.
+            the Merchant Bridge landing page as real responsive interactive UI.
           </p>
         </header>
 
@@ -53,7 +53,7 @@ export default function DesignReferencePage() {
           <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
             <Image
               src="/design-reference/landing-reference.png"
-              alt="GiftGrid landing page master reference"
+              alt="Merchant Bridge landing page master reference"
               width={480}
               height={2192}
               priority

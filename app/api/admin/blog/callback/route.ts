@@ -5,8 +5,8 @@ import { bloggerOAuth,bloggerHosts,encryptToken } from '@/lib/blog/blogger';
 import { createAdminClient } from '@/lib/supabase/admin';
 export async function GET(request:NextRequest){
  const user=await blogAdmin();if(!user)return NextResponse.json({error:'Super-admin access required.'},{status:403});
- const finish=(key:string,value:string)=>{const response=NextResponse.redirect(new URL(`/admin/blog?${key}=${encodeURIComponent(value)}`,request.url));response.cookies.set('giftgrid_blogger_state','',{path:'/api/admin/blog',maxAge:0});return response;};
- const expected=request.cookies.get('giftgrid_blogger_state')?.value||'';const state=request.nextUrl.searchParams.get('state')||'';const actual=`${user.id}:${state}`;
+ const finish=(key:string,value:string)=>{const response=NextResponse.redirect(new URL(`/admin/blog?${key}=${encodeURIComponent(value)}`,request.url));response.cookies.set('merchantbridge_blogger_state','',{path:'/api/admin/blog',maxAge:0});return response;};
+ const expected=request.cookies.get('merchantbridge_blogger_state')?.value||'';const state=request.nextUrl.searchParams.get('state')||'';const actual=`${user.id}:${state}`;
  if(!expected||actual.length!==expected.length||!timingSafeEqual(Buffer.from(actual),Buffer.from(expected)))return finish('error','The connection expired. Please try again.');
  const code=request.nextUrl.searchParams.get('code');if(!code)return finish('error','Google authorization was not completed.');
  try{const oauth=bloggerOAuth();const {tokens}=await oauth.getToken(code);oauth.setCredentials(tokens);if(!tokens.refresh_token)throw new Error('Please grant offline access when reconnecting Blogger.');

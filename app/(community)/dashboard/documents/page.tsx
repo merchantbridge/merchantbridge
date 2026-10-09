@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 
 export const metadata = {
-  title: 'Documents — GiftGrid',
+  title: 'Documents — Merchant Bridge',
 }
 
 export default async function DocumentsPage() {
@@ -64,7 +64,7 @@ export default async function DocumentsPage() {
             </h2>
 
             <p className="mt-2 text-sm text-slate-500">
-              Documents will appear here when the GiftGrid team shares them.
+              Documents will appear here when the Merchant Bridge team shares them.
             </p>
           </div>
         ) : (

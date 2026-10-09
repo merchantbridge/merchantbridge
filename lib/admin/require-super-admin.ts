@@ -32,7 +32,7 @@ export async function requireSuperAdmin() {
   return {
     userId: user.id,
     email: user.email ?? "",
-    fullName: profile.full_name ?? "GiftGrid Super Admin",
+    fullName: profile.full_name ?? "Merchant Bridge Super Admin",
     role: profile.role,
   };
 }

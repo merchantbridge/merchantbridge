@@ -1,10 +1,10 @@
 import { sendEmail } from "@/lib/email/provider";
 
-export async function sendGiftGridEmail({
+export async function sendMerchantBridgeEmail({
   to,
   subject,
   html,
-  replyTo = "support@degiftgrid.com",
+  replyTo = "support@demerchantbridge.com",
 }: {
   to: string;
   subject: string;

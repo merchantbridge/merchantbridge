@@ -2,15 +2,15 @@ const { chromium } = require('@playwright/test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 
-const base = process.env.GIFTGRID_TEST_URL || 'http://127.0.0.1:3000';
+const base = process.env.MERCHANTBRIDGE_TEST_URL || 'http://127.0.0.1:3000';
 async function main() {
-  fs.mkdirSync('.giftgrid-verification/screenshots', { recursive: true });
+  fs.mkdirSync('.merchantbridge-verification/screenshots', { recursive: true });
   const browser = await chromium.launch({ channel: 'chrome', headless: true });
   try {
     for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 1000 }]) {
       const page = await browser.newPage({ viewport });
       await page.route('**/api/community/posts*', route => route.fulfill({ json: { posts: [{ id: 'test-post', author_name: 'Test Member', topic: 'Gifting ideas', body: 'A'.repeat(2000), created_at: '2026-09-30T12:00:00Z' }] } }));
-      for (const route of ['/community', '/giftgrid']) {
+      for (const route of ['/community', '/merchantbridge']) {
         const response = await page.goto(base + route, { waitUntil: 'networkidle', timeout: 120000 });
         assert.equal(response.status(), 200);
         assert.equal(await page.locator('footer').count(), 0);
@@ -18,15 +18,15 @@ async function main() {
         assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), `${route} overflows at ${viewport.width}px`);
         const action = await page.getByRole('button', { name: 'Like', exact: true }).first().boundingBox();
         assert.ok(action.height >= 44);
-        await page.screenshot({ path: `.giftgrid-verification/screenshots/${route.slice(1)}-${viewport.width}.png`, fullPage: true });
+        await page.screenshot({ path: `.merchantbridge-verification/screenshots/${route.slice(1)}-${viewport.width}.png`, fullPage: true });
       }
       await page.goto(base + '/app', { waitUntil: 'networkidle', timeout: 120000 });
       assert.equal(await page.locator('footer').count(), 1);
-      assert.equal(await page.getByRole('heading', { name: 'Get the GiftGrid App', exact: true }).count(), 1);
-      assert.equal(await page.getByRole('img', { name: 'QR code linking to the GiftGrid app download page' }).count(), 1);
+      assert.equal(await page.getByRole('heading', { name: 'Get the Merchant Bridge App', exact: true }).count(), 1);
+      assert.equal(await page.getByRole('img', { name: 'QR code linking to the Merchant Bridge app download page' }).count(), 1);
       assert.equal(await page.getByRole('link', { name: 'Download Android APK', exact: true }).count(), 0, 'No fabricated APK download');
       assert.ok(await page.getByRole('status').isVisible());
-      await page.screenshot({ path: `.giftgrid-verification/screenshots/app-${viewport.width}.png`, fullPage: true });
+      await page.screenshot({ path: `.merchantbridge-verification/screenshots/app-${viewport.width}.png`, fullPage: true });
       await page.close();
     }
     const page = await browser.newPage();

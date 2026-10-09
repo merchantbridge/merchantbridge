@@ -1,5 +1,5 @@
 -- ============================================================
--- GiftGrid — Migration 0002: Merchant Portal Supporting Tables
+-- Merchant Bridge — Migration 0002: Merchant Portal Supporting Tables
 -- ============================================================
 
 -- ----------------------------------------------------------
@@ -34,7 +34,7 @@ create table if not exists public.merchant_documents (
 );
 
 -- ----------------------------------------------------------
--- OPPORTUNITY TARGETS  (external orgs/platforms GiftGrid submits to)
+-- OPPORTUNITY TARGETS  (external orgs/platforms Merchant Bridge submits to)
 -- ----------------------------------------------------------
 create table if not exists public.opportunity_targets (
   id           uuid primary key default gen_random_uuid(),

@@ -10,6 +10,6 @@ export function validateDocArticle(value: unknown, slug: string): DocArticle {
   if (words < 1000 || words > 2400) throw new Error(`Guide has ${words} words; expected 1000–2400.`);
   const paragraphs = [a.intro, ...a.sections.flatMap(s => s.paragraphs)];
   if (new Set(paragraphs.map(p => p.trim().toLowerCase())).size !== paragraphs.length) throw new Error('Repeated paragraph.');
-  if (paragraphs.some(p => /<\/?[a-z][^>]*>|\/api\/v1\/|community (?:publish|draft) --|GIFTGRID_PUBLISHER_IDS/i.test(p))) throw new Error('Unsupported markup, route, or private automation instructions.');
+  if (paragraphs.some(p => /<\/?[a-z][^>]*>|\/api\/v1\/|community (?:publish|draft) --|MERCHANTBRIDGE_PUBLISHER_IDS/i.test(p))) throw new Error('Unsupported markup, route, or private automation instructions.');
   return result;
 }

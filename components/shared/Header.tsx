@@ -19,7 +19,7 @@ const navLinks = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const isCommunity = pathname === "/community" || pathname === "/giftgrid" || (typeof window !== "undefined" && window.location.hostname === "community.degiftgrid.com");
+  const isCommunity = pathname === "/community" || pathname === "/merchantbridge" || (typeof window !== "undefined" && window.location.hostname === "community.demerchantbridge.com");
 
   if (isCommunity) return null;
 
@@ -28,7 +28,7 @@ export default function Header() {
       <nav className="mx-auto flex max-w-[1180px] items-center justify-between rounded-full border border-white/80 bg-white/90 px-4 py-2.5 shadow-[0_10px_35px_rgba(15,23,42,.10)] backdrop-blur-xl sm:px-5">
         <Link href="/" className="flex items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/logo-horizontal.png" alt="GiftGrid" className="theme-logo h-9 w-auto object-contain" />
+          <img src="/images/logo-horizontal.png" alt="Merchant Bridge" className="theme-logo h-9 w-auto object-contain" />
         </Link>
 
         <ul className="hidden gap-8 text-[14.5px] text-textSecondary md:flex">
@@ -51,7 +51,7 @@ export default function Header() {
             className="rounded-full px-5 py-2.5 text-[14px] font-semibold text-white shadow-sm transition-transform hover:-translate-y-0.5"
             style={{ background: "#1D4ED8" }}
           >
-            Join GiftGrid
+            Join Merchant Bridge
           </Link>
         </div>
 

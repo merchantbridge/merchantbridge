@@ -35,11 +35,11 @@ export default function SignInPage() {
     } catch { setError("We couldn't connect. Check your connection and try again."); }
     finally { setLoading(false); }
   }
-  return <AuthShell title={showForm ? "Welcome back." : "Good to see you again."} subtitle={showForm ? "Sign in to continue your GiftGrid journey." : "A thoughtful gift. A new connection. Your next opportunity starts here."} footer={<>New to GiftGrid? <Link href="/auth/join" className="font-semibold text-blue-700 underline underline-offset-4">Create an account</Link></>}>
+  return <AuthShell title={showForm ? "Welcome back." : "Good to see you again."} subtitle={showForm ? "Sign in to continue your Merchant Bridge journey." : "A thoughtful gift. A new connection. Your next opportunity starts here."} footer={<>New to Merchant Bridge? <Link href="/auth/join" className="font-semibold text-blue-700 underline underline-offset-4">Create an account</Link></>}>
     {!showForm ? <>
       <AccountChoice value={account} onChange={setAccount} />
       <button type="button" disabled={!account} onClick={() => setShowForm(true)} className="mt-6 w-full rounded-xl bg-blue-600 px-6 py-4 text-sm font-bold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500">{account ? `Continue as a ${account}` : "Choose your account type"}</button>
-      <button type="button" onClick={() => { setAccount(null); setShowForm(true); }} className="mt-4 w-full py-2 text-xs font-medium text-slate-500 underline underline-offset-4">GiftGrid team or developer? Sign in here</button>
+      <button type="button" onClick={() => { setAccount(null); setShowForm(true); }} className="mt-4 w-full py-2 text-xs font-medium text-slate-500 underline underline-offset-4">Merchant Bridge team or developer? Sign in here</button>
     </> : <>
       <div className="mb-6 flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3 text-sm"><span className="font-semibold capitalize text-slate-700">{account || "Team"} workspace</span><button type="button" disabled={loading} onClick={() => { setShowForm(false); setError(null); }} className="px-2 py-1 font-semibold text-blue-700">Change</button></div>
       <form onSubmit={handleSubmit} className="space-y-5" aria-busy={loading}>

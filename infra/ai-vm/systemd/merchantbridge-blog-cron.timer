@@ -1,5 +1,5 @@
 [Unit]
-Description=Run GiftGrid blog publishing daily
+Description=Run Merchant Bridge blog publishing daily
 
 [Timer]
 OnCalendar=*-*-* 03:15:00 UTC

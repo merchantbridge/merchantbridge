@@ -8,7 +8,7 @@ export async function GET(request: Request) {
   // Count download starts only. Store no identity, IP, or user-agent data.
   try {
     const { error } = await createAdminClient().rpc("record_android_download");
-    if (error) console.warn("GiftGrid download counter unavailable.");
-  } catch { console.warn("GiftGrid download counter unavailable."); }
+    if (error) console.warn("Merchant Bridge download counter unavailable.");
+  } catch { console.warn("Merchant Bridge download counter unavailable."); }
   return NextResponse.redirect(new URL(release.href, request.url), { status: 307, headers: { "Cache-Control": "no-store" } });
 }

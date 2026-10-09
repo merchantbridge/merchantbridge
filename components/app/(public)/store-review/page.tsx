@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/shared/Header";
 export const metadata: Metadata = {
-  title: "Store Review — GiftGrid",
-  description: "What GiftGrid actually checks before recommending your store for an opportunity.",
+  title: "Store Review — Merchant Bridge",
+  description: "What Merchant Bridge actually checks before recommending your store for an opportunity.",
 };
 
 const categories = [
@@ -53,7 +53,7 @@ export default function StoreReviewPage() {
               A real audit, not a guess.
             </h1>
             <p className="mt-6 text-[17px] leading-relaxed text-textSecondary">
-              GiftGrid inspects what's publicly available about your store across six categories. No fake speed
+              Merchant Bridge inspects what's publicly available about your store across six categories. No fake speed
               numbers, no fake conversion scores, no fake checkout failures — we only measure what we can
               actually measure, and a human reviews it before you see it.
             </p>

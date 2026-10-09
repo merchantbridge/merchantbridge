@@ -8,8 +8,8 @@ export default function DynamicSiteSections({ sections }: { sections: SiteSectio
   const [items, setItems] = useState(sections);
   useEffect(() => {
     const receive = (event: Event) => setItems((event as CustomEvent<SiteSection[]>).detail);
-    window.addEventListener("giftgrid:preview-sections", receive);
-    return () => window.removeEventListener("giftgrid:preview-sections", receive);
+    window.addEventListener("merchantbridge:preview-sections", receive);
+    return () => window.removeEventListener("merchantbridge:preview-sections", receive);
   }, []);
   return <>{items.filter((section) => section.visible).map((section) => {
     const sizing = { "--section-width": `${section.contentWidth || 1280}px`, "--section-desktop-height": `${section.desktopHeight || 0}px`, "--section-mobile-height": `${section.mobileHeight || 0}px`, "--section-image-height": `${section.imageHeight || 380}px`, "--section-title-size": `${section.titleSize || 48}px`, "--section-text-size": `${section.textSize || 18}px` } as CSSProperties;

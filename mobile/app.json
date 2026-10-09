@@ -1,18 +1,18 @@
 {
   "expo": {
-    "name": "GiftGrid",
-    "slug": "giftgrid",
+    "name": "Merchant Bridge",
+    "slug": "merchantbridge",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "giftgrid",
+    "scheme": "merchantbridge",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "bundleIdentifier": "com.hellogiftgrid.app",
+      "bundleIdentifier": "com.hellomerchantbridge.app",
       "supportsTablet": true
     },
     "android": {
-      "package": "com.hellogiftgrid.app",
+      "package": "com.hellomerchantbridge.app",
       "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",

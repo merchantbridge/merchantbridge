@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
-cd /workspaces/giftgrid
+cd /workspaces/merchantbridge
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  GiftGrid → Supabase CLI init + Vercel deploy"
+echo "  Merchant Bridge → Supabase CLI init + Vercel deploy"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 echo ""
@@ -68,9 +68,9 @@ echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  ✅  LIVE!"
 echo ""
-echo "  https://degiftgrid.com/console     → developer console"
-echo "  https://degiftgrid.com/community   → community"
-echo "  https://degiftgrid.com/dashboard   → merchant dashboard"
+echo "  https://demerchantbridge.com/console     → developer console"
+echo "  https://demerchantbridge.com/community   → community"
+echo "  https://demerchantbridge.com/dashboard   → merchant dashboard"
 echo ""
 echo "  FINAL STEP in Supabase SQL editor:"
 echo "  UPDATE profiles SET role = 'developer'"

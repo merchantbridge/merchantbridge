@@ -1,4 +1,4 @@
-# GiftGrid AI connection
+# Merchant Bridge AI connection
 
 The server-only `lib/ai/chat.ts` adapter tries configured providers in this order: Groq, Cerebras, NVIDIA NIM, GitHub Models, OpenRouter, Mistral, Hugging Face, then Gemini. It moves to the next provider on errors, timeout, quota exhaustion or empty output. Each provider has a 20-second timeout. The chat endpoint sends only the last 12 messages, with 2,000 characters per message. It does not load private member conversations or documents, and cannot make account changes.
 

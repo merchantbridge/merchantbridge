@@ -17,12 +17,12 @@ export async function researchTopic(
   const ai = getGemini();
 
   const prompt = `
-Research this topic for GiftGrid:
+Research this topic for Merchant Bridge:
 
 Primary keyword: ${keyword}
 Target market: ${country}
 
-GiftGrid is an ecommerce merchant platform focused on merchant profiles,
+Merchant Bridge is an ecommerce merchant platform focused on merchant profiles,
 store readiness, corporate gifting, wholesale and commercial opportunities.
 
 Research:
@@ -61,7 +61,7 @@ export async function researchUrl(url: string) {
   const response = await ai.models.generateContent({
     model: "gemini-3.8-flash",
     contents: `
-Analyze this webpage as research for GiftGrid:
+Analyze this webpage as research for Merchant Bridge:
 ${url}
 
 Summarize only information useful for an ecommerce knowledge article.

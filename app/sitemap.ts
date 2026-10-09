@@ -1,11 +1,11 @@
 import { getArticles } from "@/lib/blog/articles";
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://www.degiftgrid.com";
+const SITE_URL = "https://www.demerchantbridge.com";
 
 const routes = [
   "/",
-  "/giftgrid",
+  "/merchantbridge",
   "/about",
   "/how-it-works",
   "/faq",
@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority:
       route === "/"
         ? 1
-        : route === "/giftgrid"
+        : route === "/merchantbridge"
           ? 0.95
           : route === "/blog"
             ? 0.9

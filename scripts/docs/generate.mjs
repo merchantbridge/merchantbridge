@@ -2,11 +2,11 @@ import { mkdir, readFile, writeFile, rename } from 'node:fs/promises';
 import { communityGuides } from '../../lib/docs/community-docs.ts';
 import { validateDocArticle, docWordCount } from '../../lib/docs/article.ts';
 
-const origin = 'https://community.degiftgrid.com';
-const token = (await readFile('.giftgrid-docs-build-token', 'utf8')).trim();
+const origin = 'https://community.demerchantbridge.com';
+const token = (await readFile('.merchantbridge-docs-build-token', 'utf8')).trim();
 const only = process.argv.includes('--sample') ? communityGuides.slice(0, 2) : communityGuides;
 await mkdir('content/docs', { recursive: true });
-await mkdir('.giftgrid-docs-drafts', { recursive: true });
+await mkdir('.merchantbridge-docs-drafts', { recursive: true });
 let next = 0, completed = 0, failed = 0;
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function worker() {
@@ -22,7 +22,7 @@ async function worker() {
     let saved = false;
     let feedback = '';
     let candidate = null;
-    try { candidate = validateDocArticle(JSON.parse(await readFile(`.giftgrid-docs-drafts/${guide.slug}.json`, 'utf8')), guide.slug); } catch {}
+    try { candidate = validateDocArticle(JSON.parse(await readFile(`.merchantbridge-docs-drafts/${guide.slug}.json`, 'utf8')), guide.slug); } catch {}
     for (let attempt = 1; attempt <= 10; attempt++) {
       try {
         let article = candidate;
@@ -34,7 +34,7 @@ async function worker() {
         article = validateDocArticle(result.article, guide.slug);
         candidate = article;
         feedback = '';
-        await writeFile(`.giftgrid-docs-drafts/${guide.slug}.json`, JSON.stringify(article));
+        await writeFile(`.merchantbridge-docs-drafts/${guide.slug}.json`, JSON.stringify(article));
         }
         const reviewResponse = await fetch(`${origin}/api/admin/docs/draft`, { method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: guide.slug, mode: 'review', article }), redirect: 'error', signal: AbortSignal.timeout(175000) });
         const review = await reviewResponse.json();

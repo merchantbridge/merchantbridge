@@ -2,7 +2,7 @@ import { createServerClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import CommsThread from '@/components/merchant/CommsThread'
 
-export const metadata = { title: 'Messages — GiftGrid' }
+export const metadata = { title: 'Messages — Merchant Bridge' }
 
 export default async function CommsPage() {
   const supabase = createServerClient()
@@ -39,12 +39,12 @@ export default async function CommsPage() {
     <>
       <div className="page-header">
         <p className="eyebrow">Messages</p>
-        <h1 className="page-title">GiftGrid Communications</h1>
+        <h1 className="page-title">Merchant Bridge Communications</h1>
         <p className="page-sub">
-          Messages from the GiftGrid team about your account, audit, and opportunities.
+          Messages from the Merchant Bridge team about your account, audit, and opportunities.
           To reply, use the form below or email{' '}
-          <a href="mailto:support@degiftgrid.com" className="email-link">
-            support@degiftgrid.com
+          <a href="mailto:support@demerchantbridge.com" className="email-link">
+            support@demerchantbridge.com
           </a>
           .
         </p>

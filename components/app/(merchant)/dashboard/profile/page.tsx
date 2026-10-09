@@ -2,7 +2,7 @@ import { createServerClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import ProfileForm from '@/components/merchant/ProfileForm'
 
-export const metadata = { title: 'Profile — GiftGrid' }
+export const metadata = { title: 'Profile — Merchant Bridge' }
 
 export default async function ProfilePage() {
   const supabase = createServerClient()

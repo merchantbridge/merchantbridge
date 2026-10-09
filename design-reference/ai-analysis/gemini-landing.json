@@ -80,7 +80,7 @@
           "text": "Position Your Brand for Corporate Gifting Opportunities."
         },
         "subheading": {
-          "text": "GiftGrid helps e-commerce brands prepare, review, and provide their stores for opportunities with their corporate gifting ecosystem."
+          "text": "Merchant Bridge helps e-commerce brands prepare, review, and provide their stores for opportunities with their corporate gifting ecosystem."
         },
         "cta_button": {
           "text": "Book a Call with Our Team",
@@ -106,7 +106,7 @@
         "trust_line": {
           "label": "Connected to leading corporate gifting & rewards platforms",
           "logos": [
-            "GiftGrid Logo",
+            "Merchant Bridge Logo",
             "Tremendous",
             "Snappy",
             "Stadium",
@@ -223,9 +223,9 @@
         "left_column": {
           "headline": "You don't apply to a dozen platforms. You apply to one.",
           "diagram": {
-            "center": "GiftGrid Core",
+            "center": "Merchant Bridge Core",
             "connections": ["Shopify", "Tremendous", "Snappy", "Loop", "Custom API"],
-            "subtext": "GiftGrid acts as the single source of truth for all your corporate gifting integrations, partnerships and tracking."
+            "subtext": "Merchant Bridge acts as the single source of truth for all your corporate gifting integrations, partnerships and tracking."
           }
         },
         "right_column": {
@@ -244,7 +244,7 @@
           "text": "Built on real reviews."
         },
         "subheading": {
-          "text": "GiftGrid ratings — we're higher rated than any other platform on G2 and Capterra."
+          "text": "Merchant Bridge ratings — we're higher rated than any other platform on G2 and Capterra."
         },
         "benefit_cards": [
           {
@@ -323,12 +323,12 @@
       "background": "#050B14",
       "components": {
         "brand_column": {
-          "logo": "GiftGrid",
+          "logo": "Merchant Bridge",
           "description": "The premier B2B corporate gifting platform helping brands connect with top corporate buyers, rewards programs, and gifting curators.",
-          "email": "support@giftgrid.com",
-          "copyright": "© 2026 GiftGrid. All rights reserved."
+          "email": "support@merchantbridge.com",
+          "copyright": "© 2026 Merchant Bridge. All rights reserved."
         },
-        "links_product": ["Key Features", "Pricing", "GitGrid Blog"],
+        "links_product": ["Key Features", "Pricing", "Merchant Bridge Blog"],
         "links_company": ["About Us", "Our Company", "FAQ", "Contact"],
         "links_legal": ["Privacy", "Terms"],
         "social_media_icons": ["Facebook", "Instagram", "Twitter", "LinkedIn"],
@@ -337,7 +337,7 @@
           "tweets": [
             {
               "user": "@Ludhianavi",
-              "text": "Loving the new GiftGrid analytics dashboard. Direct correlation between our B2B reach and integration tracking!"
+              "text": "Loving the new Merchant Bridge analytics dashboard. Direct correlation between our B2B reach and integration tracking!"
             },
             {
               "user": "@Tanveer",

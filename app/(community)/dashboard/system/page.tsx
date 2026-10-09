@@ -79,12 +79,12 @@ export default async function SystemPage() {
         </p>
 
         <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-          GiftGrid Control Center
+          Merchant Bridge Control Center
         </h1>
 
         <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-500">
           Manage users, access and platform operations
-          without leaving GiftGrid.
+          without leaving Merchant Bridge.
         </p>
       </section>
 
@@ -167,7 +167,7 @@ export default async function SystemPage() {
         </h2>
 
         <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">
-          This workspace manages GiftGrid application operations.
+          This workspace manages Merchant Bridge application operations.
           Supabase organization ownership, billing, project transfer
           and other provider-level controls remain controlled by the
           Supabase organization owner.
@@ -181,7 +181,7 @@ export default async function SystemPage() {
 
         <div className="mt-4 rounded-2xl bg-slate-50 p-5">
           <div className="font-bold text-slate-950">
-            {profile.full_name || "GiftGrid Super Admin"}
+            {profile.full_name || "Merchant Bridge Super Admin"}
           </div>
 
           <div className="mt-1 text-sm text-slate-500">

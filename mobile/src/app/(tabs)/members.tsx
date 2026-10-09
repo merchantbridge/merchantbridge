@@ -10,13 +10,13 @@ export default function MembersPage() {
     [member.display_name, member.bio || '', member.country || ''].join(' ').toLowerCase().includes(search.toLowerCase()),
   ) || [];
   return <Page title="Members" refresh={load.refresh} loading={load.loading}>
-    <Text style={styles.muted}>Browse GiftGrid member and merchant profiles.</Text>
+    <Text style={styles.muted}>Browse Merchant Bridge member and merchant profiles.</Text>
     <Field label="Find a member" value={search} onChangeText={setSearch} />
     <Status {...load} />
     {members.map((member: any) => <Card key={member.profile_id}>
       <View style={styles.row}><Picture uri={asset(member.avatar_url)} avatar /><View>
         <Text style={styles.label}>{member.display_name}</Text>
-        <Text style={styles.muted}>{member.kind} · {member.country || 'GiftGrid member'}</Text>
+        <Text style={styles.muted}>{member.kind} · {member.country || 'Merchant Bridge member'}</Text>
       </View></View>
       <Text style={styles.text}>{member.bio}</Text>
     </Card>)}

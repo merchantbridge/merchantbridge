@@ -11,7 +11,7 @@ export default function PwaInstallButton() {
 
   useEffect(() => {
     const onPrompt = (event: Event) => { event.preventDefault(); setPromptEvent(event as InstallPrompt); };
-    const onInstalled = () => { setInstalled(true); setPromptEvent(null); setMessage("GiftGrid has been added to your home screen."); };
+    const onInstalled = () => { setInstalled(true); setPromptEvent(null); setMessage("Merchant Bridge has been added to your home screen."); };
     window.addEventListener("beforeinstallprompt", onPrompt);
     window.addEventListener("appinstalled", onInstalled);
     if (window.matchMedia("(display-mode: standalone)").matches) setInstalled(true);
@@ -25,9 +25,9 @@ export default function PwaInstallButton() {
     }
     await promptEvent.prompt();
     const choice = await promptEvent.userChoice;
-    if (choice.outcome === "dismissed") setMessage("You can install GiftGrid later from your browser menu.");
+    if (choice.outcome === "dismissed") setMessage("You can install Merchant Bridge later from your browser menu.");
     setPromptEvent(null);
   }
 
-  return <div><button type="button" onClick={install} disabled={installed} className="mt-5 inline-flex min-h-12 items-center rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 disabled:bg-emerald-700">{installed ? "GiftGrid is installed" : "Install GiftGrid on this phone"}</button>{message && <p role="status" className="mt-3 max-w-lg rounded-xl bg-blue-50 p-3 text-sm text-blue-900">{message}</p>}</div>;
+  return <div><button type="button" onClick={install} disabled={installed} className="mt-5 inline-flex min-h-12 items-center rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 disabled:bg-emerald-700">{installed ? "Merchant Bridge is installed" : "Install Merchant Bridge on this phone"}</button>{message && <p role="status" className="mt-3 max-w-lg rounded-xl bg-blue-50 p-3 text-sm text-blue-900">{message}</p>}</div>;
 }

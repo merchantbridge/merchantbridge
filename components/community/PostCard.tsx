@@ -34,7 +34,7 @@ export default function PostCard({ post }: { post: CommunityPost }) {
       if (response.status === 401) setNeedsLogin(true);
       if (!response.ok) throw new Error(result.error || "Unable to update your like.");
       setStats(result.stats);
-      window.dispatchEvent(new CustomEvent('giftgrid:post-updated', { detail: { id: post.id, stats: result.stats } }));
+      window.dispatchEvent(new CustomEvent('merchantbridge:post-updated', { detail: { id: post.id, stats: result.stats } }));
     } catch(error) { setNotice(error instanceof Error ? error.message : "Please try again."); }
     finally { setBusy(false); }
   }
@@ -59,20 +59,20 @@ export default function PostCard({ post }: { post: CommunityPost }) {
       if (response.status === 401) setNeedsLogin(true);
       if (!response.ok) throw new Error(result.error || "Unable to publish your comment.");
       setComments(current => [result.comment,...current]); setBody(""); setStats(current=>({...current,comment_count:current.comment_count+1}));
-      window.dispatchEvent(new CustomEvent('giftgrid:post-updated', { detail: { id: post.id, stats: { ...stats, comment_count: stats.comment_count + 1 } } }));
+      window.dispatchEvent(new CustomEvent('merchantbridge:post-updated', { detail: { id: post.id, stats: { ...stats, comment_count: stats.comment_count + 1 } } }));
     } catch(error) { setNotice(error instanceof Error ? error.message : "Please try again."); }
     finally { setBusy(false); }
   }
   async function share() {
-    const url = `https://community.degiftgrid.com/?post=${post.id}`;
+    const url = `https://community.demerchantbridge.com/?post=${post.id}`;
     try {
-      if (navigator.share) await navigator.share({title:"GiftGrid Community",url});
+      if (navigator.share) await navigator.share({title:"Merchant Bridge Community",url});
       else { await navigator.clipboard.writeText(url); setNotice("Post link copied."); }
     } catch(error) { if (!(error instanceof DOMException && error.name === "AbortError")) setNotice("Unable to share. Please try again."); }
   }
   return <article id={`post-${post.id}`} className="min-w-0 rounded-xl bg-white p-4 shadow-sm sm:p-5">
     {post.topic === 'Demo' && <p className="mb-3 rounded-lg bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700">Demo activity · Fictional example, not a live offer or buyer request</p>}
-    <div className="flex items-start gap-3"><div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white">{post.author_avatar_url ? <img src={post.author_avatar_url} alt="GiftGrid" className="size-10 rounded-full bg-white object-contain p-1" /> : post.author_name.slice(0,1).toUpperCase()}</div><div className="min-w-0"><p className="break-words font-bold text-slate-950">{post.author_name}</p><p className="text-xs text-slate-500">{age(post.created_at)} · {post.topic}</p></div></div>
+    <div className="flex items-start gap-3"><div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white">{post.author_avatar_url ? <img src={post.author_avatar_url} alt="Merchant Bridge" className="size-10 rounded-full bg-white object-contain p-1" /> : post.author_name.slice(0,1).toUpperCase()}</div><div className="min-w-0"><p className="break-words font-bold text-slate-950">{post.author_name}</p><p className="text-xs text-slate-500">{age(post.created_at)} · {post.topic}</p></div></div>
     <p className="mt-4 break-words whitespace-pre-wrap text-[15px] leading-7 text-slate-700">{post.body}</p>
     {post.image_url && <a href={post.image_url} target="_blank" rel="noreferrer" className="mt-4 block overflow-hidden rounded-xl"><img src={post.image_url} alt={`Photo shared by ${post.author_name}`} loading="lazy" className="max-h-[600px] w-full object-contain" /></a>}
     <p className="mt-4 text-xs text-slate-500">{stats.like_count} likes · {stats.comment_count} comments</p>

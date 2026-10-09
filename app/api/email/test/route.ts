@@ -1,17 +1,17 @@
 import { NextResponse } from "next/server";
-import { sendGiftGridEmail } from "@/lib/email/resend";
+import { sendMerchantBridgeEmail } from "@/lib/email/resend";
 
 export async function POST() {
   try {
-    const result = await sendGiftGridEmail({
-      to: "hello@degiftgrid.com",
-      subject: "GiftGrid email test",
+    const result = await sendMerchantBridgeEmail({
+      to: "hello@demerchantbridge.com",
+      subject: "Merchant Bridge email test",
       html: `
         <!doctype html>
         <html>
           <body style="margin:0;padding:40px;font-family:Arial,sans-serif;background:#f7f9fc">
             <div style="max-width:600px;margin:auto;background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:32px">
-              <h1 style="margin:0 0 16px;color:#0F766E">GiftGrid</h1>
+              <h1 style="margin:0 0 16px;color:#0F766E">Merchant Bridge</h1>
 
               <h2 style="margin:0 0 12px;color:#111827">
                 Email delivery test
@@ -22,11 +22,11 @@ export async function POST() {
               </p>
 
               <p style="font-weight:700;color:#111827">
-                no-reply@degiftgrid.com
+                no-reply@demerchantbridge.com
               </p>
 
               <p style="color:#6b7280;font-size:13px">
-                Reply-To: hello@degiftgrid.com
+                Reply-To: hello@demerchantbridge.com
               </p>
             </div>
           </body>

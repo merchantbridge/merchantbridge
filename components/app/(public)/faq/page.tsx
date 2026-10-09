@@ -4,8 +4,8 @@ import { useState } from "react";
 import Header from "@/components/shared/Header";
 const faqs = [
   {
-    q: "What is GiftGrid?",
-    a: "GiftGrid is a platform that helps e-commerce brands prepare their stores, get a genuine readiness review, and get connected to relevant commercial opportunities — corporate gifting, wholesale, bulk buyers, procurement, distribution, and more — without applying to each one individually.",
+    q: "What is Merchant Bridge?",
+    a: "Merchant Bridge is a platform that helps e-commerce brands prepare their stores, get a genuine readiness review, and get connected to relevant commercial opportunities — corporate gifting, wholesale, bulk buyers, procurement, distribution, and more — without applying to each one individually.",
   },
   {
     q: "Who can apply?",
@@ -17,15 +17,15 @@ const faqs = [
   },
   {
     q: "Do I need a perfect store to qualify?",
-    a: "No. Most stores have things to improve. GiftGrid's job is to tell you what those things are and, where useful, connect you with a trusted developer to fix them — not to reject stores for imperfections.",
+    a: "No. Most stores have things to improve. Merchant Bridge's job is to tell you what those things are and, where useful, connect you with a trusted developer to fix them — not to reject stores for imperfections.",
   },
   {
     q: "Do I submit to opportunity platforms myself?",
-    a: "No. Once your store is ready, GiftGrid's team identifies the relevant opportunities and manages the submission on your behalf, tracking status and responses in your merchant portal.",
+    a: "No. Once your store is ready, Merchant Bridge's team identifies the relevant opportunities and manages the submission on your behalf, tracking status and responses in your merchant portal.",
   },
   {
     q: "Is my store data shared with anyone?",
-    a: "Only where necessary and authorized — for example, submitting your store to an opportunity you've qualified for. GiftGrid doesn't share merchant data with unrelated third parties.",
+    a: "Only where necessary and authorized — for example, submitting your store to an opportunity you've qualified for. Merchant Bridge doesn't share merchant data with unrelated third parties.",
   },
   {
     q: "How long does the review take?",

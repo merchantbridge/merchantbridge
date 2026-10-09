@@ -13,7 +13,7 @@ export async function developerActor(request: Request,scope: string) {
   let ownerId: string | undefined, scopes: readonly string[] = DEVELOPER_SCOPES;
   if (authorization) {
     const key = authorization.match(/^Bearer (gg_[A-Za-z0-9_-]{43})$/)?.[1];
-    if (!key) throw new ApiError(401,"A valid GiftGrid API key is required.");
+    if (!key) throw new ApiError(401,"A valid Merchant Bridge API key is required.");
     const hash = createHash("sha256").update(key).digest("hex");
     const { data, error } = await admin.from("developer_api_keys").select("owner_id,scopes,expires_at,revoked_at").eq("key_hash",hash).maybeSingle();
     if (error) throw new ApiError(503,"API authentication is temporarily unavailable.");
@@ -23,7 +23,7 @@ export async function developerActor(request: Request,scope: string) {
     const { data: { user } } = await (await createClient()).auth.getUser();
     ownerId = user?.id;
   }
-  if (!ownerId) throw new ApiError(401,"Sign in or provide a GiftGrid API key.");
+  if (!ownerId) throw new ApiError(401,"Sign in or provide a Merchant Bridge API key.");
   if (!scopes.includes(scope)) throw new ApiError(403,`This action requires the ${scope} scope.`);
   const { data: profile, error } = await admin.from("profiles").select("is_active").eq("id",ownerId).single();
   if (error || !profile || profile.is_active === false) throw new ApiError(403,"This account cannot access the developer API.");

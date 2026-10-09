@@ -9,7 +9,7 @@ export default function MerchantRanking() {
   if (!rows.length) return null;
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-6">
-      <h2 className="text-lg font-bold text-slate-900">Top merchants by GiftGrid ranking</h2>
+      <h2 className="text-lg font-bold text-slate-900">Top merchants by Merchant Bridge ranking</h2>
       <p className="text-xs text-slate-500">Ranked by AI rating from product clicks, impressions, and reviews.</p>
       <ol className="mt-4 divide-y divide-slate-100">
         {rows.slice(0, 10).map((row) => (

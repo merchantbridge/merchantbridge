@@ -1,4 +1,4 @@
--- GiftGrid has one platform owner. All other accounts are customers.
+-- Merchant Bridge has one platform owner. All other accounts are customers.
 -- Preserve the earliest active super-admin as the current owner and remove
 -- legacy staff privileges from every other profile.
 do $$
@@ -65,7 +65,7 @@ begin
      or new.is_active is distinct from old.is_active then
     if current_user not in ('postgres', 'service_role', 'supabase_admin')
        and not public.is_admin() then
-      raise exception 'Only the GiftGrid super-admin can change account access';
+      raise exception 'Only the Merchant Bridge super-admin can change account access';
     end if;
   end if;
   return new;

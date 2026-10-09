@@ -7,9 +7,9 @@ const ts = require('typescript');
 class ApiError extends Error { constructor(status, message) { super(message); this.status = status; } }
 function setup({ allowed = 'publisher', role = 'developer', denied = false, aiText, aiOk = true } = {}) {
   const posts = new Map();
-  const env = { GIFTGRID_PUBLISHER_IDS: allowed, GROQ_API_KEY: 'test-only' };
+  const env = { MERCHANTBRIDGE_PUBLISHER_IDS: allowed, GROQ_API_KEY: 'test-only' };
   let calls = 0;
-  const actor = { ownerId: 'publisher', authorName: 'GiftGrid Editorial', admin: { from(table) {
+  const actor = { ownerId: 'publisher', authorName: 'Merchant Bridge Editorial', admin: { from(table) {
     const filters = {};
     let inserted;
     const query = {
@@ -19,7 +19,7 @@ function setup({ allowed = 'publisher', role = 'developer', denied = false, aiTe
       limit(value) { const data = [...posts.values()].filter(post => post.author_id === filters.author_id && post.system_key.startsWith(filters.system_key.replace(/%$/, '')) && Date.parse(post.created_at) >= Date.parse(filters.created_at)).sort((a, b) => b.created_at.localeCompare(a.created_at)).slice(0, value).map(post => ({ created_at: post.created_at })); return Promise.resolve({ data, error: null }); },
       async maybeSingle() { const data = posts.get(filters.system_key); return { data: data?.author_id === filters.author_id ? data : null, error: null }; },
       async single() {
-        if (table === 'profiles') return { data: { role, full_name: 'GiftGrid Editorial' }, error: null };
+        if (table === 'profiles') return { data: { role, full_name: 'Merchant Bridge Editorial' }, error: null };
         if (inserted) {
           if (posts.has(inserted.system_key)) return { data: null, error: { code: '23505' } };
           const data = { ...inserted, created_at: new Date().toISOString(), id: 'post-' + posts.size };

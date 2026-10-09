@@ -1,7 +1,7 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { BlogArticle } from "./types";
 
-const COMMUNITY_URL = "https://www.degiftgrid.com/blog";
+const COMMUNITY_URL = "https://www.demerchantbridge.com/blog";
 
 /** Publish a journal announcement to the live community feed exactly once. */
 export async function publishArticleToCommunity(article: BlogArticle) {
@@ -10,7 +10,7 @@ export async function publishArticleToCommunity(article: BlogArticle) {
   const { error } = await db.from("community_posts").upsert(
     {
       author_id: null,
-      author_name: "GiftGrid",
+      author_name: "Merchant Bridge",
       topic: article.category.slice(0, 40) || "Journal",
       body,
       system_key: `blog-${article.slug}`,

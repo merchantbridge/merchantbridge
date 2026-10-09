@@ -1,4 +1,4 @@
--- Complete the Cal.com → GiftGrid → Resend booking chain.
+-- Complete the Cal.com → Merchant Bridge → Resend booking chain.
 
 alter table if exists public.booking_admins
   add column if not exists google_calendar_email text;
@@ -39,9 +39,9 @@ insert into public.booking_event_types (
   public_bookable
 )
 values (
-  'GiftGrid introduction call',
-  'giftgrid-intro-call',
-  'A 30-minute introduction to GiftGrid for brands and gifting teams.',
+  'Merchant Bridge introduction call',
+  'merchantbridge-intro-call',
+  'A 30-minute introduction to Merchant Bridge for brands and gifting teams.',
   30,
   0,
   10,
@@ -66,9 +66,9 @@ insert into public.booking_admins (
 )
 select
   p.id,
-  'giftgrid-' || left(replace(p.id::text, '-', ''), 12),
-  coalesce(nullif(p.full_name, ''), 'GiftGrid Team'),
-  'Meet with GiftGrid',
+  'merchantbridge-' || left(replace(p.id::text, '-', ''), 12),
+  coalesce(nullif(p.full_name, ''), 'Merchant Bridge Team'),
+  'Meet with Merchant Bridge',
   'UTC',
   true,
   true
@@ -99,9 +99,9 @@ begin
     )
     values (
       new.id,
-      'giftgrid-' || left(replace(new.id::text, '-', ''), 12),
-      coalesce(nullif(new.full_name, ''), 'GiftGrid Team'),
-      'Meet with GiftGrid',
+      'merchantbridge-' || left(replace(new.id::text, '-', ''), 12),
+      coalesce(nullif(new.full_name, ''), 'Merchant Bridge Team'),
+      'Meet with Merchant Bridge',
       'UTC',
       true,
       true

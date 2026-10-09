@@ -1,7 +1,7 @@
 import { createServerClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 
-export const metadata = { title: 'Store Audit — GiftGrid' }
+export const metadata = { title: 'Store Audit — Merchant Bridge' }
 
 const RESULT_STYLE: Record<string, { label: string; color: string; bg: string }> = {
   passed: { label: 'Passed', color: '#22C55E', bg: 'rgba(34,197,94,0.08)' },
@@ -77,7 +77,7 @@ export default async function AuditPage() {
             <path d="M12 8v4M12 16h.01" />
           </svg>
           <h2>No audit yet</h2>
-          <p>Your store hasn't been reviewed by the GiftGrid team yet. We'll notify you when your audit is ready.</p>
+          <p>Your store hasn't been reviewed by the Merchant Bridge team yet. We'll notify you when your audit is ready.</p>
         </div>
       ) : (
         <>

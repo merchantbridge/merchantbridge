@@ -1,5 +1,5 @@
 -- ============================================================
--- GiftGrid — 0002_rls_policies.sql
+-- Merchant Bridge — 0002_rls_policies.sql
 -- Every table with user-scoped data gets RLS. Public-readable
 -- CMS-style tables (faqs, chatbot_knowledge, website_content,
 -- opportunities) get a narrow "published/active only" public

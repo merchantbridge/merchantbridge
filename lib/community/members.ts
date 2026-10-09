@@ -1,5 +1,5 @@
 import "server-only";
-import { GIFTGRID_ADMIN_AVATAR, isGiftGridAdmin } from "@/config/identity";
+import { MERCHANTBRIDGE_ADMIN_AVATAR, isMerchantBridgeAdmin } from "@/config/identity";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { ApiError } from "@/lib/developer/api";
@@ -38,9 +38,9 @@ export async function memberDirectory() {
     for (const product of products || []) if (!featuredProducts.has(product.merchant_id)) featuredProducts.set(product.merchant_id,product);
     for (const account of accounts.data) {
       const member = details.get(account.id), business = account.role === "merchant" ? businesses.get(account.id) : undefined;
-      const name = member?.display_name || account.full_name || business?.business_name || "GiftGrid member";
+      const name = member?.display_name || account.full_name || business?.business_name || "Merchant Bridge member";
       const storeUrl = safeStoreUrl(business?.store_url);
-      result.push({profile_id:account.id,display_name:name.includes("@") ? "GiftGrid member" : name,kind:isGiftGridAdmin(account.role) ? "admin" : account.role === "merchant" ? "merchant" : "buyer",bio:member?.bio || business?.business_description || null,country:member?.country || business?.country || null,avatar_url:isGiftGridAdmin(account.role) ? GIFTGRID_ADMIN_AVATAR : member?.avatar_url || business?.avatar_url || null,store_url:storeUrl,product:business ? featuredProducts.get(business.id) || null : null,merchant_id: business?.id || null,rank: business ? rankByMerchant.get(business.id) ?? null : null} as never);
+      result.push({profile_id:account.id,display_name:name.includes("@") ? "Merchant Bridge member" : name,kind:isMerchantBridgeAdmin(account.role) ? "admin" : account.role === "merchant" ? "merchant" : "buyer",bio:member?.bio || business?.business_description || null,country:member?.country || business?.country || null,avatar_url:isMerchantBridgeAdmin(account.role) ? MERCHANTBRIDGE_ADMIN_AVATAR : member?.avatar_url || business?.avatar_url || null,store_url:storeUrl,product:business ? featuredProducts.get(business.id) || null : null,merchant_id: business?.id || null,rank: business ? rankByMerchant.get(business.id) ?? null : null} as never);
     }
     if (accounts.data.length < 1000) break;
   }

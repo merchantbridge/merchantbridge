@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/shared/Header";
 export const metadata: Metadata = {
-  title: "How It Works — GiftGrid",
+  title: "How It Works — Merchant Bridge",
   description: "The path from application to opportunity, step by step.",
 };
 
@@ -15,7 +15,7 @@ const steps = [
   {
     num: "02",
     title: "Store Review",
-    body: "GiftGrid runs a real audit — technical health, mobile/UX, SEO, accessibility, navigation, and product presentation. No fabricated scores.",
+    body: "Merchant Bridge runs a real audit — technical health, mobile/UX, SEO, accessibility, navigation, and product presentation. No fabricated scores.",
   },
   {
     num: "03",
@@ -30,22 +30,22 @@ const steps = [
   {
     num: "05",
     title: "Developer Help (optional)",
-    body: "If your store needs work first, GiftGrid can introduce you to an individual developer we trust, with a realistic timeframe.",
+    body: "If your store needs work first, Merchant Bridge can introduce you to an individual developer we trust, with a realistic timeframe.",
   },
   {
     num: "06",
     title: "Re-Review",
-    body: "Once changes are made, GiftGrid re-checks the relevant areas so you're not guessing whether the fix landed.",
+    body: "Once changes are made, Merchant Bridge re-checks the relevant areas so you're not guessing whether the fix landed.",
   },
   {
     num: "07",
     title: "Opportunity Matching",
-    body: "GiftGrid identifies which opportunities in the network — gifting, wholesale, bulk, corporate, procurement, distribution — genuinely fit your store.",
+    body: "Merchant Bridge identifies which opportunities in the network — gifting, wholesale, bulk, corporate, procurement, distribution — genuinely fit your store.",
   },
   {
     num: "08",
     title: "Submission & Tracking",
-    body: "GiftGrid's team submits your store to the relevant opportunity and tracks where it went, when, and what came back — visible in your portal.",
+    body: "Merchant Bridge's team submits your store to the relevant opportunity and tracks where it went, when, and what came back — visible in your portal.",
   },
 ];
 
@@ -61,7 +61,7 @@ export default function HowItWorksPage() {
               From application to opportunity.
             </h1>
             <p className="mt-6 text-[17px] leading-relaxed text-textSecondary">
-              You don't apply to a dozen platforms individually. You apply to GiftGrid once — we review,
+              You don't apply to a dozen platforms individually. You apply to Merchant Bridge once — we review,
               prepare, and manage the rest.
             </p>
           </div>

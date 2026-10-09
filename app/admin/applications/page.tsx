@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { requireSuperAdmin } from "@/lib/admin/require-super-admin";
 
 export const metadata = {
-  title: "Applications — GiftGrid Admin",
+  title: "Applications — Merchant Bridge Admin",
 };
 
 async function updateApplication(formData: FormData) {

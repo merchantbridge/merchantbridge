@@ -77,9 +77,9 @@ declare post_owner uuid; post_image text; actor text;
 begin
   select author_id,image_url into post_owner,post_image from public.community_posts where id=new.post_id and status='published';
   if post_owner is null or post_owner=new.member_id then return new; end if;
-  select coalesce(nullif(btrim(full_name),''),'GiftGrid member') into actor from public.profiles where id=new.member_id;
+  select coalesce(nullif(btrim(full_name),''),'Merchant Bridge member') into actor from public.profiles where id=new.member_id;
   insert into public.activity_email_events(event_type,owner_profile_id,actor_name,summary,image_url,href)
-  values('post_like',post_owner,coalesce(actor,'GiftGrid member'),coalesce(actor,'A GiftGrid member') || ' liked your community post',post_image,'/community');
+  values('post_like',post_owner,coalesce(actor,'Merchant Bridge member'),coalesce(actor,'A Merchant Bridge member') || ' liked your community post',post_image,'/community');
   return new;
 end; $$;
 drop trigger if exists queue_post_like_email on public.community_likes;

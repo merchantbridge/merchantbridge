@@ -43,7 +43,7 @@
     "components/tailwind.config.ts",
     "public",
     "android",
-    ".giftgrid-*",
+    ".merchantbridge-*",
     "mobile",
     "mobile-native",
     "ios"

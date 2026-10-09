@@ -33,6 +33,6 @@ export async function requireAdmin(): Promise<AdminContext> {
     userId: user.id,
     email: user.email ?? "",
     role: profile.role,
-    fullName: profile.full_name ?? "GiftGrid Admin",
+    fullName: profile.full_name ?? "Merchant Bridge Admin",
   };
 }

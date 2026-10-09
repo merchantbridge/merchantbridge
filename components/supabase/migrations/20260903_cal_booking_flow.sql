@@ -1,4 +1,4 @@
--- GiftGrid ↔ Cal.com booking/call integration
+-- Merchant Bridge ↔ Cal.com booking/call integration
 
 alter table public.bookings
   add column if not exists cal_booking_uid text;

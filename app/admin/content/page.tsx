@@ -2,7 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {
-  title: "Website Content — GiftGrid Admin",
+  title: "Website Content — Merchant Bridge Admin",
 };
 
 export default async function AdminContentPage() {
@@ -33,7 +33,7 @@ export default async function AdminContentPage() {
         </h1>
 
         <p className="mt-2 text-sm text-slate-500">
-          Central administration for GiftGrid website content and FAQs.
+          Central administration for Merchant Bridge website content and FAQs.
         </p>
       </div>
 

@@ -41,7 +41,7 @@ export async function generateArticle(input: {
   const apiKey = required("GROQ_API_KEY");
 
   const prompt = `
-You are the editorial engine for GiftGrid, an ecommerce merchant platform.
+You are the editorial engine for Merchant Bridge, an ecommerce merchant platform.
 
 Your task is to create ONE genuinely useful, original article from the supplied
 keyword and research.
@@ -55,8 +55,8 @@ IMPORTANT:
 - Do not make medical, legal, financial, or other high-risk claims.
 - Write naturally for real ecommerce merchants.
 - Use practical examples.
-- Keep GiftGrid's services relevant but do not make the article a sales pitch.
-- The GiftGrid website is the canonical source.
+- Keep Merchant Bridge's services relevant but do not make the article a sales pitch.
+- The Merchant Bridge website is the canonical source.
 - Internal links must be relevant and natural.
 - External sources must only come from the supplied research.
 - Return JSON only.
@@ -73,7 +73,7 @@ ${input.pillar || "General ecommerce education"}
 Possible title hint:
 ${input.titleHint || "None"}
 
-GiftGrid internal pages:
+Merchant Bridge internal pages:
 ${JSON.stringify(input.internalLinks)}
 
 Research:

@@ -1,5 +1,5 @@
 -- ============================================================
--- GiftGrid — 0001_init_schema.sql
+-- Merchant Bridge — 0001_init_schema.sql
 -- Core tables. Deliberately excludes analytics/activity-log
 -- tables for this first pass — those come once the primary
 -- workflows (apply → review → match → submit) are stable.

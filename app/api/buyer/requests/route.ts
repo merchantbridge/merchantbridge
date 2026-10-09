@@ -6,7 +6,7 @@ import { ApiError, apiFailure, jsonInput, uuid } from '@/lib/developer/api';
 
 const marker = (id: string) => `[GGREQ:${id}]`;
 const privateKey = (id: string) => `buyer-request-private:${id}`;
-const publicTeaser = 'A GiftGrid buyer has shared an open gifting request. Sign in as a merchant to read the full brief. Buyer contact details are not shown.';
+const publicTeaser = 'A Merchant Bridge buyer has shared an open gifting request. Sign in as a merchant to read the full brief. Buyer contact details are not shown.';
 
 function brief(input: Record<string, unknown>) {
   const get = (key: string, max: number) => typeof input[key] === 'string' ? input[key].trim().slice(0, max) : '';
@@ -139,7 +139,7 @@ export async function GET() {
     const offers: Record<string, any>[] = (replies.data || []).flatMap(r => {
       const offer = parseObject(r.body);
       if (!offer || offer.type !== 'request_response' || !published.has(String(offer.requestId))) return [];
-      return [{ ...offer, businessName: nameById.get(r.sender_id) || 'GiftGrid merchant', created_at: r.created_at }];
+      return [{ ...offer, businessName: nameById.get(r.sender_id) || 'Merchant Bridge merchant', created_at: r.created_at }];
     });
     const grouped = new Map<string, Record<string, any>>();
     for (const row of privateRows.data || []) {
@@ -184,7 +184,7 @@ export async function POST(request: Request) {
     const recentIds = new Set<string>();
     for (const row of oldInquiries.data || []) { const id = requestIdFromSubject(row.subject); if (id) recentIds.add(id); }
     for (const row of recentPrivate.data || []) { if (typeof row.system_key === 'string') recentIds.add(row.system_key.slice('buyer-request-private:'.length)); }
-    if (recentIds.size >= 5) throw new ApiError(429, 'You have reached the daily request limit. Contact GiftGrid if you need help.');
+    if (recentIds.size >= 5) throw new ApiError(429, 'You have reached the daily request limit. Contact Merchant Bridge if you need help.');
 
     const id = randomUUID();
     const storedBrief = { ...fields, companyName: buyer.company_name.trim().slice(0, 160) };

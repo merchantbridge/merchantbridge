@@ -5,7 +5,7 @@ create table if not exists public.booking_admins (
   profile_id uuid not null unique references public.profiles(id) on delete cascade,
   slug text not null unique,
   display_name text not null,
-  booking_title text not null default 'GiftGrid Consultation',
+  booking_title text not null default 'Merchant Bridge Consultation',
   bio text,
   avatar_url text,
   timezone text not null default 'Africa/Lagos',
@@ -96,7 +96,7 @@ create table if not exists public.bookings (
       )
     ),
 
-  meeting_type text not null default 'giftgrid_consultation',
+  meeting_type text not null default 'merchantbridge_consultation',
   meeting_url text,
 
   guest_notes text,
@@ -284,13 +284,13 @@ values
   (
     '5 Minute Quick Call',
     'quick-5',
-    'A quick GiftGrid introduction or question.',
+    'A quick Merchant Bridge introduction or question.',
     5
   ),
   (
     '10 Minute Quick Call',
     'quick-10',
-    'A short focused GiftGrid consultation.',
+    'A short focused Merchant Bridge consultation.',
     10
   ),
   (
@@ -302,7 +302,7 @@ values
   (
     '30 Minute Consultation',
     'consultation-30',
-    'A full GiftGrid consultation.',
+    'A full Merchant Bridge consultation.',
     30
   )
 on conflict (slug) do nothing;

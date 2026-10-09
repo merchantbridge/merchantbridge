@@ -26,8 +26,8 @@ export async function POST(request: Request, context: Context) {
   if (postError) return NextResponse.json({ error: "Unable to check this post." }, { status: 503 });
   if (!post) return NextResponse.json({ error: "Post not found." }, { status: 404 });
   const { data: profile } = await supabase.from("profiles").select("full_name").eq("id", user.id).single();
-  const name = profile?.full_name?.trim().slice(0,120) || "GiftGrid member";
-  const authorName = name.includes('@') ? 'GiftGrid member' : name;
+  const name = profile?.full_name?.trim().slice(0,120) || "Merchant Bridge member";
+  const authorName = name.includes('@') ? 'Merchant Bridge member' : name;
   const { data, error } = await supabase.from("community_comments").insert({ post_id: id, author_id: user.id, author_name: authorName, body }).select("id,author_name,body,created_at").single();
   if (error) return NextResponse.json({ error: "Unable to publish your comment." }, { status: 400 });
   try { await sendPendingActivityNotifications(); } catch { /* The queued email will be retried by the nightly job. */ }

@@ -1,1 +1,1 @@
-window.GIFTGRID_JOURNAL=[];
+window.MERCHANTBRIDGE_JOURNAL=[];

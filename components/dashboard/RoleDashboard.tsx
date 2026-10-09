@@ -57,7 +57,7 @@ export default function RoleDashboard({
         <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0F766E]">
-              GiftGrid Workspace
+              Merchant Bridge Workspace
             </p>
 
             <h1 className="mt-2 text-3xl font-bold text-slate-950">
@@ -160,7 +160,7 @@ export default function RoleDashboard({
               </div>
 
               <p className="mt-2 text-sm text-slate-500">
-                Communicate with GiftGrid support and team members.
+                Communicate with Merchant Bridge support and team members.
               </p>
             </Link>
 

@@ -1,4 +1,4 @@
--- GiftGrid update pack: trade deck compulsory, reviews + AI rating,
+-- Merchant Bridge update pack: trade deck compulsory, reviews + AI rating,
 -- multiple buyer profiles, merchant ranking, campaign emailing,
 -- message notification emails, support outreach log.
 
@@ -189,16 +189,16 @@ create policy "listing_likes_delete" on public.listing_likes for delete to authe
 
 alter table public.merchant_listings add column if not exists like_count integer not null default 0;
 
--- Auto-follow the official GiftGrid account for every new (and existing) member.
-create or replace function public.giftgrid_official_profile() returns uuid
+-- Auto-follow the official Merchant Bridge account for every new (and existing) member.
+create or replace function public.merchantbridge_official_profile() returns uuid
 language sql stable security definer set search_path = public as $$
   select id from public.profiles where is_active and role in ('super_admin','admin') order by created_at asc limit 1;
 $$;
 
-create or replace function public.auto_follow_giftgrid() returns trigger
+create or replace function public.auto_follow_merchantbridge() returns trigger
 language plpgsql security definer set search_path = public as $$
 declare
-  official uuid := public.giftgrid_official_profile();
+  official uuid := public.merchantbridge_official_profile();
 begin
   begin
     if official is not null and new.id <> official then
@@ -212,13 +212,13 @@ begin
   return new;
 end $$;
 
-drop trigger if exists profiles_auto_follow_giftgrid on public.profiles;
-create trigger profiles_auto_follow_giftgrid after insert on public.profiles
-  for each row execute function public.auto_follow_giftgrid();
+drop trigger if exists profiles_auto_follow_merchantbridge on public.profiles;
+create trigger profiles_auto_follow_merchantbridge after insert on public.profiles
+  for each row execute function public.auto_follow_merchantbridge();
 
 insert into public.community_follows(follower_id, followed_id)
 select p.id, o.id from public.profiles p
-cross join lateral (select public.giftgrid_official_profile() as id) o
+cross join lateral (select public.merchantbridge_official_profile() as id) o
 where p.is_active and p.id <> o.id
 on conflict (follower_id, followed_id) do nothing;
 

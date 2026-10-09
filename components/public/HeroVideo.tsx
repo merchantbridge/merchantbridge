@@ -8,7 +8,7 @@ export default function HeroVideo() {
       playsInline
       preload="auto"
       poster="/images/hero-poster.jpg"
-      aria-label="GiftGrid unboxing experience"
+      aria-label="Merchant Bridge unboxing experience"
     >
       <source src="/videos/hero.mp4" type="video/mp4" />
     </video>

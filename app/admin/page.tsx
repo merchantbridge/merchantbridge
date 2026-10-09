@@ -2,7 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {
-  title: "Admin Dashboard — GiftGrid",
+  title: "Admin Dashboard — Merchant Bridge",
 };
 
 type Merchant = {
@@ -289,7 +289,7 @@ export default async function AdminDashboard() {
           </p>
 
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-            GiftGrid Admin
+            Merchant Bridge Admin
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-500">

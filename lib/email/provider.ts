@@ -9,16 +9,16 @@ type EmailInput = {
 };
 
 function fromEmail() {
-  return process.env.SENDER_FROM_EMAIL || process.env.BREVO_FROM_EMAIL || process.env.RESEND_FROM_EMAIL || "no-reply@degiftgrid.com";
+  return process.env.SENDER_FROM_EMAIL || process.env.BREVO_FROM_EMAIL || process.env.RESEND_FROM_EMAIL || "no-reply@demerchantbridge.com";
 }
 
 function fromName() {
-  return process.env.SENDER_FROM_NAME || process.env.BREVO_FROM_NAME || "GiftGrid";
+  return process.env.SENDER_FROM_NAME || process.env.BREVO_FROM_NAME || "Merchant Bridge";
 }
 
 export async function sendEmail(input: EmailInput) {
   const recipients = Array.isArray(input.to) ? input.to : [input.to];
-  const replyTo = input.replyTo || "support@degiftgrid.com";
+  const replyTo = input.replyTo || "support@demerchantbridge.com";
 
   if (process.env.SENDER_API_TOKEN) {
     const responses = await Promise.all(

@@ -58,7 +58,7 @@ export default function BuyerApplyPage() {
   return (
     <main className="site-themed min-h-screen bg-[#f4f6fa] px-5 py-6 sm:py-10">
       <div className="mx-auto max-w-[1280px]">
-        <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700">← GiftGrid home</Link>
+        <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700">← Merchant Bridge home</Link>
         <div className="mt-6 grid overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_30px_100px_-50px_rgba(15,23,42,.35)] lg:grid-cols-[.78fr_1.22fr]">
           <aside className="overflow-hidden"><PageSections path="/buyers/apply" /></aside>
           <div className="p-6 sm:p-10 lg:p-14">

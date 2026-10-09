@@ -8,8 +8,8 @@ const required = ["SHOPIFY_TOKEN_ENCRYPTION_KEY", "SHOPIFY_APP_URL", "SHOPIFY_AP
 const missing = required.filter(name => !process.env[name]?.trim());
 if (missing.length) { process.stderr.write(`Missing Shopify environment keys: ${missing.join(", ")}\n`); process.exit(1); }
 const appUrl = new URL(process.env.SHOPIFY_APP_URL);
-if (appUrl.protocol !== "https:" || !["community.degiftgrid.com", "www.degiftgrid.com"].includes(appUrl.hostname)) {
-  process.stderr.write("SHOPIFY_APP_URL must use the HTTPS GiftGrid production origin before upload.\n");
+if (appUrl.protocol !== "https:" || !["community.demerchantbridge.com", "www.demerchantbridge.com"].includes(appUrl.hostname)) {
+  process.stderr.write("SHOPIFY_APP_URL must use the HTTPS Merchant Bridge production origin before upload.\n");
   process.exit(1);
 }
 

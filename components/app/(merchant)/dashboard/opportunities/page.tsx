@@ -1,7 +1,7 @@
 import { createServerClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 
-export const metadata = { title: 'Opportunities — GiftGrid' }
+export const metadata = { title: 'Opportunities — Merchant Bridge' }
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string }> = {
   pending: { label: 'Pending', color: '#94A3B8', bg: 'rgba(148,163,184,0.1)' },
@@ -45,7 +45,7 @@ export default async function OpportunitiesPage() {
         <p className="eyebrow">Opportunities</p>
         <h1 className="page-title">Submission Tracker</h1>
         <p className="page-sub">
-          Every opportunity GiftGrid submits on your behalf — tracked from submission to response. Final
+          Every opportunity Merchant Bridge submits on your behalf — tracked from submission to response. Final
           decisions belong to the relevant organisation.
         </p>
       </div>
@@ -58,7 +58,7 @@ export default async function OpportunitiesPage() {
           </svg>
           <h2>No submissions yet</h2>
           <p>
-            Once your store is reviewed and ready, the GiftGrid team will identify and pursue relevant
+            Once your store is reviewed and ready, the Merchant Bridge team will identify and pursue relevant
             opportunities on your behalf. All submissions will appear here.
           </p>
         </div>

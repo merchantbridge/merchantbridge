@@ -36,14 +36,14 @@ export default function AdminSidebar() {
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-slate-200">
               <img
                 src="/images/logo-full.png"
-                alt="GiftGrid"
+                alt="Merchant Bridge"
                 className="theme-logo h-8 w-8 object-contain"
               />
             </div>
 
             <div>
               <div className="font-bold text-slate-950">
-                GiftGrid
+                Merchant Bridge
               </div>
               <div className="text-xs font-semibold text-[#0F766E]">
                 Admin

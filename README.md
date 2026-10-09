@@ -1,4 +1,4 @@
-# GiftGrid — Public Site
+# Merchant Bridge — Public Site
 
 ## Included in this pass
 - App shell: `app/layout.tsx`, `app/globals.css`, Tailwind wired to brand tokens in `config/branding.ts`

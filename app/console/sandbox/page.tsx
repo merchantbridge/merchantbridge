@@ -1,11 +1,11 @@
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Sandbox — GiftGrid Console" };
+export const metadata = { title: "Sandbox — Merchant Bridge Console" };
 
 export default function ConsoleSandboxPage() {
   return (
     <div className="mx-auto max-w-4xl space-y-8">
       <div>
-        <p className="text-xs font-bold uppercase tracking-[.2em] text-indigo-300">GiftGrid Console</p>
+        <p className="text-xs font-bold uppercase tracking-[.2em] text-indigo-300">Merchant Bridge Console</p>
         <h1 className="mt-3 text-3xl font-bold">Sandbox</h1>
         <p className="mt-2 text-slate-400">This section is under active development.</p>
       </div>

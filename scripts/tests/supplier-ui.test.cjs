@@ -28,7 +28,7 @@ test('supplier detail identifies source and routes ordering to the supplier', as
   assert.match(html, /View on Faire/);
   assert.match(html, /Confirm stock with the supplier/);
   assert.match(html, /href="https:\/\/www.faire.com\/product\/p_test"/);
-  assert.doesNotMatch(html, /Request a quote|GiftGrid merchant|Minimum order:/);
+  assert.doesNotMatch(html, /Request a quote|Merchant Bridge merchant|Minimum order:/);
 });
 test('merchant quote path is preserved', async () => {
   const merchant = { ...product, id: 'merchant-product', supplier: undefined, minimum_order_quantity: 12, merchant_profiles: { business_name: 'Real merchant' } };
@@ -38,7 +38,7 @@ test('merchant quote path is preserved', async () => {
   assert.match(html, /buyer\/dashboard\?listing=merchant-product/);
   assert.doesNotMatch(html, /External supplier|View on Faire/);
 });
-test('supplier shop cards never imply GiftGrid merchant membership', async () => {
+test('supplier shop cards never imply Merchant Bridge merchant membership', async () => {
   const Page = page('app/(community)/market/page.tsx', product);
   const html = renderToStaticMarkup(await Page({ searchParams: Promise.resolve({}) }));
   assert.match(html, /External supplier/);

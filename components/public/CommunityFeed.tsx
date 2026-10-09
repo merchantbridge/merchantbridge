@@ -47,8 +47,8 @@ export default function CommunityFeed() {
       requestVersion.current++;
       setPosts(current => current.map(post => post.id === detail.id ? { ...post, ...detail.stats } : post));
     };
-    window.addEventListener('giftgrid:post-updated', update);
-    return () => window.removeEventListener('giftgrid:post-updated', update);
+    window.addEventListener('merchantbridge:post-updated', update);
+    return () => window.removeEventListener('merchantbridge:post-updated', update);
   }, []);
 
   async function publish(event: FormEvent) {
@@ -76,8 +76,8 @@ export default function CommunityFeed() {
         <div className="mt-5 space-y-4">{loading ? <p className="rounded-xl bg-white p-6 text-sm text-slate-500 shadow-sm">Loading posts…</p> : posts.length ? posts.map((post) => <PostCard key={post.id} post={post} />) : <p className="rounded-xl bg-white p-6 text-sm text-slate-500 shadow-sm">No posts yet. Start the first conversation.</p>}</div>
       </div>
       <aside className="hidden space-y-4 lg:block lg:sticky lg:top-24"><div className="rounded-xl bg-white p-4 shadow-sm"><p className="text-sm font-bold text-slate-950">People you may know</p><p className="mt-2 text-xs leading-5 text-slate-500">Buyers post quantities, budgets, dates and preferences. Approved merchants respond with a product, minimum order and lead time.</p></div><div className="rounded-xl bg-white p-4 text-xs leading-5 text-slate-400 shadow-sm"><div className="rounded-xl bg-white p-4 shadow-sm">
-<a href="/app" className="inline-block py-3 text-sm font-semibold text-blue-700">Get the GiftGrid App</a></div>
-        <div className="rounded-xl bg-white p-4 text-xs leading-5 text-slate-400 shadow-sm">GiftGrid Community · Keep conversations practical and respectful.</div></div></aside>
+<a href="/app" className="inline-block py-3 text-sm font-semibold text-blue-700">Get the Merchant Bridge App</a></div>
+        <div className="rounded-xl bg-white p-4 text-xs leading-5 text-slate-400 shadow-sm">Merchant Bridge Community · Keep conversations practical and respectful.</div></div></aside>
     </div>
   </div></section>;
 }

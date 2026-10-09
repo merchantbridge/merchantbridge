@@ -14,7 +14,7 @@ begin
 end;
 $$;
 
-create or replace function public.handle_new_giftgrid_user()
+create or replace function public.handle_new_merchantbridge_user()
 returns trigger language plpgsql security definer set search_path=public as $$
 declare requested_role public.user_role := case when new.raw_user_meta_data->>'account_type'='corporate_buyer' then 'corporate_buyer'::public.user_role else 'merchant'::public.user_role end;
 new_buyer_id uuid;
@@ -25,7 +25,7 @@ begin
   if requested_role='corporate_buyer' then
     if not exists(select 1 from public.buyer_profiles where profile_id=new.id) then
       insert into public.buyer_profiles(profile_id,company_name,job_title,company_size,annual_gifting_budget,buying_categories)
-      values(new.id,coalesce(nullif(new.raw_user_meta_data->>'company_name',''),nullif(new.raw_user_meta_data->>'full_name',''),'GiftGrid buyer'),new.raw_user_meta_data->>'job_title',new.raw_user_meta_data->>'company_size',new.raw_user_meta_data->>'annual_gifting_budget',
+      values(new.id,coalesce(nullif(new.raw_user_meta_data->>'company_name',''),nullif(new.raw_user_meta_data->>'full_name',''),'Merchant Bridge buyer'),new.raw_user_meta_data->>'job_title',new.raw_user_meta_data->>'company_size',new.raw_user_meta_data->>'annual_gifting_budget',
       case when jsonb_typeof(new.raw_user_meta_data->'buying_categories')='array' then array(select jsonb_array_elements_text(new.raw_user_meta_data->'buying_categories')) else '{}'::text[] end)
       returning id into new_buyer_id;
       insert into public.buyer_applications(buyer_id,use_case,estimated_recipients,desired_timeline,requirements)
@@ -44,7 +44,7 @@ create or replace function public.community_post_identity()
 returns trigger language plpgsql security definer set search_path=public as $$
 begin
   if new.author_id is not null then
-    select coalesce(nullif(btrim(full_name),''),'GiftGrid member') into new.author_name
+    select coalesce(nullif(btrim(full_name),''),'Merchant Bridge member') into new.author_name
     from public.profiles where id=new.author_id;
   end if;
   return new;

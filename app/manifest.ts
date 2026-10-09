@@ -3,8 +3,8 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
-    name: "GiftGrid",
-    short_name: "GiftGrid",
+    name: "Merchant Bridge",
+    short_name: "Merchant Bridge",
     description: "Discover gift products, merchants, and corporate gifting tools.",
     start_url: "/",
     scope: "/",
@@ -12,8 +12,8 @@ export default function manifest(): MetadataRoute.Manifest {
     background_color: "#f8fafc",
     theme_color: "#ffffff",
     icons: [
-      { src: "/icons/giftgrid-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
-      { src: "/icons/giftgrid-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: "/icons/merchantbridge-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: "/icons/merchantbridge-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
     ],
   };
 }
