@@ -10,8 +10,7 @@ import DesignPreviewBridge from "@/components/public/DesignPreviewBridge";
 import SitePagesProvider from "@/components/public/SitePagesProvider";
 import { normalizePages } from "@/lib/content/site-pages";
 import type { CSSProperties } from "react";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+
 
 
 export const metadata: Metadata = {
@@ -109,9 +108,6 @@ export default async function RootLayout({
         <WebSiteJsonLd />
         <SitePagesProvider initial={pages}><DesignPreviewBridge />{children}</SitePagesProvider>
         <PwaRegistrar />
-
-        <Analytics />
-        <SpeedInsights />
 </body>
     </html>
   );

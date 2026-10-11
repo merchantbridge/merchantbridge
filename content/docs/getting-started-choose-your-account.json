@@ -1,0 +1,63 @@
+{
+  "slug": "getting-started-choose-your-account",
+  "intro": "Getting started with Merchant Bridge begins with selecting the account role that best matches your primary activity. The platform connects buyers with merchants, and the role you choose determines which dashboard you see, which actions you can perform, and how your profile appears to others. This guide walks you through the decision‑making process, the steps to select or change your role, the expected outcomes, a realistic worked example, common pitfalls and how to recover, and a final verification checklist to ensure you are set up correctly.",
+  "sections": [
+    {
+      "heading": "Understanding the Role Choice",
+      "paragraphs": [
+        "Merchant Bridge presents two distinct role cards on the sign‑in page: Buyer and Merchant. The role you pick tells the system whether you will primarily browse sourcing ideas, send enquiries, and follow other shoppers, or whether you will list products, manage listings, and engage with potential buyers. Because the platform does not provide a built‑in marketplace checkout, the role does not affect payment processing; it only controls which dashboard and community tools are available to you. Selecting the correct role from the start avoids the need for later re‑configuration and keeps your activity organized within the appropriate workspace.",
+        "Both roles share the same underlying account credentials, meaning you only need one email address and password to access either perspective. The system remembers the last role you used, so returning visitors are taken directly to the relevant dashboard unless they explicitly switch roles. This design prevents duplicate accounts, reduces password fatigue, and ensures that any public profile you create—whether as a buyer or merchant—remains linked to a single member record in the directory."
+      ]
+    },
+    {
+      "heading": "When to Choose Buyer",
+      "paragraphs": [
+        "Choose the Buyer role if your main goal is to source products for yourself, friends, family, or clients. As a buyer you will land on the product market page where you can explore publicly listed items, filter by category, and request quotes from merchants. The buyer dashboard provides quick access to your saved enquiries, followed members, and private conversations you have started with merchants. Remember that browsing a product does not reserve inventory or place an order; the only action that moves a transaction forward is the \"Request a quote\" button, which opens a private message thread with the merchant who listed the item.",
+        "Buyer activity also includes participating in the community feed, posting public discussion topics, and commenting on other members’ posts. Your public profile appears under /members/{id} and shows your activity count but never reveals your email address. When you follow a merchant from the /connect page, you receive updates in your feed, but you will not see any stock levels or pricing details unless the merchant shares them in a response to your enquiry."
+      ]
+    },
+    {
+      "heading": "When to Choose Merchant",
+      "paragraphs": [
+        "Select the Merchant role if you own a business, sell handcrafted goods, or represent a brand that wants to showcase products to buyers. The merchant dashboard gives you tools to create and manage listings, view enquiry requests, and communicate directly with interested buyers. Listings become visible to the community only after they pass the internal review process and are published; uploading documents alone does not guarantee visibility. External catalog entries that point to AliExpress or Faire are treated as enquiry‑based links and are subject to a seven‑day freshness rule, after which out‑of‑stock items are automatically hidden.",
+        "As a merchant you also have a public profile at /merchant/{id} where buyers can see your business description, active listings, and community posts you have authored. The profile never displays your account email, and you can control which listings are active by toggling their publication status in the /dashboard/listings area. While you can receive private messages from buyers, the platform does not handle checkout, payment, or shipping; those steps must be completed on the external supplier’s website or through your own fulfillment process."
+      ]
+    },
+    {
+      "heading": "Using an Existing Account",
+      "paragraphs": [
+        "If you already have an account on Merchant Bridge, you do not need to register a second one when you decide to switch roles. Simply sign in at /auth/sign-in, and the role cards will show the role you last used. To change roles, click the alternate role card; the system will retain your existing credentials and redirect you to the appropriate dashboard. This approach keeps your public profile, follower list, and conversation history intact, whether you are acting as a buyer or a merchant, and it prevents duplicate entries in the Members directory.",
+        "For example, imagine Alex who initially signed up as a buyer to find holiday products. After a successful enquiry, Alex decides to start selling handmade ornaments. Alex returns to the sign‑in page, selects the Merchant card, and is taken to the merchant dashboard where the same member ID appears. All of Alex’s previous buyer activity—followed merchants, posted community topics, and saved likes—remains visible in the member directory, providing continuity and credibility for the new shop."
+      ]
+    },
+    {
+      "heading": "Navigating the Sign‑In Flow",
+      "paragraphs": [
+        "The sign‑in experience begins at /auth/sign-in, where two large cards labeled \"Buyer\" and \"Merchant\" invite you to choose your role. After selecting a card, you enter your email and password; the system authenticates you and then routes you to the role‑specific dashboard. If you have forgotten your password, the \"Forgot password\" link at /auth/forgot-password initiates a reset email without exposing any account details. New users who have not yet created an account can click the \"Join\" button, which leads to /auth/join where they fill out a brief profile and then pick a role before completing registration.",
+        "Once signed in, the platform remembers your role in a secure session cookie. If you attempt to access a page that belongs to the opposite role—such as a merchant listing page while signed in as a buyer—the system will redirect you back to your dashboard, preserving the integrity of role‑based access. This seamless flow ensures that you always land where you can perform the actions relevant to your chosen activity, without needing to navigate through unrelated menus."
+      ]
+    },
+    {
+      "heading": "Managing Your Role After Sign‑In",
+      "paragraphs": [
+        "After you have entered the dashboard, you can still switch roles without logging out. A small role toggle appears near the top of the dashboard page; clicking it presents the same two role cards used at sign‑in. Selecting the other role instantly reloads the appropriate interface while preserving your session. This feature is useful when you wear both hats—such as a small business owner who also purchases products for employees. The toggle does not create a new account; it merely changes the view and the set of actions you can perform during that session.",
+        "If you need to update your public profile to reflect a new business name or add a short description, you can edit the profile from the merchant or member page using the \"Edit profile\" button. Changes are reflected immediately in both the /merchant/{id} and /members/{id} views, ensuring that anyone who follows you sees the latest information. Remember that email addresses are never displayed publicly, and any changes to contact information are kept private within the account settings area."
+      ]
+    },
+    {
+      "heading": "Handling Common Issues",
+      "paragraphs": [
+        "A frequent hiccup occurs when a user selects the wrong role during sign‑in and then attempts to perform an action that belongs to the other role, such as trying to create a product listing while signed in as a buyer. The platform will display a brief notice indicating that the current view does not support that action and will offer a link to switch roles. Clicking the link resolves the issue without requiring a logout, and the user can continue their workflow from the correct dashboard.",
+        "Another realistic failure case is a forgotten password or an expired session token. Using the \"Forgot password\" link sends a reset email to the account’s private email address; the email contains a secure link that expires after a short period. After resetting the password, the user can sign in again and will be returned to the role they last used. If the reset email does not arrive, the user should check spam folders or contact support via /contact, remembering that response times are not guaranteed but the team will assist with account recovery."
+      ]
+    },
+    {
+      "heading": "Verifying Your Role Selection",
+      "paragraphs": [
+        "Before you begin active work—whether posting enquiries or publishing listings—take a moment to confirm that you are on the correct dashboard. The page header displays the role name (Buyer Dashboard or Merchant Dashboard) and the URL path (/dashboard for buyers, /dashboard/listings for merchants) provides a visual cue. Additionally, the role toggle near the top of the page should highlight the active role, giving you a quick visual confirmation that you are operating in the intended context.",
+        "A final verification step is to visit your public profile. For buyers, go to /members/{your‑id} and ensure the profile shows your activity without an email address. For merchants, visit /merchant/{your‑id} and confirm that any published listings appear under the \"Active Listings\" section. If the wrong role is displayed, use the role toggle to switch and repeat the check. This double‑check process helps avoid accidental posting in the wrong space and ensures that your community presence aligns with your primary activity."
+      ]
+    }
+  ],
+  "reviewVersion": 2
+}

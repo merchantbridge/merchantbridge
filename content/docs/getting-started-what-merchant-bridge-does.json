@@ -1,0 +1,63 @@
+{
+  "slug": "getting-started-what-merchant-bridge-does",
+  "intro": "Merchant Bridge is a community‑driven platform that brings commercial sourcing buyers and merchants together in a single, searchable space. By joining the community you gain access to a live feed of conversations, a curated market of sourcing products, and direct communication tools that let you explore options before any commitment. This guide walks you through the end‑to‑end workflow for using the community to discover people, discuss sourcing ideas, and move from a casual conversation to a concrete quote. It explains the decisions you’ll make at each step, the outcomes you can expect, a realistic worked example, common pitfalls and how to recover, and a final verification checklist to ensure you are ready to proceed with a purchase. Follow the eight sections below to become confident in navigating Merchant Bridge, engaging with merchants, and making informed sourcing decisions without ever assuming stock reservation or automatic ordering.",
+  "sections": [
+    {
+      "heading": "Understanding the Community Feed",
+      "paragraphs": [
+        "The first place you land after signing in is the community feed, reachable at the root URL (/) or via /community. The feed displays public posts created by members, each limited to 2,000 characters, that focus on sourcing trends, upcoming events, or requests for ideas. As a buyer, you can read these posts without an account, but signing in gives you the ability to like a post, leave a comment (up to 1,500 characters), and follow the author for future updates. The feed does not support keyword or hashtag search, so you’ll scroll through recent activity or use the “Follow” feature on members whose interests align with your sourcing goals. Each comment you add is visible to everyone, fostering a transparent discussion where you can ask clarifying questions or share your own experiences.",
+        "When you find a post that resonates—perhaps a colleague mentions a need for eco‑friendly welcome kits—you can click the author’s name to view their public profile at /members/{id}. From there you can follow them directly or start a private conversation by selecting the “Message” button on their member card. Remember that only signed‑in members can initiate private chats, and the conversation remains visible only to you and the other participant. This initial engagement sets the stage for deeper exploration of product options without any commitment to purchase."
+      ]
+    },
+    {
+      "heading": "Navigating the Market for Sourcing Ideas",
+      "paragraphs": [
+        "The market section, accessed via /market, showcases product cards that have passed a listing review and are published for community viewing. Each card includes a brief description, an image, and a “Request a quote” button; it does not display real‑time inventory or pricing. External catalog entries—identified as AliExpress or Faire—link directly to the supplier’s website and are subject to a seven‑day freshness rule. If a product has not been refreshed within that window or is known to be out of stock, it will be hidden from the market view. Browsing these cards gives you a sense of what merchants are offering, but it does not reserve stock or place an order.",
+        "To explore a product further, click its title to open the public merchant profile at /merchant/{id}. The profile aggregates all listings belonging to that merchant, along with contact information and any public posts they have authored. From this page you can assess the merchant’s relevance to your sourcing needs, review the range of products they provide, and decide whether to reach out for a personalized quote. The market is a discovery tool, not a checkout portal; any next steps require direct communication with the merchant or a visit to the external supplier’s site."
+      ]
+    },
+    {
+      "heading": "Identifying and Evaluating Merchants",
+      "paragraphs": [
+        "Not every member in the directory is a merchant, and not every merchant lists products. Active accounts appear in the Members directory even if their business profiles are incomplete, so you should verify merchant eligibility before investing time. A reliable way to do this is to check the merchant’s public profile for a populated listings section and for any indication that they have completed the listing review process. The presence of a “Request a quote” button on at least one product card signals that the merchant is actively participating in the sourcing marketplace.",
+        "When evaluating a merchant, consider three decisions: (1) Does the merchant’s product range align with your commercial sourcing criteria? (2) Is the merchant responsive in the community—do they comment on posts or answer questions promptly? (3) Does the merchant provide clear contact information or a preferred method for quote requests? Your expected outcome is a shortlist of merchants who meet these criteria, allowing you to move forward with targeted outreach rather than broadcasting a request to the entire community."
+      ]
+    },
+    {
+      "heading": "Initiating Private Conversations",
+      "paragraphs": [
+        "Once you have a shortlist, use the member cards on either the feed or the merchant profile to start a private conversation. Clicking the “Message” button opens the messaging interface at /messages, where you can compose a direct inquiry. The conversation is private to you and the merchant, and no other community members can view its contents. It is good practice to reference the specific product you are interested in, include any customization requirements, and ask for a timeline and pricing estimate. Because the platform does not handle payments or escrow, the merchant will typically respond with a quote document or a link to their own ordering system.",
+        "If the merchant does not reply within a reasonable timeframe—say, 48 hours—you can follow up with a polite reminder. Should the merchant indicate they are unavailable or that the product is no longer offered, you can either return to the market to find an alternative or expand your search by following additional members on /connect. The follow feature lets you keep track of merchants who may become relevant later, ensuring you maintain a pipeline of potential buying partners without cluttering your inbox."
+      ]
+    },
+    {
+      "heading": "Requesting Quotes and Managing Expectations",
+      "paragraphs": [
+        "The core action in the sourcing workflow is the “Request a quote” button on a product card. Clicking it triggers a form that captures your basic requirements—quantity, delivery date, and any personalization notes—and sends the request to the merchant’s inbox. The merchant then prepares a quote, which may include price per unit, bulk discounts, and shipping estimates. Because Merchant Bridge does not import supplier stock levels, the quote may reveal that the item is currently unavailable or that lead times are longer than anticipated. Your expected outcome at this stage is a clear, written estimate that you can compare across multiple merchants.",
+        "When you receive a quote, review it carefully for completeness. Verify that all requested customizations are addressed, that pricing matches your budget, and that any external supplier links are still active. If any details are missing, use the private messaging channel to ask for clarification. Remember that the platform does not guarantee the accuracy of external supplier information; you may need to visit the supplier’s website directly to confirm current stock or pricing before finalizing any agreement."
+      ]
+    },
+    {
+      "heading": "Dealing with Unavailable or Stale Listings",
+      "paragraphs": [
+        "A common failure case occurs when a product you liked in the market is later discovered to be out of stock or its external link leads to a discontinued item. Because the market automatically hides entries older than seven days or known to be out of stock, you might still encounter stale information if the merchant has not refreshed the listing promptly. In such cases, the merchant’s response to your quote request will typically indicate the issue. Your recovery path is to either ask the merchant for an alternative product that meets the same criteria or to return to the feed and search for newer posts that discuss similar sourcing solutions.",
+        "If the merchant cannot provide a suitable replacement, you can broaden your search by following related hashtags in community posts—though the platform does not support hashtag search, you can manually scan recent discussions for relevant topics. Additionally, you can use the “Connect” page (/connect) to discover other active members who specialize in the type of sourcing you need. By expanding your network, you increase the likelihood of finding a fresh, viable listing without relying on outdated market entries."
+      ]
+    },
+    {
+      "heading": "Verification and Confirmation Before Commitment",
+      "paragraphs": [
+        "Before you move from a quote to an actual purchase, perform a final verification checklist. First, confirm the merchant’s public profile details, ensuring the email address remains private and that the profile reflects an active business. Second, double‑check the quote for any hidden fees, shipping costs, or minimum order requirements. Third, if the quote references an external supplier, click the link to verify that the product page is still live and that the supplier’s terms match your corporate policies. Fourth, ensure that you have documented the agreed‑upon price and delivery timeline in the private conversation for future reference.",
+        "Only after all items on the checklist are satisfied should you proceed to the merchant’s external ordering system or arrange a direct contract. Because Merchant Bridge does not process payments, you will need to handle invoicing, payment, and receipt of goods outside the platform. Keeping a record of the conversation and quote within Merchant Bridge provides an audit trail, should any disputes arise later. This disciplined approach minimizes risk and ensures that the commercial sourcing process remains transparent and accountable."
+      ]
+    },
+    {
+      "heading": "Best Practices for Ongoing Community Engagement",
+      "paragraphs": [
+        "Even after a successful sourcing transaction, staying active in the community yields long‑term benefits. Regularly like and comment on posts that align with your sourcing interests to maintain visibility among merchants. Follow merchants whose products you have purchased to receive updates on new listings or seasonal promotions. Periodically revisit the market to discover emerging suppliers, especially those that have refreshed their listings within the past week, as these are more likely to have accurate stock information.",
+        "When you encounter a merchant who consistently provides high‑quality service, consider endorsing them by sharing a public post about your positive experience—remember to keep the content relevant to sourcing and avoid disclosing private contact details. Such endorsements help other buyers make informed decisions and reinforce a collaborative culture within Merchant Bridge. By treating the platform as a living network rather than a one‑time transaction tool, you create a reliable pipeline of buying partners for future corporate needs."
+      ]
+    }
+  ],
+  "reviewVersion": 2
+}

@@ -1,3 +1,5 @@
+const { initOpenNextCloudflareForDev } = require("@opennextjs/cloudflare");
+
 module.exports = {
   typescript: { ignoreBuildErrors: true },
   experimental: { useTypeScriptCli: false },
@@ -15,3 +17,5 @@ module.exports = {
     ];
   },
 };
+
+initOpenNextCloudflareForDev();

@@ -8,6 +8,14 @@ node_modules
 *.zip
 .vercel
 .env*
+.dev.vars
+
+# OpenNext
+.open-next/
+
+# Local wrangler state / logs
+.wrangler/
+*.log
 
 # Merchant Bridge local work / backups
 .merchantbridge-*/
