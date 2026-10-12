@@ -1,4 +1,4 @@
-export const MERCHANTBRIDGE_ADMIN_AVATAR = "/images/logo-full.png";
+export const MERCHANTBRIDGE_ADMIN_AVATAR = "/icon.png";
 export function isMerchantBridgeAdmin(role: string | null | undefined) {
   return role === "admin" || role === "super_admin";
 }

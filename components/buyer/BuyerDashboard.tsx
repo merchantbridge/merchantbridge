@@ -42,7 +42,7 @@ export default function BuyerDashboardPage() {
         return;
       }
       if (response.status === 404) {
-        router.replace("/buyers/apply");
+        router.replace("/contact");
         return;
       }
       if (!response.ok) throw new Error(result.error || "Unable to load your buyer dashboard.");

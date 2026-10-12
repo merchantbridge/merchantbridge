@@ -37,6 +37,12 @@ export async function POST(request: Request) {
     uploaded_by: user.id,
   }).select("id,review_status,created_at").single();
   if (error) return NextResponse.json({ error: "Unable to record your trade deck." }, { status: 500 });
+
+  await admin
+    .from("marketplace_merchant_profiles")
+    .update({ has_trade_deck: true })
+    .eq("user_id", user.id);
+
   return NextResponse.json({ document: doc });
 }
 

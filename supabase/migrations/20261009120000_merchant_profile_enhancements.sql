@@ -15,9 +15,15 @@ alter table public.merchant_profiles
   add column if not exists location text; -- City or state, e.g. Wyoming
 
 -- Create enum for application tracker status
-create type application_tracker_status as enum (
-  'saved', 'applied', 'in_conversation', 'deal_closed', 'not_successful'
-);
+do $$
+begin
+  if not exists (select from pg_type where typname = 'application_tracker_status') then
+    create type application_tracker_status as enum (
+      'saved', 'applied', 'in_conversation', 'deal_closed', 'not_successful'
+    );
+  end if;
+end
+$$;
 
 -- Create table for merchant opportunity applications (application tracker)
 create table if not exists public.merchant_opportunity_applications (

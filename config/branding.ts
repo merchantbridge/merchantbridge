@@ -14,14 +14,21 @@ export const colors = {
   // Borders
   borderCustom: "#CBD5E1",   
 
-  // Brand accents
-  accent: "#0F766E",         
-  accentAlt: "#D97706",      
-  accentDim: "#115E59",      
+  // Brand accents — MerchantBridge orange + white
+  // accent (#FC4C04) is display-scale only (3.40:1 on white).
+  // accentDim (#D93E00) passes WCAG AA at 4.53:1 for body text and white button labels.
+  accent: "#FC4C04",
+  accentAlt: "#FF6A2B",
+  accentDim: "#D93E00",
+  accentDeep: "#B33200",
+  accentDark: "#8C2700",
+  accentTint: "#FFF6F0",
+  accentTintSoft: "#FFE8DB",
+  accentTintMid: "#FFCFB4",
 
   // Status
   success: "#0F766E",
-  warning: "#D97706",
+  warning: "#FC4C04",
   danger: "#B91C1C",
 
   // Footer
@@ -41,9 +48,29 @@ export const siteConfig = {
   name: "Merchant Bridge",
   tagline: "Discover. Share. Connect.",
   description:
-    "Merchant Bridge is a community where gifting buyers, independent brands, and partners share products, sourcing needs, and ideas to make better gifting happen.",
+    "Merchant Bridge finds wholesale, retail, partnership, and sourcing opportunities and matches them to your store. Free to join.",
   supportEmail: "support@demerchantbridge.com",
-};
+  phone: "+1 (314) 635-7489",
+  phoneHref: "+13146357489",
+  address: {
+    name: "Merchant Bridge",
+    street: "30 N Gould St, Suite #65570",
+    locality: "Sheridan",
+    region: "WY",
+    postalCode: "82801",
+    country: "United States",
+    countryCode: "US",
+  },
+} as const;
+
+export const siteAddress = {
+  "@type": "PostalAddress",
+  streetAddress: siteConfig.address.street,
+  addressLocality: siteConfig.address.locality,
+  addressRegion: siteConfig.address.region,
+  postalCode: siteConfig.address.postalCode,
+  addressCountry: siteConfig.address.countryCode,
+} as const;
 
 export const opportunityCategories = [
   "Corporate Gifting",

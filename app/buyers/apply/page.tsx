@@ -1,118 +1,121 @@
-"use client";
-
-import PageSections from "@/components/public/PageSections";
-import { useState, type FormEvent } from "react";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
-import { opportunityCategories } from "@/config/branding";
+import Header from "@/components/shared/Header";
+import SiteFooter from "@/components/shared/SiteFooter";
+
+export const metadata: Metadata = {
+  title: "For buyers",
+  description:
+    "Tell us what you need. The Merchant Bridge team reviews every buyer request and matches you with independent brands that match.",
+};
+
+const reasons = [
+  {
+    title: "We read every request",
+    body: "There is no self-serve signup. Our team reviews what you need and checks it against real brands before anything goes live.",
+  },
+  {
+    title: "We check the brand side too",
+    body: "A brief is only useful if the brands answering it can actually fulfil it. We confirm capacity, lead times, and shipping regions first.",
+  },
+  {
+    title: "You talk to a person",
+    body: "You get one point of contact for the whole process instead of a queue of unverified listings.",
+  },
+];
 
 export default function BuyerApplyPage() {
-  const supabase = createClient();
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setLoading(true);
-    setError("");
-    const form = new FormData(event.currentTarget);
-    const categories = form.getAll("categories").map(String);
-    const email = String(form.get("email") || "").trim().toLowerCase();
-    const password = String(form.get("password") || "");
-    if (!String(form.get("fullName") || "").trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || password.length < 6) {
-      setLoading(false); setError("Enter your name, a valid email, and a password of at least 6 characters."); return;
-    }
-
-    const { data, error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          account_type: "corporate_buyer",
-          full_name: String(form.get("fullName") || "").trim(),
-          company_name: String(form.get("companyName") || form.get("fullName") || "").trim(),
-          job_title: String(form.get("jobTitle") || "").trim(),
-          company_size: String(form.get("companySize") || ""),
-          annual_gifting_budget: String(form.get("budget") || ""),
-          buying_categories: categories,
-          use_case: String(form.get("useCase") || ""),
-          estimated_recipients: String(form.get("recipients") || ""),
-          desired_timeline: String(form.get("timeline") || ""),
-          requirements: String(form.get("requirements") || "").trim(),
-        },
-      },
-    });
-
-    setLoading(false);
-    if (signUpError) return setError(signUpError.message);
-    if (data.session) {
-      router.push("/dashboard");
-      router.refresh();
-      return;
-    }
-    router.push("/auth/verify?email=" + encodeURIComponent(email) + "&next=/dashboard");
-  }
-
   return (
-    <main className="site-themed min-h-screen bg-[#f4f6fa] px-5 py-6 sm:py-10">
-      <div className="mx-auto max-w-[1280px]">
-        <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700">← Merchant Bridge home</Link>
-        <div className="mt-6 grid overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_30px_100px_-50px_rgba(15,23,42,.35)] lg:grid-cols-[.78fr_1.22fr]">
-          <aside className="overflow-hidden"><PageSections path="/buyers/apply" /></aside>
-          <div className="p-6 sm:p-10 lg:p-14">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-indigo-600">Gifting teams</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-[-.035em] text-slate-950 sm:text-4xl">Create your gift-sourcing account.</h2>
-          <p className="mt-3 leading-7 text-slate-600">Start with your name, email, and password. No website or storefront is required. <Link href="/auth/sign-up" className="text-blue-700 underline">Selling products? Apply as a merchant.</Link></p>
+    <div className="site-themed min-h-screen">
+      <Header />
+      <main>
+        <section className="site-hero relative isolate overflow-hidden bg-gradient-to-b from-accentTint via-white to-white pt-32 sm:pt-40">
+          <div aria-hidden="true" className="hero-blob-bg absolute inset-0 -z-10" />
 
-          <form onSubmit={submit} className="mt-9 grid gap-5 sm:grid-cols-2">
-            <Field name="fullName" label="Your full name" required />
-            <Field name="jobTitle" label="Job title (optional)" />
-            <Field name="companyName" label="Company name (optional)" />
-            <Field name="email" label="Work email" type="email" required />
-            <Field name="password" label="Password" type="password" minLength={6} required />
-            <details className="sm:col-span-2"><summary className="cursor-pointer text-sm font-bold text-slate-700">Optional: tell us about a gifting request</summary><div className="mt-5 grid gap-5 sm:grid-cols-2">
-            <Select name="companySize" label="Company size" options={["1–10", "11–50", "51–200", "201–1,000", "1,000+"]} />
-            <Select name="budget" label="Annual gifting budget" options={["Under $10k", "$10k–$50k", "$50k–$250k", "$250k+"]} />
-            <Select name="useCase" label="Primary use case" options={["Employee recognition", "Client appreciation", "Sales prospecting", "Events", "Corporate procurement"]} />
-            <Field name="recipients" label="Estimated recipients" type="number" min={1} />
-            <Select name="timeline" label="Desired timeline" options={["Within 30 days", "1–3 months", "3–6 months", "Exploring"]} />
+          <div className="mx-auto grid w-full max-w-7xl items-center gap-14 px-6 pb-20 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:px-10 lg:pb-28">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[12.5px] font-bold uppercase tracking-[.16em] text-accentDim ring-1 ring-accentTintMid">
+                For gifting buyers
+              </span>
 
-            <fieldset className="sm:col-span-2">
-              <legend className="mb-3 text-sm font-bold text-slate-800">Categories you are sourcing</legend>
-              <div className="grid gap-2 sm:grid-cols-3">
-                {opportunityCategories.slice(0, 6).map((category) => (
-                  <label key={category} className="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-200 p-3 text-sm text-slate-600 hover:border-indigo-300">
-                    <input type="checkbox" name="categories" value={category} className="accent-indigo-600" /> {category}
-                  </label>
-                ))}
+              <h1 className="site-hero-title mt-6 font-semibold leading-[1.04] tracking-[-.04em] text-textPrimary">
+                Tell us what you need. <span className="text-accentDim">We handle the rest.</span>
+              </h1>
+
+              <p className="site-hero-copy mt-6 max-w-xl text-base leading-8 text-textSecondary sm:text-lg">
+                Buyer access is handled by our team, not a signup form. Share your brief and a member of the Merchant
+                Bridge team will review it, match you with brands that can actually fulfil it, and set up your account
+                with you.
+              </p>
+
+              <div className="mt-9 flex flex-wrap gap-3">
+                <Link
+                  href="/contact"
+                  className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-accentDim px-7 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(217,62,0,.6)] transition hover:bg-accentDeep"
+                >
+                  Send us your brief <span aria-hidden="true" className="ml-2">↗</span>
+                </Link>
+                <Link
+                  href="/sourcing"
+                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border-2 border-accentDim px-7 text-[15px] font-bold text-accentDim transition hover:bg-accentTint"
+                >
+                  Browse open requests
+                </Link>
               </div>
-            </fieldset>
 
-            <label className="sm:col-span-2">
-              <span className="mb-2 block text-sm font-bold text-slate-800">What are you looking for?</span>
-              <textarea name="requirements" rows={4} className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" placeholder="Product types, quantities, customization, delivery regions…" />
-            </label>
+              <p className="mt-7 text-sm leading-6 text-textSecondary">
+                Already approved?{" "}
+                <Link href="/auth/sign-in" className="font-semibold text-accentDim hover:text-accentDeep">
+                  Sign in
+                </Link>{" "}
+                to your buyer dashboard.
+              </p>
+            </div>
 
-            </div></details>
-            {error && <p className="rounded-xl bg-red-50 p-4 text-sm font-semibold text-red-700 sm:col-span-2">{error}</p>}
-            <button disabled={loading} className="rounded-full bg-blue-600 px-6 py-4 text-sm font-bold text-white transition hover:bg-blue-700 disabled:opacity-60 sm:col-span-2">
-              {loading ? "Creating your gifting account…" : "Create buyer account"}
-            </button>
-          </form>
+            <div className="relative">
+              <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-accent/25 via-accentTint to-transparent blur-2xl" />
+              <div className="overflow-hidden rounded-[2rem] bg-white p-3 shadow-[0_30px_70px_-30px_rgba(15,23,42,.45)] ring-1 ring-accentTintMid">
+                <Image
+                  src="/images/heroes/hero-warm.webp"
+                  alt="A curated gift box prepared for a corporate gifting order"
+                  width={960}
+                  height={1024}
+                  priority
+                  className="h-full w-full rounded-[1.5rem] object-cover"
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </main>
+        </section>
+
+        <section className="page-block border-y border-slate-200 bg-white py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-10">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-xs font-bold uppercase tracking-[.2em] text-accentDim">How it works</p>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-.035em] sm:text-4xl">
+                Why buyers are set up by our team
+              </h2>
+            </div>
+
+            <div className="mt-14 grid gap-5 md:grid-cols-3">
+              {reasons.map((reason, index) => (
+                <div
+                  key={reason.title}
+                  className="rounded-2xl bg-accentTint p-6 ring-1 ring-accentTintMid"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accentDim text-lg font-bold text-white">
+                    {index + 1}
+                  </div>
+                  <h3 className="mt-5 text-lg font-bold text-textPrimary">{reason.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-textSecondary">{reason.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </div>
   );
-}
-
-function Field(props: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
-  const { label, ...input } = props;
-  return <label><span className="mb-2 block text-sm font-bold text-slate-800">{label}</span><input {...input} className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100" /></label>;
-}
-
-function Select({ name, label, options }: { name: string; label: string; options: string[] }) {
-  return <label><span className="mb-2 block text-sm font-bold text-slate-800">{label}</span><select name={name} className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"><option value="">Select</option>{options.map((option) => <option key={option}>{option}</option>)}</select></label>;
 }

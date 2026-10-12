@@ -35,7 +35,7 @@ export default function AdminSidebar() {
           <Link href="/admin" className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-slate-200">
               <img
-                src="/images/logo-full.png"
+                src="/icon.png"
                 alt="Merchant Bridge"
                 className="theme-logo h-8 w-8 object-contain"
               />

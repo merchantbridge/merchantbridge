@@ -1,0 +1,30 @@
+name = "merchantbridge"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Secrets should be set via: wrangler secret put <SECRET_NAME>
+# Required secrets:
+# - NEXT_PUBLIC_SUPABASE_URL
+# - NEXT_PUBLIC_SUPABASE_ANON_KEY
+# - (Optionally) SENDER_API_TOKEN, BREVO_API_KEY, or RESEND_API_KEY for email
+# - (Optionally) NEON_DATABASE_URL if using Neon instead of Supabase
+
+[env.production]
+name = "merchantbridge"
+routes = [
+  { pattern = "demerchantbridge.com/*", zone_name = "demerchantbridge.com" }
+]
+
+[env.preview]
+name = "merchantbridge-preview"
+
+[site]
+bucket = ".open-next"
+
+[build]
+command = "npm run build:cloudflare"
+cwd = "."
+watch_dir = "app"
+
+[vars]
+NODE_ENV = "production"

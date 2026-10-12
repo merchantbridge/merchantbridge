@@ -1,44 +1,73 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
+import { siteConfig } from "@/config/branding";
 
 const COMMUNITY_URL = "https://community.demerchantbridge.com/";
 const groups = [
   ["Product", [["/how-it-works", "How It Works"], ["/blog", "Merchant Bridge Blog"], [COMMUNITY_URL, "Community"]]],
-  
+
   ["Company", [["/merchantbridge", "About Merchant Bridge"], ["/about", "Our Company"], ["/faq", "FAQ"], ["/contact", "Contact"]]],
   ["Legal", [["/privacy", "Privacy"], ["/terms", "Terms"], ["/cookies", "Cookies"]]],
 ] as const;
 
 export default function SiteFooter() {
-  const [email, setEmail] = useState("");
-  const [consent, setConsent] = useState(false);
-  const [message, setMessage] = useState("");
-  const [language, setLanguage] = useState("en");
+  return (
+    <footer className="border-t border-slate-200 bg-white text-textPrimary">
+      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-14">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
+          <div>
+            <Link href="/" className="inline-flex items-center gap-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/logo-horizontal.png" alt="Merchant Bridge" className="h-9 w-auto object-contain" />
+            </Link>
+            <p className="mt-4 max-w-xs text-sm leading-6 text-textSecondary">
+              A practical community for brands, gifting teams, and partners building better commercial relationships.
+            </p>
+            <address className="mt-4 not-italic">
+              <span className="block font-semibold text-textPrimary">{siteConfig.address.name}</span>
+              <span className="mt-1 block text-sm leading-6 text-textSecondary">
+                {siteConfig.address.street}
+                <br />
+                {siteConfig.address.locality}, {siteConfig.address.region} {siteConfig.address.postalCode}
+                <br />
+                {siteConfig.address.country}
+              </span>
+              <span className="mt-3 flex flex-col gap-1.5">
+                <a href={`tel:${siteConfig.phoneHref}`} className="text-sm font-semibold text-accentDim hover:text-accentDeep">
+                  {siteConfig.phone}
+                </a>
+                <a href={`mailto:${siteConfig.supportEmail}`} className="text-sm font-semibold text-accentDim hover:text-accentDeep">
+                  {siteConfig.supportEmail}
+                </a>
+              </span>
+            </address>
+          </div>
 
+          {groups.map(([heading, links]) => (
+            <div key={heading}>
+              <p className="mb-4 text-xs font-bold uppercase tracking-widest text-textPrimary">{heading}</p>
+              <ul className="space-y-2.5">
+                {links.map(([href, label]) => (
+                  <li key={href}>
+                    <Link href={href} className="text-sm text-textSecondary transition hover:text-accentDim">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
 
-  async function submitVisitorInvite(event: React.FormEvent) {
-    event.preventDefault();
-    setMessage("");
-    const response = await fetch("/api/visitor/invite", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, consent }) });
-    const result = await response.json();
-    setMessage(response.ok ? "Check your inbox for the next step." : result.error || "Unable to send the invite.");
-    if (response.ok) setEmail("");
-  }
-
-  function changeLanguage(value: string) {
-    setLanguage(value);
-    document.cookie = `merchantbridge_language=${value};path=/;max-age=31536000;samesite=lax`;
-    document.documentElement.lang = value;
-  }
-
-  return <footer className="border-t border-slate-200 bg-slate-950 text-white"><div className="mx-auto max-w-7xl px-6 py-14 lg:px-10">
-    <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
-      <div><Link href="/" className="inline-flex items-center gap-3"><img src="/images/logo-full.png" alt="Merchant Bridge" className="h-9 w-auto object-contain brightness-0 invert" /></Link><p className="mt-4 text-sm leading-6 text-slate-400">A practical community for brands, gifting teams, and partners building better commercial relationships.</p><a href={COMMUNITY_URL} className="mt-4 inline-flex rounded-xl border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700">Join the Community</a><div className="mt-5 text-xs text-slate-500"><a href="/app" className="mb-4 inline-flex rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm font-semibold text-white hover:bg-slate-700">Get the Merchant Bridge App</a><br /><a href="mailto:support@demerchantbridge.com" className="hover:text-slate-300">support@demerchantbridge.com</a></div></div>
-      {groups.map(([heading, links]) => <div key={heading}><p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">{heading}</p><ul className="space-y-2.5">{links.map(([href, label]) => <li key={href}><Link href={href} className="text-sm text-slate-300 transition hover:text-white">{label}</Link></li>)}</ul></div>)}
-    </div>
-    <div className="mt-12 grid gap-8 border-t border-slate-800 pt-8 lg:grid-cols-[1fr_auto] lg:items-end"><form onSubmit={submitVisitorInvite} className="max-w-xl"><p className="text-sm font-semibold">Stay connected</p><p className="mt-1 text-xs text-slate-500">Get practical updates for brands and gifting teams.</p><div className="mt-4 flex flex-col gap-2 sm:flex-row"><input value={email} onChange={(event) => setEmail(event.target.value)} type="email" required placeholder="you@example.com" className="min-w-0 flex-1 rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-white outline-none focus:border-indigo-400" /><button type="submit" className="rounded-xl bg-indigo-500 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-400">Notify me</button></div><label className="mt-3 flex items-start gap-2 text-xs text-slate-500"><input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} required className="mt-0.5" />I agree to receive Merchant Bridge updates.</label>{message && <p className="mt-2 text-xs text-slate-400">{message}</p>}</form><div><label className="mb-1 block text-xs font-semibold text-slate-400">Language</label><select value={language} onChange={(event) => changeLanguage(event.target.value)} className="rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white outline-none"><option value="en">English</option><option value="fr">Français</option><option value="es">Español</option><option value="de">Deutsch</option><option value="pt">Português</option></select></div></div>
-    <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-8 sm:flex-row"><p className="text-xs text-slate-500">© {new Date().getFullYear()} Merchant Bridge. All rights reserved. E-commerce merchant readiness &amp; corporate gifting.</p><div className="flex items-center gap-4"><a href={COMMUNITY_URL} className="text-xs text-slate-500 hover:text-slate-300">community.demerchantbridge.com</a><a href="/console" className="text-xs text-emerald-500 hover:text-emerald-400">developers</a></div></div>
-  </div></footer>;
+        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-slate-200 pt-6 sm:flex-row sm:items-center">
+          <p className="text-xs text-textSecondary">
+            © {new Date().getFullYear()} Merchant Bridge. All rights reserved.
+          </p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <a href={COMMUNITY_URL} className="text-xs text-textSecondary hover:text-accentDim">community.demerchantbridge.com</a>
+            <Link href="/console" className="text-xs text-textSecondary hover:text-accentDim">developers</Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }

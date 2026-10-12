@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/content/prepare-library.mjs && next build --webpack",
-    "build:cloudflare": "node scripts/content/prepare-library.mjs && npx opennextjs-cloudflare build",
+    "build": "node scripts/content/prepare-library.mjs && NODE_OPTIONS='--max-old-space-size=4096' next build --webpack",
+    "build:cloudflare": "node scripts/content/prepare-library.mjs && NODE_OPTIONS='--max-old-space-size=4096' npx opennextjs-cloudflare build",
     "dev:cloudflare": "OPENNEXT_DEV=true next dev",
     "preview": "opennextjs-cloudflare preview",
     "deploy": "npx opennextjs-cloudflare deploy",
@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit --incremental false"
   },
   "dependencies": {
+    "@getbrevo/brevo": "^6.0.3",
     "@google/genai": "^2.21.0",
     "@netlify/database": "^2.0.1",
     "@netlify/plugin-nextjs": "^5.15.13",
@@ -29,8 +30,8 @@
     "jspdf": "^4.2.1",
     "next": "^16.3.4",
     "qrcode": "^1.5.4",
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "resend": "^6.21.0"
   },
   "devDependencies": {
@@ -38,8 +39,8 @@
     "@playwright/test": "^1.63.0",
     "@types/node": "^20.11.0",
     "@types/qrcode": "^1.5.6",
-    "@types/react": "^18.3.0",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "autoprefixer": "^10.4.19",
     "drizzle-kit": "^1.0.0-beta.22",
     "eslint": "^9.39.5",

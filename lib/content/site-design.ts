@@ -29,7 +29,7 @@ export type SiteDesign = {
 };
 
 export const defaultSiteDesign: SiteDesign = {
-  accent: "#1d4ed8",
+  accent: "#FC4C04",
   pageBackground: "#ffffff",
   headingColor: "#0f172a",
   bodyColor: "#475569",

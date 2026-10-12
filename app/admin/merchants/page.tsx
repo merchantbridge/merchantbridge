@@ -1,103 +1,89 @@
-import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
-
-export const metadata = {
-  title: "Merchants — Merchant Bridge Admin",
-};
+import { createClient } from '@/lib/supabase/server';
 
 export default async function AdminMerchantsPage() {
   const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
-  const { data: merchants, error } = await supabase
-    .from("merchant_profiles")
-    .select(
-      "id, business_name, business_email, phone, created_at, profile:profiles!merchant_profiles_user_id_fkey(full_name, role)"
-    )
-    .order("created_at", { ascending: false });
+  if (!user) {
+    return <div>Unauthorized</div>;
+  }
+
+  const { data: merchants } = await supabase
+    .from('marketplace_merchant_profiles')
+    .select('*')
+    .order('created_at', { ascending: false });
 
   return (
-    <div className="mx-auto max-w-7xl">
-      <div className="mb-7">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0F766E]">
-          Merchants
-        </p>
-        <h1 className="mt-2 text-3xl font-bold text-slate-950">
-          Merchant Directory
-        </h1>
-        <p className="mt-2 text-sm text-slate-500">
-          Every merchant account in the Merchant Bridge platform.
-        </p>
-      </div>
-
-      {error ? (
-        <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-sm font-semibold text-red-700">
-          Unable to load merchants: {error.message}
+    <div className="min-h-screen bg-slate-50">
+      <header className="bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <h1 className="text-2xl font-bold text-slate-900">Merchant Management</h1>
+          <p className="text-slate-600">View and manage all merchants on the platform</p>
         </div>
-      ) : !merchants?.length ? (
-        <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center text-sm text-slate-500">
-          No merchants yet.
-        </div>
-      ) : (
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="min-w-full text-left text-sm">
-              <thead className="border-b border-slate-200 bg-slate-50">
-                <tr>
-                  <th className="px-5 py-4 font-bold text-slate-600">
-                    Business
-                  </th>
-                  <th className="px-5 py-4 font-bold text-slate-600">
-                    Contact
-                  </th>
-                  <th className="px-5 py-4 font-bold text-slate-600">
-                    Role
-                  </th>
-                  <th className="px-5 py-4 font-bold text-slate-600">
-                    Created
-                  </th>
-                </tr>
-              </thead>
+      </header>
 
-              <tbody>
-                {merchants.map((merchant: any) => (
-                  <tr
-                    key={merchant.id}
-                    className="border-b border-slate-100 last:border-0"
-                  >
-                    <td className="px-5 py-4">
-                      <div className="font-bold text-slate-950">
-                        {merchant.business_name}
-                      </div>
-                      <div className="mt-1 text-xs text-slate-400">
-                        {merchant.profile?.full_name ?? "No name"}
-                      </div>
-                    </td>
-
-                    <td className="px-5 py-4 text-slate-600">
-                      {merchant.business_email}
-                      {merchant.phone && (
-                        <div className="mt-1 text-xs text-slate-400">
-                          {merchant.phone}
-                        </div>
-                      )}
-                    </td>
-
-                    <td className="px-5 py-4">
-                      <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-bold capitalize text-[#0F766E]">
-                        {merchant.profile?.role ?? "merchant"}
-                      </span>
-                    </td>
-
-                    <td className="px-5 py-4 text-slate-500">
+      <main className="max-w-7xl mx-auto px-6 py-8">
+        <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+          <table className="w-full">
+            <thead className="bg-slate-50 border-b border-slate-200">
+              <tr>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Merchant</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Category</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Status</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Signed Up</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Applications</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {merchants?.map((merchant) => (
+                <tr key={merchant.id} className="border-b border-slate-200">
+                  <td className="px-6 py-4">
+                    <div>
+                      <p className="font-medium text-slate-900">{merchant.business_name}</p>
+                      <p className="text-sm text-slate-500">{merchant.full_name}</p>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="text-sm text-slate-600">{merchant.product_category}</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      merchant.profile_status === 'approved'
+                        ? 'bg-green-100 text-green-700'
+                        : merchant.profile_status === 'pending'
+                        ? 'bg-amber-100 text-amber-700'
+                        : merchant.profile_status === 'resubmit_requested'
+                        ? 'bg-blue-100 text-blue-700'
+                        : 'bg-red-100 text-red-700'
+                    }`}>
+                      {merchant.profile_status.replace(/_/g, ' ')}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="text-sm text-slate-600">
                       {new Date(merchant.created_at).toLocaleDateString()}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                    </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="text-sm text-slate-600">{merchant.applications_submitted || 0}</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex gap-2">
+                      <a
+                        href={`/admin/merchants/${merchant.id}`}
+                        className="text-sm font-medium text-indigo-600 hover:text-indigo-700"
+                      >
+                        View
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      )}
+      </main>
     </div>
   );
 }

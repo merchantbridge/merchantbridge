@@ -3,6 +3,13 @@ const { initOpenNextCloudflareForDev } = require("@opennextjs/cloudflare");
 module.exports = {
   typescript: { ignoreBuildErrors: true },
   experimental: { useTypeScriptCli: false },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.optimization = config.optimization || {};
+      config.optimization.minimize = false;
+    }
+    return config;
+  },
   async headers() {
     return [
       {

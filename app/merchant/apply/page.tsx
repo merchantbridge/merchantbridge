@@ -1,15 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { siteConfig } from "@/config/branding";
 
-export const metadata = {
-  title: "Apply for Access | Merchant Bridge",
-  description: "Join Merchant Bridge and connect with buyers, corporate partners, and opportunity providers.",
+export const metadata: Metadata = {
+  title: "Apply for access | Merchant Bridge",
+  description:
+    "Apply for access to Merchant Bridge. Tell us about your store and we'll review your profile within 48 hours.",
 };
 
 export default function MerchantApplyPage() {
   return (
     <div className="min-h-screen bg-[#F3F5F2]">
-      {/* Header */}
       <header className="border-b border-[#EADFD5] bg-white">
         <div className="mx-auto max-w-7xl px-6 py-4">
           <Link href="/" className="font-display text-xl font-semibold text-[#C24E00]">
@@ -18,15 +18,14 @@ export default function MerchantApplyPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
       <main className="mx-auto max-w-4xl px-6 py-20 sm:py-32">
         <div className="text-center">
           <h1 className="font-display text-4xl font-semibold leading-tight tracking-tight text-[#C24E00] sm:text-5xl lg:text-6xl">
-            Join a curated community of independent brands
+            Apply for access to Merchant Bridge.
           </h1>
-          
+
           <p className="mt-6 text-lg leading-8 text-[#4A4A4A] sm:text-xl">
-            {siteConfig.description}
+            Tell us about your store and we'll review your profile within 48 hours. Once you're approved, you'll see wholesale, retail, partnership, and sourcing opportunities matched to what you sell.
           </p>
 
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -36,25 +35,18 @@ export default function MerchantApplyPage() {
             >
               Apply for access
             </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center justify-center rounded-xl border border-[#EADFD5] bg-white px-8 py-4 text-sm font-semibold text-[#C24E00] transition hover:border-[#FF6A00] hover:text-[#FF6A00]"
-            >
-              Learn more
-            </Link>
           </div>
 
           <p className="mt-6 text-sm text-[#4A4A4A]">
-            Applications are reviewed within 48 hours
+            Free to use. Takes about ten minutes.
           </p>
         </div>
 
-        {/* Trust Indicators */}
         <div className="mt-20 rounded-2xl border border-[#EADFD5] bg-white p-8 sm:p-12">
           <h2 className="font-display text-2xl font-semibold text-[#C24E00]">
-            What you&apos;ll get access to
+            What you get
           </h2>
-          
+
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
             <div className="flex gap-4">
               <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#FF6A00]/10">
@@ -63,9 +55,9 @@ export default function MerchantApplyPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-[#C24E00]">Curated opportunities</h3>
+                <h3 className="font-semibold text-[#C24E00]">Opportunities that fit</h3>
                 <p className="mt-1 text-sm text-[#4A4A4A]">
-                  Hand-picked sourcing opportunities matched to your profile
+                  We match by category, capacity, shipping markets, and customization options, so you aren't scrolling through listings that were never meant for you.
                 </p>
               </div>
             </div>
@@ -77,9 +69,9 @@ export default function MerchantApplyPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-[#C24E00]">Direct connections</h3>
+                <h3 className="font-semibold text-[#C24E00]">A place to keep track</h3>
                 <p className="mt-1 text-sm text-[#4A4A4A]">
-                  Connect with corporate buyers and partners directly
+                  Save listings, log your applications, and record where each conversation stands.
                 </p>
               </div>
             </div>
@@ -91,9 +83,9 @@ export default function MerchantApplyPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-[#C24E00]">Quality-focused</h3>
+                <h3 className="font-semibold text-[#C24E00]">Help with your supplier profile</h3>
                 <p className="mt-1 text-sm text-[#4A4A4A]">
-                  A curated community of verified, quality brands
+                  If you don't have one, someone from our team will help you write it at no cost.
                 </p>
               </div>
             </div>
@@ -105,12 +97,65 @@ export default function MerchantApplyPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-[#C24E00]">Fast onboarding</h3>
+                <h3 className="font-semibold text-[#C24E00]">A weekly digest</h3>
                 <p className="mt-1 text-sm text-[#4A4A4A]">
-                  Connect your store or fill out a simple form
+                  Every Monday, we send you the new opportunities that match your profile.
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="font-display text-2xl font-semibold text-[#C24E00]">
+            What we'll ask
+          </h2>
+          <p className="mt-4 text-base leading-7 text-[#4A4A4A]">
+            Your name and business name, your product category, a short description of your store, your target market, your average order value, your monthly order volume and revenue range, whether you offer custom branding, and where you ship.
+          </p>
+          <p className="mt-4 text-base leading-7 text-[#4A4A4A]">
+            Connect your Shopify store and we'll fill in most of it for you. If you sell elsewhere, there's a short form instead.
+          </p>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="font-display text-2xl font-semibold text-[#C24E00]">
+            What happens next
+          </h2>
+          <ol className="mt-6 space-y-4">
+            <li className="flex gap-4">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FF6A00] text-sm font-bold text-white">1</span>
+              <p className="text-base leading-7 text-[#4A4A4A]">You submit your application.</p>
+            </li>
+            <li className="flex gap-4">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FF6A00] text-sm font-bold text-white">2</span>
+              <p className="text-base leading-7 text-[#4A4A4A]">Our team reads your profile. You'll hear from us within 48 hours.</p>
+            </li>
+            <li className="flex gap-4">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FF6A00] text-sm font-bold text-white">3</span>
+              <p className="text-base leading-7 text-[#4A4A4A]">If we need anything changed, we'll tell you exactly what and why.</p>
+            </li>
+            <li className="flex gap-4">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FF6A00] text-sm font-bold text-white">4</span>
+              <p className="text-base leading-7 text-[#4A4A4A]">Once you're approved, your dashboard opens and your first matches appear.</p>
+            </li>
+          </ol>
+        </div>
+
+        <div className="mt-12 rounded-2xl border border-[#EADFD5] bg-white p-8">
+          <h2 className="font-display text-2xl font-semibold text-[#C24E00]">
+            What you should know
+          </h2>
+          <div className="mt-4 space-y-3 text-base leading-7 text-[#4A4A4A]">
+            <p>
+              Merchant Bridge is free, and you won't be asked to pay for access. We're a digital agency for e-commerce brands. Once you're set up, we may suggest a paid service if we see a clear gap in your store. You can say no, and it won't affect your access.
+            </p>
+            <p>
+              We use your store data to match you with opportunities and to understand where we might be able to help. See our <Link href="/privacy" className="text-[#C24E00] underline">Privacy Policy</Link>.
+            </p>
+            <p>
+              We don't represent the buyers or brands behind the listings, and we can't guarantee that any application will succeed.
+            </p>
           </div>
         </div>
       </main>

@@ -8,6 +8,7 @@ on conflict (id) do update set
   allowed_mime_types = excluded.allowed_mime_types;
 
 -- RLS policies for supplier-documents bucket
+drop policy if exists "merchants_can_upload_to_own_folder" on storage.objects;
 create policy "merchants_can_upload_to_own_folder" on storage.objects for insert
 to authenticated
 with check (
@@ -17,6 +18,7 @@ with check (
   )
 );
 
+drop policy if exists "merchants_can_read_own_files" on storage.objects;
 create policy "merchants_can_read_own_files" on storage.objects for select
 to authenticated
 using (
@@ -26,6 +28,7 @@ using (
   )
 );
 
+drop policy if exists "admins_can_read_all_supplier_documents" on storage.objects;
 create policy "admins_can_read_all_supplier_documents" on storage.objects for select
 to authenticated
 using (

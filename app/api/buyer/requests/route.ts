@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { ApiError, apiFailure, jsonInput, uuid } from '@/lib/developer/api';
+import { sendMerchantNotificationEmail } from '@/lib/email/merchant-notifications';
 
 const marker = (id: string) => `[GGREQ:${id}]`;
 const privateKey = (id: string) => `buyer-request-private:${id}`;
@@ -204,6 +205,43 @@ export async function POST(request: Request) {
       await admin.from('community_posts').delete().eq('id', privateRow.data.id);
       throw new ApiError(503, 'The public request could not be published. Please retry.');
     }
+    try {
+      const { data: matchingMerchants } = await admin
+        .from('marketplace_merchant_profiles')
+        .select('user_id, full_name, product_category')
+        .eq('profile_status', 'approved')
+        .eq('product_category', category);
+
+      if (matchingMerchants && matchingMerchants.length > 0) {
+        const { data: profiles } = await admin
+          .from('profiles')
+          .select('id, email')
+          .in('id', matchingMerchants.map((m) => m.user_id));
+
+        const merchantProfiles = matchingMerchants.map((m) => ({
+          ...m,
+          email: profiles?.find((p) => p.id === m.user_id)?.email,
+        }));
+
+        for (const merchant of merchantProfiles) {
+          if (merchant.email) {
+            try {
+              await sendMerchantNotificationEmail(
+                merchant.email,
+                merchant.full_name,
+                'profile_resubmit',
+                { feedback: `New sourcing request: "${fields.title}" in ${category}. Log in to review the full brief.` }
+              );
+            } catch (err) {
+              console.error(`Failed to send buyer request notification to ${merchant.user_id}:`, err);
+            }
+          }
+        }
+      }
+    } catch (err) {
+      console.error('Failed to send buyer request notifications:', err);
+    }
+
     return NextResponse.json({ request: { id, title: fields.title, created_at: published.data.created_at, recipients: 0 } }, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
   } catch (error) { return apiFailure(error); }
 }

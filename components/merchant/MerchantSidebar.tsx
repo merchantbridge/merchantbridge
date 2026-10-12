@@ -123,7 +123,7 @@ export default function MerchantSidebar() {
         >
           <span className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-indigo-100 bg-white shadow-sm">
             <Image
-              src="/images/logo-full.png"
+              src="/icon.png"
               alt="Merchant Bridge"
               fill
               priority

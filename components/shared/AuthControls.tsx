@@ -6,6 +6,6 @@ import SignOutButton from "./SignOutButton";
 export default function AuthControls() {
   const { signedIn, loading } = useSession();
   const pathname = usePathname();
-  if (loading) return <span className="px-3 text-xs text-slate-500" role="status">Checking account...</span>;
-  return signedIn ? <div className="flex items-center gap-1"><SignOutButton /></div> : <Link href={"/auth/sign-in?next=" + encodeURIComponent(pathname === "/community" || pathname === "/merchantbridge" ? "/" : pathname)} className="rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white">Sign in</Link>;
+  if (loading) return <span className="text-xs text-slate-500" role="status">Checking account...</span>;
+  return signedIn ? <div className="flex items-center gap-1"><SignOutButton /></div> : <Link href={"/auth/sign-in?next=" + encodeURIComponent(pathname === "/community" || pathname === "/merchantbridge" ? "/" : pathname)} className="rounded-full px-4 py-2 text-sm font-semibold text-accentDim transition hover:bg-accentTint">Sign in</Link>;
 }

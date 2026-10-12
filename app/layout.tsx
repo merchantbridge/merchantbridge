@@ -17,30 +17,30 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   metadataBase: new URL("https://www.demerchantbridge.com"),
   title: {
-    default: "Merchant Bridge | The Community for Better Gifting",
+    default: "Merchant Bridge | Opportunities for independent e-commerce brands",
     template: "%s | Merchant Bridge",
   },
   description:
-    "Meet gifting buyers, independent brands, and partners. Share products, sourcing needs, and ideas in the Merchant Bridge community.",
+    "Merchant Bridge finds wholesale, retail, partnership, and sourcing opportunities and matches them to your store. Free to join.",
   alternates: {
     canonical: "https://www.demerchantbridge.com/",
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon.png", type: "image/png" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/favicon.ico", sizes: "48x48" },
     ],
-    apple: "/apple-icon.png",
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
-    title: "Merchant Bridge | The Community for Better Gifting",
+    title: "Merchant Bridge | Opportunities for independent e-commerce brands",
     description:
-      "Meet gifting buyers, independent brands, and partners. Share products, sourcing needs, and ideas in the Merchant Bridge community.",
+      "Merchant Bridge finds wholesale, retail, partnership, and sourcing opportunities and matches them to your store. Free to join.",
     url: "https://www.demerchantbridge.com/",
     siteName: "Merchant Bridge",
     images: [
       {
-        url: "/images/logo-horizontal.png",
+        url: "/images/logo-full.png",
         alt: "Merchant Bridge",
       },
     ],
@@ -48,10 +48,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Merchant Bridge | The Community for Better Gifting",
+    title: "Merchant Bridge | Opportunities for independent e-commerce brands",
     description:
-      "Meet gifting buyers, independent brands, and partners. Share products, sourcing needs, and ideas in the Merchant Bridge community.",
-    images: ["/images/logo-horizontal.png"],
+      "Merchant Bridge finds wholesale, retail, partnership, and sourcing opportunities and matches them to your store. Free to join.",
+    images: ["/images/logo-full.png"],
   },
 };
 

@@ -4,12 +4,14 @@ export default function AuthField({
   type = "text",
   required,
   autoComplete,
+  defaultValue,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
   autoComplete?: string;
+  defaultValue?: string;
 }) {
   return (
     <div>
@@ -22,7 +24,8 @@ export default function AuthField({
         type={type}
         required={required}
         autoComplete={autoComplete}
-        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-[14.5px] text-slate-950 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+        defaultValue={defaultValue}
+        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-[14.5px] text-slate-950 outline-none transition focus:border-accentDim focus:bg-white focus:ring-4 focus:ring-accentTint"
       />
     </div>
   );

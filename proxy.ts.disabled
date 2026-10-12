@@ -1,0 +1,13 @@
+import { NextResponse, type NextRequest } from "next/server";
+
+// Disable proxy for Cloudflare compatibility
+export function proxy(request: NextRequest) {
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: [],
+  // Disable middleware entirely
+  middleware: false,
+};
+

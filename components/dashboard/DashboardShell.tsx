@@ -140,7 +140,7 @@ export default function DashboardShell({ role, fullName, email, avatarUrl, unrea
           <div className="border-b border-slate-100 px-4 py-5 xl:px-5">
             <Link href="/dashboard" className="flex items-center gap-3">
               <div className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm">
-                <img src="/images/logo-full.png" alt="Merchant Bridge" className="size-8 object-contain" />
+                <img src="/icon.png" alt="Merchant Bridge" className="size-8 object-contain" />
               </div>
               <span className="hidden text-lg font-bold text-slate-950 xl:block">Merchant Bridge</span>
             </Link>
@@ -193,7 +193,7 @@ export default function DashboardShell({ role, fullName, email, avatarUrl, unrea
           <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur">
             <div className="flex min-h-14 items-center justify-between gap-4 px-4 lg:px-6">
               <Link href="/dashboard" className="lg:hidden">
-                <img src="/images/logo-full.png" alt="Merchant Bridge" className="size-8 object-contain" />
+                <img src="/icon.png" alt="Merchant Bridge" className="size-8 object-contain" />
               </Link>
               <span className={`hidden rounded-full px-3 py-1 text-xs font-bold lg:inline-flex ${badgeColor}`}>{badgeLabel}</span>
               <div className="flex items-center gap-2 lg:gap-3">

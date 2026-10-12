@@ -2,8 +2,8 @@ import CommunityFeed from "@/components/public/CommunityFeed";
 
 export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "Merchant Bridge Community | Merchant Bridge",
-  description: "Meet independent brands, share practical ideas, and build better gifting conversations with Merchant Bridge.",
+  title: "Merchant Bridge Community",
+  description: "A place to talk shop with other store owners. Swap what's working, ask for a second opinion, and hear how others handled the same problem.",
 };
 
 export default async function CommunityPage() {

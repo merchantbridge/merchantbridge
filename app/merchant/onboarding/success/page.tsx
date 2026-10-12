@@ -1,101 +1,50 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Application Submitted | Merchant Bridge",
-  description: "Your merchant application has been submitted for review.",
+export const metadata: Metadata = {
+  title: "Application submitted | Merchant Bridge",
+  description: "Thanks for applying. Our team is reviewing your profile.",
 };
 
 export default function OnboardingSuccessPage() {
   return (
-    <div className="min-h-screen bg-[#F3F5F2]">
-      {/* Header */}
-      <header className="border-b border-[#EADFD5] bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-4">
-          <Link href="/" className="font-display text-xl font-semibold text-[#C24E00]">
-            Merchant Bridge
-          </Link>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="mx-auto max-w-2xl px-6 py-20 sm:py-32">
-        <div className="rounded-2xl border border-[#EADFD5] bg-white p-8 sm:p-12 text-center">
-          {/* Success Icon */}
-          <div className="mx-auto flex size-20 items-center justify-center rounded-full bg-[#FF6A00]/10">
-            <svg
-              className="size-10 text-[#FF6A00]"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
+      <div className="max-w-md w-full">
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 text-center">
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
 
-          <h1 className="mt-6 font-display text-3xl font-semibold text-[#C24E00]">
-            Your application is under review
+          <h1 className="text-2xl font-bold text-slate-900 mb-4">
+            Thanks. We've got your application.
           </h1>
 
-          <p className="mt-4 text-lg text-[#4A4A4A]">
-            Thank you for your interest in joining Merchant Bridge. Our team will review your
-            application and get back to you within 48 hours.
+          <p className="text-slate-600 mb-6">
+            Our team is reading through your profile now. You'll hear from us within 48 hours, and we'll email you as soon as there's an update.
           </p>
 
-          <div className="mt-8 rounded-xl bg-[#F3F5F2] p-6 text-left">
-            <h2 className="font-semibold text-[#C24E00]">What happens next:</h2>
-            <ul className="mt-4 space-y-3 text-sm text-[#4A4A4A]">
-              <li className="flex gap-3">
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-[#FF6A00] text-xs font-bold text-white">
-                  1
-                </span>
-                <span>
-                  Our team reviews your application and business profile
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-[#FF6A00] text-xs font-bold text-white">
-                  2
-                </span>
-                <span>
-                  You&apos;ll receive an email with our decision within 48 hours
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-[#FF6A00] text-xs font-bold text-white">
-                  3
-                </span>
-                <span>
-                  If approved, you&apos;ll get access to your merchant dashboard and opportunity feed
-                </span>
-              </li>
-            </ul>
-          </div>
+          <p className="text-sm text-slate-500 mb-8">
+            While you wait, you could look through the sourcing requests that are open right now, or read a few posts in the community.
+          </p>
 
-          <div className="mt-8">
+          <div className="flex flex-col gap-3">
             <Link
-              href="/"
-              className="inline-flex items-center justify-center rounded-xl bg-[#FF6A00] px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-[#E85D00]"
+              href="/sourcing"
+              className="inline-block w-full px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
             >
-              Return to home
+              Browse open requests
+            </Link>
+            <Link
+              href="/community"
+              className="inline-block w-full px-6 py-3 rounded-lg border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 transition"
+            >
+              Visit the community
             </Link>
           </div>
-
-          <p className="mt-4 text-sm text-[#4A4A4A]">
-            Questions? Contact us at{" "}
-            <a
-              href="mailto:support@demerchantbridge.com"
-              className="font-semibold text-[#FF6A00] hover:underline"
-            >
-              support@demerchantbridge.com
-            </a>
-          </p>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

@@ -12,8 +12,7 @@ export default function manifest(): MetadataRoute.Manifest {
     background_color: "#f8fafc",
     theme_color: "#ffffff",
     icons: [
-      { src: "/icons/merchantbridge-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
-      { src: "/icons/merchantbridge-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: "/icon.png", sizes: "512x512", type: "image/png", purpose: "any" },
     ],
   };
 }

@@ -1,162 +1,97 @@
-import { revalidatePath } from "next/cache";
-import { createClient } from "@/lib/supabase/server";
-
-export const metadata = {
-  title: "Opportunities — Merchant Bridge Admin",
-};
-
-async function toggleOpportunity(formData: FormData) {
-  "use server";
-
-  const supabase = await createClient();
-
-  const id = String(formData.get("id") || "");
-  const active = String(formData.get("active") || "") === "true";
-  const publicDisplay =
-    String(formData.get("public_display") || "") === "true";
-
-  const { error } = await supabase
-    .from("opportunities")
-    .update({
-      is_active: active,
-      is_public: publicDisplay,
-    })
-    .eq("id", id);
-
-  if (error) throw new Error(error.message);
-
-  revalidatePath("/admin/opportunities");
-  revalidatePath("/dashboard/opportunities");
-}
+import { createClient } from '@/lib/supabase/server';
+import Link from 'next/link';
 
 export default async function AdminOpportunitiesPage() {
   const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
-  const { data: opportunities, error } = await supabase
-    .from("opportunities")
-    .select(
-      "id, company_name, category, relationship_label, description, active:is_active, public_display:is_public, created_at"
-    )
-    .order("created_at", { ascending: false });
+  if (!user) {
+    return <div>Unauthorized</div>;
+  }
+
+  const { data: opportunities } = await supabase
+    .from('marketplace_opportunities')
+    .select('*')
+    .order('added_at', { ascending: false });
 
   return (
-    <div className="mx-auto max-w-7xl">
-      <div className="mb-7">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0F766E]">
-          Opportunity Network
-        </p>
-
-        <h1 className="mt-2 text-3xl font-bold text-slate-950">
-          Opportunities
-        </h1>
-
-        <p className="mt-2 text-sm text-slate-500">
-          Control which commercial opportunities are active and visible to merchants.
-        </p>
-      </div>
-
-      {error ? (
-        <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-sm font-semibold text-red-700">
-          Unable to load opportunities: {error.message}
+    <div className="min-h-screen bg-slate-50">
+      <header className="bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900">Opportunity Management</h1>
+            <p className="text-slate-600">Add and manage marketplace opportunities</p>
+          </div>
+          <Link
+            href="/admin/opportunities/new"
+            className="px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
+          >
+            Add Opportunity
+          </Link>
         </div>
-      ) : (
-        <div className="grid gap-5 md:grid-cols-2">
-          {opportunities?.map((item) => (
-            <article
-              key={item.id}
-              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h2 className="font-bold text-slate-950">
-                    {item.company_name}
-                  </h2>
+      </header>
 
-                  <p className="mt-1 text-xs font-semibold text-[#0F766E]">
-                    {item.category}
-                  </p>
-                </div>
-
-                <span
-                  className={`rounded-full px-3 py-1 text-xs font-bold ${
-                    item.active
-                      ? "bg-emerald-50 text-emerald-700"
-                      : "bg-slate-100 text-slate-500"
-                  }`}
-                >
-                  {item.active ? "Active" : "Inactive"}
-                </span>
-              </div>
-
-              {item.relationship_label && (
-                <div className="mt-4 text-xs font-bold uppercase tracking-wider text-slate-400">
-                  {item.relationship_label}
-                </div>
-              )}
-
-              {item.description && (
-                <p className="mt-3 text-sm leading-7 text-slate-600">
-                  {item.description}
-                </p>
-              )}
-
-              <div className="mt-5 flex flex-wrap gap-2">
-                <form action={toggleOpportunity}>
-                  <input type="hidden" name="id" value={item.id} />
-                  <input
-                    type="hidden"
-                    name="active"
-                    value={String(!item.active)}
-                  />
-                  <input
-                    type="hidden"
-                    name="public_display"
-                    value={String(item.public_display)}
-                  />
-                  <button
-                    type="submit"
-                    className="rounded-xl border border-slate-200 px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-50"
-                  >
-                    {item.active ? "Deactivate" : "Activate"}
-                  </button>
-                </form>
-
-                <form action={toggleOpportunity}>
-                  <input type="hidden" name="id" value={item.id} />
-                  <input
-                    type="hidden"
-                    name="active"
-                    value={String(item.active)}
-                  />
-                  <input
-                    type="hidden"
-                    name="public_display"
-                    value={String(!item.public_display)}
-                  />
-                  <button
-                    type="submit"
-                    className={`rounded-xl px-4 py-2 text-xs font-bold ${
-                      item.public_display
-                        ? "bg-[#0F766E] text-white"
-                        : "border border-slate-200 text-slate-600 hover:bg-slate-50"
-                    }`}
-                  >
-                    {item.public_display
-                      ? "Public"
-                      : "Make Public"}
-                  </button>
-                </form>
-              </div>
-            </article>
-          ))}
-
-          {!opportunities?.length && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center text-sm text-slate-500 md:col-span-2">
-              No opportunities yet.
-            </div>
-          )}
+      <main className="max-w-7xl mx-auto px-6 py-8">
+        <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+          <table className="w-full">
+            <thead className="bg-slate-50 border-b border-slate-200">
+              <tr>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Title</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Type</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Source</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Status</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Expiry</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Matched</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {opportunities?.map((opp) => (
+                <tr key={opp.id} className="border-b border-slate-200">
+                  <td className="px-6 py-4">
+                    <div className="font-medium text-slate-900">{opp.title}</div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="text-sm text-slate-600">{opp.opportunity_type}</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="text-sm text-slate-600">{opp.source_type}</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      opp.status === 'live'
+                        ? 'bg-green-100 text-green-700'
+                        : opp.status === 'expiring_soon'
+                        ? 'bg-amber-100 text-amber-700'
+                        : 'bg-slate-100 text-slate-700'
+                    }`}>
+                      {opp.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="text-sm text-slate-600">
+                      {opp.expiry_date ? new Date(opp.expiry_date).toLocaleDateString() : 'No expiry'}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="text-sm text-slate-600">{opp.merchants_shown || 0}</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex gap-2">
+                      <Link
+                        href={`/admin/opportunities/${opp.id}`}
+                        className="text-sm font-medium text-indigo-600 hover:text-indigo-700"
+                      >
+                        Edit
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      )}
+      </main>
     </div>
   );
 }
