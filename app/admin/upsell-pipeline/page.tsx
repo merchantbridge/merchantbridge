@@ -17,10 +17,6 @@ export default function UpsellPipelinePage() {
     notes: '',
   });
 
-  useEffect(() => {
-    loadPipeline();
-  }, []);
-
   const loadPipeline = async () => {
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -34,6 +30,11 @@ export default function UpsellPipelinePage() {
     setPipeline(data || []);
     setLoading(false);
   };
+
+
+  useEffect(() => {
+    loadPipeline();
+  }, []);
 
   const handleAddEntry = async (e: React.FormEvent) => {
     e.preventDefault();

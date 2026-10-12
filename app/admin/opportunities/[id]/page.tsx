@@ -1,10 +1,12 @@
 'use client';
+import Link from 'next/link';
 
-import { useState, useEffect } from 'react';
+import { use, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
-export default function EditOpportunityPage({ params }: { params: { id: string } }) {
+export default function EditOpportunityPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -29,10 +31,6 @@ export default function EditOpportunityPage({ params }: { params: { id: string }
   const capacityRanges = ['Under $25', '$25-50', '$50-100', '$100-250', '$250+'];
   const shippingMarkets = ['US', 'UK', 'Europe', 'Australia', 'Canada', 'Worldwide'];
 
-  useEffect(() => {
-    loadOpportunity();
-  }, [params.id]);
-
   const loadOpportunity = async () => {
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -41,7 +39,7 @@ export default function EditOpportunityPage({ params }: { params: { id: string }
     const { data } = await supabase
       .from('marketplace_opportunities')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .single();
 
     if (data) {
@@ -63,11 +61,16 @@ export default function EditOpportunityPage({ params }: { params: { id: string }
     setLoading(false);
   };
 
+
+  useEffect(() => {
+    loadOpportunity();
+  }, [id]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
 
-    const response = await fetch(`/api/admin/opportunities/${params.id}`, {
+    const response = await fetch(`/api/admin/opportunities/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -98,9 +101,9 @@ export default function EditOpportunityPage({ params }: { params: { id: string }
     <div className="min-h-screen bg-slate-50">
       <header className="bg-white border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-6 py-4">
-          <a href="/admin/opportunities" className="text-sm text-slate-600 hover:text-slate-700 mb-1 block">
+          <Link href="/admin/opportunities" className="text-sm text-slate-600 hover:text-slate-700 mb-1 block">
             ← Back to Opportunities
-          </a>
+          </Link>
           <h1 className="text-2xl font-bold text-slate-900">Edit Opportunity</h1>
         </div>
       </header>

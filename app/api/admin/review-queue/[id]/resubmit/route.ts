@@ -3,8 +3,9 @@ import { revalidatePath } from 'next/cache';
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -40,7 +41,7 @@ export async function POST(
       review_feedback: feedback,
       updated_at: new Date().toISOString(),
     })
-    .eq('id', params.id);
+    .eq('id', id);
 
   if (error) {
     return Response.json({ error: error.message }, { status: 500 });
@@ -51,16 +52,16 @@ export async function POST(
     actor_id: user.id,
     actor_type: 'team_member',
     action_type: 'resubmit_requested',
-    action_details: { merchant_id: params.id, feedback },
+    action_details: { merchant_id: id, feedback },
     target_type: 'merchant_profile',
-    target_id: params.id,
+    target_id: id,
   });
 
   // Create notification for merchant
   const { data: profile } = await supabase
     .from('marketplace_merchant_profiles')
     .select('id')
-    .eq('id', params.id)
+    .eq('id', id)
     .single();
 
   if (profile) {

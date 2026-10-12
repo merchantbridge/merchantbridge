@@ -1,5 +1,5 @@
 ﻿"use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 type Member = { profile_id: string; display_name: string; kind: string; bio?: string; country?: string; avatar_url?: string; store_url?: string|null; product?: { title:string; short_description:string; hero_image_url:string|null; price_range:string|null; minimum_order_quantity:number }|null; follower_count?: number; merchant_id?: string|null; rank?: number|null };
 export default function MemberDirectory({ merchantsOnly = false }: { merchantsOnly?: boolean }) {
@@ -15,9 +15,24 @@ export default function MemberDirectory({ merchantsOnly = false }: { merchantsOn
     fetch("/api/community/follows", { cache: "no-store" }).then(async response => { if (response.ok) { const result = await response.json(); if (active) { setFollowing(result.following || []); setUserId(result.userId); } } }).catch(() => {});
     return () => { active = false; };
   }, []);
-  const visible = members.filter(member => (!merchantsOnly || member.kind === "merchant") && (!onlyFollowing || following.includes(member.profile_id)) && [member.display_name, member.bio || "", member.country || ""].join(" ").toLowerCase().includes(search.toLowerCase()));
-  const ranked = [...visible].sort((a, b) => (a.rank ?? 1e9) - (b.rank ?? 1e9) || (b.follower_count || 0) - (a.follower_count || 0));
-  const strip = ranked.length > 15 ? [...ranked].sort(() => Math.random() - 0.5) : ranked;
+  const visible = useMemo(
+    () => members.filter(member => (!merchantsOnly || member.kind === "merchant") && (!onlyFollowing || following.includes(member.profile_id)) && [member.display_name, member.bio || "", member.country || ""].join(" ").toLowerCase().includes(search.toLowerCase())),
+    [members, merchantsOnly, onlyFollowing, following, search],
+  );
+  const ranked = useMemo(
+    () => [...visible].sort((a, b) => (a.rank ?? 1e9) - (b.rank ?? 1e9) || (b.follower_count || 0) - (a.follower_count || 0)),
+    [visible],
+  );
+  // Deterministic shuffle: stable across renders without impure Math.random().
+  const strip = useMemo(() => {
+    if (ranked.length <= 15) return ranked;
+    const hash = (id: string) => {
+      let h = 2166136261;
+      for (let i = 0; i < id.length; i++) { h ^= id.charCodeAt(i); h = Math.imul(h, 16777619); }
+      return h >>> 0;
+    };
+    return [...ranked].sort((a, b) => hash(a.profile_id) - hash(b.profile_id));
+  }, [ranked]);
   async function toggleFollow(member:Member) {
     const wasFollowing=following.includes(member.profile_id);setBusy(member.profile_id);setNeedsLogin(false);
     try{const response=await fetch("/api/community/follows",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({targetId:member.profile_id,following:!wasFollowing})});const data=await response.json();if(response.status===401)setNeedsLogin(true);if(!response.ok)throw new Error(data.error||"Unable to update your follow.");setFollowing(current=>wasFollowing?current.filter(id=>id!==member.profile_id):[...current,member.profile_id]);setMembers(current=>current.map(row=>row.profile_id===member.profile_id?{...row,follower_count:Math.max(0,(row.follower_count||0)+(wasFollowing?-1:1))}:row));}

@@ -11,8 +11,9 @@ export default function WebsiteDesignEditor({initial,initialPages,draft}:{initia
  const [past,setPast]=useState<Document[]>([]);const [future,setFuture]=useState<Document[]>([]);
  const [path,setPath]=useState('/');const [selected,setSelected]=useState('hero');const [device,setDevice]=useState('desktop');
  const [tab,setTab]=useState('sections');const [busy,setBusy]=useState(false);const [message,setMessage]=useState(draft?'Saved draft restored.':'');const [dragged,setDragged]=useState<string|null>(null);
- const viewport=useRef<HTMLDivElement>(null);const [previewWidth,setPreviewWidth]=useState(700);
- const preview=useRef<HTMLIFrameElement>(null);const latest=useRef(doc);latest.current=doc;
+  const viewport=useRef<HTMLDivElement>(null);const [previewWidth,setPreviewWidth]=useState(700);
+  const preview=useRef<HTMLIFrameElement>(null);const latest=useRef(doc);
+  useEffect(()=>{latest.current=doc;},[doc]);
  useEffect(()=>{if(!viewport.current)return;const observer=new ResizeObserver(entries=>setPreviewWidth(entries[0].contentRect.width));observer.observe(viewport.current);return()=>observer.disconnect();},[]);
  const frameWidth=device==='mobile'?390:1280;const scale=Math.min(1,previewWidth/frameWidth);
  const blocks=doc.pages[path]||[];const active=blocks.find(b=>b.id===selected);const dirty=JSON.stringify(doc)!==saved;

@@ -9,10 +9,6 @@ export default function MerchantOpportunitiesPage() {
   const [appliedOpportunities, setAppliedOpportunities] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadOpportunities();
-  }, []);
-
   const loadOpportunities = async () => {
     const supabase = createClient();
     
@@ -57,6 +53,11 @@ export default function MerchantOpportunitiesPage() {
     setLoading(false);
   };
 
+
+  useEffect(() => {
+    loadOpportunities();
+  }, []);
+
   const handleSave = async (opportunityId: string) => {
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -85,7 +86,7 @@ export default function MerchantOpportunitiesPage() {
     } else {
       await supabase
         .from('marketplace_saved_opportunities')
-        .insert({ merchant_id: profile.id, opportunity_id });
+        .insert({ merchant_id: profile.id, opportunity_id: opportunityId });
       
       setSavedOpportunities(prev => new Set(prev).add(opportunityId));
     }
@@ -107,7 +108,7 @@ export default function MerchantOpportunitiesPage() {
     if (!appliedOpportunities.has(opportunityId)) {
       await supabase
         .from('marketplace_applications')
-        .insert({ merchant_id: profile.id, opportunity_id });
+        .insert({ merchant_id: profile.id, opportunity_id: opportunityId });
       
       setAppliedOpportunities(prev => new Set(prev).add(opportunityId));
     }
@@ -142,7 +143,7 @@ export default function MerchantOpportunitiesPage() {
               No opportunities yet
             </h2>
             <p className="text-slate-600 mb-4">
-              We're actively sourcing opportunities in your category. Check back soon!
+              We&apos;re actively sourcing opportunities in your category. Check back soon!
             </p>
           </div>
         ) : (

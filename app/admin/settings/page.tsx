@@ -10,10 +10,6 @@ export default function TeamSettingsPage() {
   const [platformSettings, setPlatformSettings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
   const loadData = async () => {
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -26,10 +22,15 @@ export default function TeamSettingsPage() {
     ]);
 
     setTeamMembers(teamData || []);
-    setEmailTemplates(templatesData || []);
-    setPlatformSettings(settingsData || []);
+    setEmailTemplates(templatesData.data || []);
+    setPlatformSettings(settingsData.data || []);
     setLoading(false);
   };
+
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   if (loading) {
     return <div className="min-h-screen bg-slate-50 flex items-center justify-center">Loading...</div>;

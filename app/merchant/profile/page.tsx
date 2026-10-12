@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
@@ -35,10 +36,6 @@ export default function MerchantProfilePage() {
   const orderVolumeRanges = ['Under 50', '50-100', '100-500', '500-1000', '1000+'];
   const aovRanges = ['Under $25', '$25-50', '$50-100', '$100-250', '$250+'];
 
-  useEffect(() => {
-    loadProfile();
-  }, []);
-
   const loadProfile = async () => {
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -69,6 +66,11 @@ export default function MerchantProfilePage() {
     }
     setLoading(false);
   };
+
+
+  useEffect(() => {
+    loadProfile();
+  }, []);
 
   const handleSave = async () => {
     setSaving(true);
@@ -154,9 +156,9 @@ export default function MerchantProfilePage() {
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold text-slate-900">Merchant Profile</h1>
             <div className="flex items-center gap-4">
-              <a href="/merchant/dashboard" className="text-sm font-medium text-slate-600 hover:text-slate-700">
+              <Link href="/merchant/dashboard" className="text-sm font-medium text-slate-600 hover:text-slate-700">
                 Back to Dashboard
-              </a>
+              </Link>
               {!editMode && (
                 <button
                   onClick={() => setEditMode(true)}
@@ -471,7 +473,7 @@ export default function MerchantProfilePage() {
               {profile?.supplier_document_status === 'not_uploaded' ? (
                 <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
                   <p className="text-slate-600 mb-3">
-                    You don't have a supplier profile document on file. Having one can help us better understand your business.
+                    You don&apos;t have a supplier profile document on file. Having one can help us better understand your business.
                   </p>
                   <a
                     href="mailto:support@demerchantbridge.com"

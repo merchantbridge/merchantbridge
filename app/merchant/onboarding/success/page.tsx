@@ -18,11 +18,11 @@ export default function OnboardingSuccessPage() {
           </div>
 
           <h1 className="text-2xl font-bold text-slate-900 mb-4">
-            Thanks. We've got your application.
+            Thanks. We&apos;ve got your application.
           </h1>
 
           <p className="text-slate-600 mb-6">
-            Our team is reading through your profile now. You'll hear from us within 48 hours, and we'll email you as soon as there's an update.
+            Our team is reading through your profile now. You&apos;ll hear from us within 48 hours, and we&apos;ll email you as soon as there&apos;s an update.
           </p>
 
           <p className="text-sm text-slate-500 mb-8">

@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
       shop,
       ticket_hash: hash(ticket),
       state_hash: hash(state),
-      browser_hash: browser_hash,
+      browser_hash: browserHash,
       expires_at: new Date(Date.now() + 10 * 60 * 1000).toISOString(),
     });
 

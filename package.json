@@ -18,10 +18,12 @@
   "dependencies": {
     "@getbrevo/brevo": "^6.0.3",
     "@google/genai": "^2.21.0",
+    "@neon/config": "^1.8.6",
     "@netlify/database": "^2.0.1",
     "@netlify/plugin-nextjs": "^5.15.13",
     "@supabase/ssr": "^0.12.4",
     "@supabase/supabase-js": "^2.112.3",
+    "@types/pg": "^8.23.1",
     "country-flag-icons": "^1.6.20",
     "drizzle-orm": "^1.0.0-beta.22",
     "fast-xml-parser": "^5.11.1",

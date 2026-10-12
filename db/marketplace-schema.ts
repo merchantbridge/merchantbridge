@@ -1,10 +1,14 @@
-import { pgTable, uuid, text, boolean, integer, timestamp, jsonb, array } from 'drizzle-orm/pg-core';
+import { pgTable, uuid, text, boolean, integer, timestamp, jsonb } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
+
+// `auth.users` is owned by Supabase and has no drizzle model here, so declare the
+// minimal shape needed for foreign keys. The live constraint is created in SQL.
+const authUsers = pgTable('auth_users_ref', { id: uuid('id').primaryKey() });
 
 // Merchant Profiles Table
 export const marketplaceMerchantProfiles = pgTable('marketplace_merchant_profiles', {
   id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id').references(() => 'auth.users.id', { onDelete: 'cascade' }).notNull(),
+  userId: uuid('user_id').references(() => authUsers.id, { onDelete: 'cascade' }).notNull(),
   
   // Basic Info
   fullName: text('full_name').notNull(),
@@ -37,7 +41,7 @@ export const marketplaceMerchantProfiles = pgTable('marketplace_merchant_profile
   profileStatus: text('profile_status').default('pending'),
   submittedAt: timestamp('submitted_at').defaultNow(),
   reviewedAt: timestamp('reviewed_at'),
-  reviewedBy: uuid('reviewed_by').references(() => 'auth.users.id'),
+  reviewedBy: uuid('reviewed_by').references(() => authUsers.id),
   reviewFeedback: text('review_feedback'),
   
   // Profile Completion
@@ -50,7 +54,7 @@ export const marketplaceMerchantProfiles = pgTable('marketplace_merchant_profile
   
   // Specialist
   specialistStatus: text('specialist_status').default('not_contacted'),
-  specialistAssignedTo: uuid('specialist_assigned_to').references(() => 'auth.users.id'),
+  specialistAssignedTo: uuid('specialist_assigned_to').references(() => authUsers.id),
   
   // Metrics
   opportunitiesMatched: integer('opportunities_matched').default(0),
@@ -86,7 +90,7 @@ export const marketplaceOpportunities = pgTable('marketplace_opportunities', {
   // Timing
   expiryDate: timestamp('expiry_date'),
   addedAt: timestamp('added_at').defaultNow(),
-  addedBy: uuid('added_by').references(() => 'auth.users.id'),
+  addedBy: uuid('added_by').references(() => authUsers.id),
   
   // Status
   status: text('status').default('live'),
@@ -162,7 +166,7 @@ export const marketplaceInternalNotes = pgTable('marketplace_internal_notes', {
   note: text('note').notNull(),
   
   // Author
-  createdBy: uuid('created_by').references(() => 'auth.users.id'),
+  createdBy: uuid('created_by').references(() => authUsers.id),
   
   // Timestamps
   createdAt: timestamp('created_at').defaultNow(),
@@ -173,7 +177,7 @@ export const marketplaceActivityLog = pgTable('marketplace_activity_log', {
   id: uuid('id').primaryKey().defaultRandom(),
   
   // Actor
-  actorId: uuid('actor_id').references(() => 'auth.users.id'),
+  actorId: uuid('actor_id').references(() => authUsers.id),
   actorType: text('actor_type'),
   
   // Action
@@ -219,7 +223,7 @@ export const marketplaceTestimonials = pgTable('marketplace_testimonials', {
 // Team Members Table
 export const marketplaceTeamMembers = pgTable('marketplace_team_members', {
   id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id').references(() => 'auth.users.id', { onDelete: 'cascade' }).notNull(),
+  userId: uuid('user_id').references(() => authUsers.id, { onDelete: 'cascade' }).notNull(),
   
   // Role
   role: text('role').notNull(),
@@ -242,7 +246,7 @@ export const marketplacePlatformSettings = pgTable('marketplace_platform_setting
   
   // Metadata
   description: text('description'),
-  updatedBy: uuid('updated_by').references(() => 'auth.users.id'),
+  updatedBy: uuid('updated_by').references(() => authUsers.id),
   
   // Timestamps
   updatedAt: timestamp('updated_at').defaultNow(),
@@ -262,7 +266,7 @@ export const marketplaceEmailTemplates = pgTable('marketplace_email_templates', 
   isActive: boolean('is_active').default(true),
   
   // Metadata
-  updatedBy: uuid('updated_by').references(() => 'auth.users.id'),
+  updatedBy: uuid('updated_by').references(() => authUsers.id),
   
   // Timestamps
   updatedAt: timestamp('updated_at').defaultNow(),
@@ -279,7 +283,7 @@ export const marketplaceUpsellPipeline = pgTable('marketplace_upsell_pipeline', 
   potentialValue: text('potential_value'),
   
   // Specialist
-  specialistId: uuid('specialist_id').references(() => 'auth.users.id'),
+  specialistId: uuid('specialist_id').references(() => authUsers.id),
   
   // Notes
   notes: text('notes'),

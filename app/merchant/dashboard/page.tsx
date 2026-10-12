@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 
@@ -38,7 +39,7 @@ export default async function MerchantDashboardPage() {
             </h1>
 
             <p className="text-slate-600 mb-6">
-              Your profile is currently under review by our team. We'll get back to you within 48 hours.
+              Your profile is currently under review by our team. We&apos;ll get back to you within 48 hours.
             </p>
 
             <p className="text-sm text-slate-500">
@@ -69,12 +70,12 @@ export default async function MerchantDashboardPage() {
               Please update your profile based on the feedback above and resubmit for review.
             </p>
 
-            <a
+            <Link
               href="/merchant/profile"
               className="inline-block w-full px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition text-center"
             >
               Update Profile
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -149,18 +150,18 @@ export default async function MerchantDashboardPage() {
               <p className="text-slate-600">{profile.business_name}</p>
             </div>
             <div className="flex items-center gap-4">
-              <a
+              <Link
                 href="/merchant/profile"
                 className="text-sm font-medium text-indigo-600 hover:text-indigo-700"
               >
                 Edit Profile
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/auth/sign-out"
                 className="text-sm font-medium text-slate-600 hover:text-slate-700"
               >
                 Sign Out
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -174,12 +175,12 @@ export default async function MerchantDashboardPage() {
               <h2 className="text-lg font-semibold text-slate-900">
                 Recent Opportunities
               </h2>
-              <a
+              <Link
                 href="/merchant/opportunities"
                 className="text-sm font-medium text-indigo-600 hover:text-indigo-700"
               >
                 View all →
-              </a>
+              </Link>
             </div>
 
             {opportunities && opportunities.length > 0 ? (
@@ -217,7 +218,7 @@ export default async function MerchantDashboardPage() {
             ) : (
               <div className="text-center py-8">
                 <p className="text-slate-600 mb-2">
-                  We're actively sourcing opportunities in your category.
+                  We&apos;re actively sourcing opportunities in your category.
                 </p>
                 <p className="text-sm text-slate-500">
                   Check back soon for new matches.
@@ -285,12 +286,12 @@ export default async function MerchantDashboardPage() {
             </div>
 
             {profile.profile_completion_percentage < 100 && (
-              <a
+              <Link
                 href="/merchant/profile"
                 className="mt-4 inline-block w-full px-4 py-2 rounded-lg border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50 transition text-center"
               >
                 Complete Profile
-              </a>
+              </Link>
             )}
           </div>
 
@@ -300,12 +301,12 @@ export default async function MerchantDashboardPage() {
               <h2 className="text-lg font-semibold text-slate-900">
                 Your Applications
               </h2>
-              <a
+              <Link
                 href="/merchant/applications"
                 className="text-sm font-medium text-indigo-600 hover:text-indigo-700"
               >
                 View all →
-              </a>
+              </Link>
             </div>
 
             {applications && applications.length > 0 ? (
@@ -340,14 +341,14 @@ export default async function MerchantDashboardPage() {
             ) : (
               <div className="text-center py-8">
                 <p className="text-slate-600 mb-2">
-                  You haven't applied to any opportunities yet.
+                  You haven&apos;t applied to any opportunities yet.
                 </p>
-                <a
+                <Link
                   href="/merchant/opportunities"
                   className="text-sm font-medium text-indigo-600 hover:text-indigo-700"
                 >
                   Browse opportunities →
-                </a>
+                </Link>
               </div>
             )}
           </div>
@@ -363,12 +364,12 @@ export default async function MerchantDashboardPage() {
                   </span>
                 )}
               </h2>
-              <a
+              <Link
                 href="/merchant/notifications"
                 className="text-sm font-medium text-indigo-600 hover:text-indigo-700"
               >
                 View all →
-              </a>
+              </Link>
             </div>
 
             {notifications && notifications.length > 0 ? (

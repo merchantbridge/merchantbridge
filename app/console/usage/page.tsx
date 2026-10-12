@@ -1,3 +1,4 @@
+import Link from 'next/link';
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Usage — Merchant Bridge Console" };
 
@@ -10,7 +11,7 @@ export default function ConsoleUsagePage() {
         <p className="mt-2 text-slate-400">This section is under active development.</p>
       </div>
       <div className="rounded-2xl border border-white/10 bg-white/[.04] p-8 text-center text-slate-400">
-        Coming soon — check the <a href="/console/docs" className="text-indigo-300 underline">API docs</a> for current capabilities.
+        Coming soon — check the <Link href="/console/docs" className="text-indigo-300 underline">API docs</Link> for current capabilities.
       </div>
     </div>
   );

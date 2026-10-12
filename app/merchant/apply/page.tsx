@@ -25,7 +25,7 @@ export default function MerchantApplyPage() {
           </h1>
 
           <p className="mt-6 text-lg leading-8 text-[#4A4A4A] sm:text-xl">
-            Tell us about your store and we'll review your profile within 48 hours. Once you're approved, you'll see wholesale, retail, partnership, and sourcing opportunities matched to what you sell.
+            Tell us about your store and we&apos;ll review your profile within 48 hours. Once you&apos;re approved, you&apos;ll see wholesale, retail, partnership, and sourcing opportunities matched to what you sell.
           </p>
 
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -57,7 +57,7 @@ export default function MerchantApplyPage() {
               <div>
                 <h3 className="font-semibold text-[#C24E00]">Opportunities that fit</h3>
                 <p className="mt-1 text-sm text-[#4A4A4A]">
-                  We match by category, capacity, shipping markets, and customization options, so you aren't scrolling through listings that were never meant for you.
+                  We match by category, capacity, shipping markets, and customization options, so you aren&apos;t scrolling through listings that were never meant for you.
                 </p>
               </div>
             </div>
@@ -85,7 +85,7 @@ export default function MerchantApplyPage() {
               <div>
                 <h3 className="font-semibold text-[#C24E00]">Help with your supplier profile</h3>
                 <p className="mt-1 text-sm text-[#4A4A4A]">
-                  If you don't have one, someone from our team will help you write it at no cost.
+                  If you don&apos;t have one, someone from our team will help you write it at no cost.
                 </p>
               </div>
             </div>
@@ -108,13 +108,13 @@ export default function MerchantApplyPage() {
 
         <div className="mt-12">
           <h2 className="font-display text-2xl font-semibold text-[#C24E00]">
-            What we'll ask
+            What we&apos;ll ask
           </h2>
           <p className="mt-4 text-base leading-7 text-[#4A4A4A]">
             Your name and business name, your product category, a short description of your store, your target market, your average order value, your monthly order volume and revenue range, whether you offer custom branding, and where you ship.
           </p>
           <p className="mt-4 text-base leading-7 text-[#4A4A4A]">
-            Connect your Shopify store and we'll fill in most of it for you. If you sell elsewhere, there's a short form instead.
+            Connect your Shopify store and we&apos;ll fill in most of it for you. If you sell elsewhere, there&apos;s a short form instead.
           </p>
         </div>
 
@@ -129,15 +129,15 @@ export default function MerchantApplyPage() {
             </li>
             <li className="flex gap-4">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FF6A00] text-sm font-bold text-white">2</span>
-              <p className="text-base leading-7 text-[#4A4A4A]">Our team reads your profile. You'll hear from us within 48 hours.</p>
+              <p className="text-base leading-7 text-[#4A4A4A]">Our team reads your profile. You&apos;ll hear from us within 48 hours.</p>
             </li>
             <li className="flex gap-4">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FF6A00] text-sm font-bold text-white">3</span>
-              <p className="text-base leading-7 text-[#4A4A4A]">If we need anything changed, we'll tell you exactly what and why.</p>
+              <p className="text-base leading-7 text-[#4A4A4A]">If we need anything changed, we&apos;ll tell you exactly what and why.</p>
             </li>
             <li className="flex gap-4">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FF6A00] text-sm font-bold text-white">4</span>
-              <p className="text-base leading-7 text-[#4A4A4A]">Once you're approved, your dashboard opens and your first matches appear.</p>
+              <p className="text-base leading-7 text-[#4A4A4A]">Once you&apos;re approved, your dashboard opens and your first matches appear.</p>
             </li>
           </ol>
         </div>
@@ -148,13 +148,13 @@ export default function MerchantApplyPage() {
           </h2>
           <div className="mt-4 space-y-3 text-base leading-7 text-[#4A4A4A]">
             <p>
-              Merchant Bridge is free, and you won't be asked to pay for access. We're a digital agency for e-commerce brands. Once you're set up, we may suggest a paid service if we see a clear gap in your store. You can say no, and it won't affect your access.
+              Merchant Bridge is free, and you won&apos;t be asked to pay for access. We&apos;re a digital agency for e-commerce brands. Once you&apos;re set up, we may suggest a paid service if we see a clear gap in your store. You can say no, and it won&apos;t affect your access.
             </p>
             <p>
               We use your store data to match you with opportunities and to understand where we might be able to help. See our <Link href="/privacy" className="text-[#C24E00] underline">Privacy Policy</Link>.
             </p>
             <p>
-              We don't represent the buyers or brands behind the listings, and we can't guarantee that any application will succeed.
+              We don&apos;t represent the buyers or brands behind the listings, and we can&apos;t guarantee that any application will succeed.
             </p>
           </div>
         </div>

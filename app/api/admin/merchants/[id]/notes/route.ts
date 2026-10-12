@@ -4,8 +4,9 @@ import { NextRequest } from 'next/server';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -43,7 +44,7 @@ export async function POST(
   const { error } = await supabase
     .from('marketplace_internal_notes')
     .insert({
-      merchant_id: params.id,
+      merchant_id: id,
       note,
       created_by: user.id,
     });
@@ -52,7 +53,7 @@ export async function POST(
     return Response.json({ error: error.message }, { status: 500 });
   }
 
-  revalidatePath(`/admin/merchants/${params.id}`);
+  revalidatePath(`/admin/merchants/${id}`);
 
   return Response.json({ success: true });
 }

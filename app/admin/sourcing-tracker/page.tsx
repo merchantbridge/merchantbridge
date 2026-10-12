@@ -7,10 +7,6 @@ export default function SourcingTrackerPage() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
   const loadData = async () => {
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -21,6 +17,11 @@ export default function SourcingTrackerPage() {
     setData(result);
     setLoading(false);
   };
+
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   if (loading) {
     return <div className="min-h-screen bg-slate-50 flex items-center justify-center">Loading...</div>;

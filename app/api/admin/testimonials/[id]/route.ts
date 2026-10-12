@@ -4,8 +4,9 @@ import { NextRequest } from 'next/server';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -34,7 +35,7 @@ export async function PUT(
       reviewed_at: body.status !== 'pending' ? new Date().toISOString() : null,
       featured_at: body.status === 'featured' ? new Date().toISOString() : null,
     })
-    .eq('id', params.id);
+    .eq('id', id);
 
   if (error) {
     return Response.json({ error: error.message }, { status: 500 });

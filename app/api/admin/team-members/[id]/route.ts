@@ -4,8 +4,9 @@ import { NextRequest } from 'next/server';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -34,7 +35,7 @@ export async function PUT(
       ...body,
       updated_at: new Date().toISOString(),
     })
-    .eq('id', params.id);
+    .eq('id', id);
 
   if (error) {
     return Response.json({ error: error.message }, { status: 500 });
@@ -47,8 +48,9 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -72,7 +74,7 @@ export async function DELETE(
   const { error } = await supabase
     .from('marketplace_team_members')
     .delete()
-    .eq('id', params.id);
+    .eq('id', id);
 
   if (error) {
     return Response.json({ error: error.message }, { status: 500 });

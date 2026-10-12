@@ -1,17 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AuthShell from "@/components/auth/AuthShell";
-
-function ShopifyMark() {
-  return (
-    <svg className="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M15.5 2.5c-.3 0-.6.1-.8.4-.2.2-.3.5-.3.8v.3c-.8.2-1.6.5-2.3.9-.7-1.2-1.6-1.9-2.6-1.9h-.1c-.4-.5-1-.8-1.7-.8-.6 0-1.1.3-1.5.7-.4.4-.7.9-.8 1.5-.1.6 0 1.2.3 1.7l.9.2c.9.2 1.9.5 2.9.8-.9.8-1.7 1.9-2 3.2-.3 1.3-.2 2.6.3 3.8.5 1.2 1.3 2.2 2.4 2.9 1.1.7 2.3 1 3.6.8 1.3-.2 2.5-.8 3.5-1.7.9-.9 1.6-2 2-3.2.4-1.2.5-2.5.2-3.7-.3-1.2-1-2.3-2-3.2-.3-.2-.6-.3-.9-.3-1-.1-2 .2-2.9.8-.7-.4-1.4-.7-2.1-.9-.1-.3-.2-.6-.2-.9 0-.3.1-.6.3-.8.2-.2.4-.4.6-.5-.3-.1-.6-.1-.9-.1z" />
-    </svg>
-  );
-}
 
 export default function JoinPage() {
   const [shopDomain, setShopDomain] = useState("");
@@ -78,7 +71,7 @@ export default function JoinPage() {
           disabled={!shopDomain.trim()}
           className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#95BF47] px-6 py-4 text-sm font-bold text-white transition hover:bg-[#7BA434] disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500"
         >
-          <ShopifyMark />
+          <Image src="/images/shopify-white.png" alt="" width={104} height={30} className="h-[22px] w-auto" priority />
           Continue with Shopify
         </button>
 

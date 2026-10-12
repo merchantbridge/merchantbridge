@@ -4,8 +4,9 @@ import { NextRequest } from 'next/server';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -28,7 +29,7 @@ export async function GET(
   const { data: opportunity } = await supabase
     .from('marketplace_opportunities')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', id)
     .single();
 
   if (!opportunity) {
@@ -40,8 +41,9 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -69,22 +71,23 @@ export async function PUT(
       ...body,
       updated_at: new Date().toISOString(),
     })
-    .eq('id', params.id);
+    .eq('id', id);
 
   if (error) {
     return Response.json({ error: error.message }, { status: 500 });
   }
 
   revalidatePath('/admin/opportunities');
-  revalidatePath(`/admin/opportunities/${params.id}`);
+  revalidatePath(`/admin/opportunities/${id}`);
 
   return Response.json({ success: true });
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -107,7 +110,7 @@ export async function DELETE(
   const { error } = await supabase
     .from('marketplace_opportunities')
     .delete()
-    .eq('id', params.id);
+    .eq('id', id);
 
   if (error) {
     return Response.json({ error: error.message }, { status: 500 });

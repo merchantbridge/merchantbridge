@@ -58,7 +58,7 @@ export default function ContactForm() {
       </button>
 
         {status === "sent" && (
-        <p className="text-[13.5px] text-success">Message sent — we'll get back to you within one working day.</p>
+        <p className="text-[13.5px] text-success">Message sent — we&apos;ll get back to you within one working day.</p>
       )}
       {status === "error" && (
         <p className="text-[13.5px] text-danger">

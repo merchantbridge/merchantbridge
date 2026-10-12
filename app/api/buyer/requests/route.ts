@@ -210,7 +210,7 @@ export async function POST(request: Request) {
         .from('marketplace_merchant_profiles')
         .select('user_id, full_name, product_category')
         .eq('profile_status', 'approved')
-        .eq('product_category', category);
+        .eq('product_category', fields.category);
 
       if (matchingMerchants && matchingMerchants.length > 0) {
         const { data: profiles } = await admin
@@ -230,7 +230,7 @@ export async function POST(request: Request) {
                 merchant.email,
                 merchant.full_name,
                 'profile_resubmit',
-                { feedback: `New sourcing request: "${fields.title}" in ${category}. Log in to review the full brief.` }
+                { feedback: `New sourcing request: "${fields.title}" in ${fields.category}. Log in to review the full brief.` }
               );
             } catch (err) {
               console.error(`Failed to send buyer request notification to ${merchant.user_id}:`, err);

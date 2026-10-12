@@ -4,8 +4,9 @@ import { NextRequest } from 'next/server';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { key: string } }
+  { params }: { params: Promise<{ key: string }> }
 ) {
+  const { key } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -29,7 +30,7 @@ export async function GET(
   const { data: template } = await supabase
     .from('marketplace_email_templates')
     .select('*')
-    .eq('template_key', params.key)
+    .eq('template_key', key)
     .single();
 
   if (!template) {
@@ -41,8 +42,9 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { key: string } }
+  { params }: { params: Promise<{ key: string }> }
 ) {
+  const { key } = await params;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -72,7 +74,7 @@ export async function PUT(
       updated_by: user.id,
       updated_at: new Date().toISOString(),
     })
-    .eq('template_key', params.key);
+    .eq('template_key', key);
 
   if (error) {
     return Response.json({ error: error.message }, { status: 500 });

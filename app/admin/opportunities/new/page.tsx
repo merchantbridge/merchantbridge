@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -59,9 +60,9 @@ export default function NewOpportunityPage() {
     <div className="min-h-screen bg-slate-50">
       <header className="bg-white border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-6 py-4">
-          <a href="/admin/opportunities" className="text-sm text-slate-600 hover:text-slate-700 mb-1 block">
+          <Link href="/admin/opportunities" className="text-sm text-slate-600 hover:text-slate-700 mb-1 block">
             ← Back to Opportunities
-          </a>
+          </Link>
           <h1 className="text-2xl font-bold text-slate-900">Add New Opportunity</h1>
         </div>
       </header>

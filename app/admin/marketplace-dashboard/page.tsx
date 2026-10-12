@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 
 export default async function TeamDashboardPage() {
@@ -111,12 +112,12 @@ export default async function TeamDashboardPage() {
                           <p className="font-medium text-slate-900">{merchant.business_name}</p>
                           <p className="text-xs text-slate-500">{merchant.product_category}</p>
                         </div>
-                        <a
+                        <Link
                           href={`/admin/review-queue`}
                           className="text-sm font-medium text-indigo-600 hover:text-indigo-700"
                         >
                           Review →
-                        </a>
+                        </Link>
                       </div>
                     ))}
                   </div>
@@ -137,12 +138,12 @@ export default async function TeamDashboardPage() {
                             Expires: {new Date(opp.expiry_date).toLocaleDateString()}
                           </p>
                         </div>
-                        <a
+                        <Link
                           href={`/admin/opportunities`}
                           className="text-sm font-medium text-indigo-600 hover:text-indigo-700"
                         >
                           Manage →
-                        </a>
+                        </Link>
                       </div>
                     ))}
                   </div>
@@ -171,12 +172,12 @@ export default async function TeamDashboardPage() {
             </div>
 
             {weeklyProgress < 100 && (
-              <a
+              <Link
                 href="/admin/opportunities"
                 className="inline-block px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
               >
                 Add Opportunities
-              </a>
+              </Link>
             )}
           </div>
         </div>
@@ -208,34 +209,34 @@ export default async function TeamDashboardPage() {
 
         {/* Quick Links */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <a
+          <Link
             href="/admin/merchants"
             className="bg-white rounded-xl border border-slate-200 p-6 hover:border-slate-300 transition"
           >
             <h3 className="font-semibold text-slate-900">Merchant Management</h3>
             <p className="text-sm text-slate-500 mt-1">View and manage all merchants</p>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/admin/opportunities"
             className="bg-white rounded-xl border border-slate-200 p-6 hover:border-slate-300 transition"
           >
             <h3 className="font-semibold text-slate-900">Opportunity Management</h3>
             <p className="text-sm text-slate-500 mt-1">Add and manage opportunities</p>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/admin/review-queue"
             className="bg-white rounded-xl border border-slate-200 p-6 hover:border-slate-300 transition"
           >
             <h3 className="font-semibold text-slate-900">Review Queue</h3>
             <p className="text-sm text-slate-500 mt-1">Review pending merchant profiles</p>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/admin/testimonials"
             className="bg-white rounded-xl border border-slate-200 p-6 hover:border-slate-300 transition"
           >
             <h3 className="font-semibold text-slate-900">Testimonials</h3>
             <p className="text-sm text-slate-500 mt-1">Manage testimonials and case studies</p>
-          </a>
+          </Link>
         </div>
       </main>
     </div>

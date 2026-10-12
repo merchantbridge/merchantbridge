@@ -7,10 +7,6 @@ export default function TestimonialsPage() {
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadTestimonials();
-  }, []);
-
   const loadTestimonials = async () => {
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -24,6 +20,10 @@ export default function TestimonialsPage() {
     setTestimonials(data || []);
     setLoading(false);
   };
+
+  useEffect(() => {
+    loadTestimonials();
+  }, []);
 
   const handleStatusChange = async (testimonialId: string, newStatus: string) => {
     const response = await fetch(`/api/admin/testimonials/${testimonialId}`, {
@@ -106,7 +106,7 @@ export default function TestimonialsPage() {
 
                 <div className="mb-4">
                   <p className="text-sm font-medium text-slate-500 mb-1">Testimonial</p>
-                  <p className="text-slate-900 italic">"{testimonial.testimonial_text}"</p>
+                  <p className="text-slate-900 italic">&quot;{testimonial.testimonial_text}&quot;</p>
                 </div>
 
                 {testimonial.star_rating && (

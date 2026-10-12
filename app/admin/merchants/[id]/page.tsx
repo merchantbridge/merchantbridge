@@ -1,18 +1,16 @@
 'use client';
+import Link from 'next/link';
 
-import { useState, useEffect } from 'react';
+import { use, useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 
-export default function MerchantDetailPage({ params }: { params: { id: string } }) {
+export default function MerchantDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const [profile, setProfile] = useState<any>(null);
   const [applications, setApplications] = useState<any[]>([]);
   const [internalNotes, setInternalNotes] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [newNote, setNewNote] = useState('');
-
-  useEffect(() => {
-    loadData();
-  }, [params.id]);
 
   const loadData = async () => {
     const supabase = createClient();
@@ -23,31 +21,36 @@ export default function MerchantDetailPage({ params }: { params: { id: string } 
       supabase
         .from('marketplace_merchant_profiles')
         .select('*')
-        .eq('id', params.id)
+        .eq('id', id)
         .single(),
       supabase
         .from('marketplace_applications')
         .select('*, marketplace_opportunities(*)')
-        .eq('merchant_id', params.id)
+        .eq('merchant_id', id)
         .order('applied_at', { ascending: false }),
       supabase
         .from('marketplace_internal_notes')
         .select('*')
-        .eq('merchant_id', params.id)
+        .eq('merchant_id', id)
         .order('created_at', { ascending: false }),
     ]);
 
-    setProfile(profileData);
-    setApplications(appsData || []);
-    setInternalNotes(notesData || []);
+    setProfile(profileData.data);
+    setApplications(appsData.data || []);
+    setInternalNotes(notesData.data || []);
     setLoading(false);
   };
+
+
+  useEffect(() => {
+    loadData();
+  }, [id]);
 
   const handleAddNote = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newNote.trim()) return;
 
-    const response = await fetch(`/api/admin/merchants/${params.id}/notes`, {
+    const response = await fetch(`/api/admin/merchants/${id}/notes`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ note: newNote }),
@@ -75,9 +78,9 @@ export default function MerchantDetailPage({ params }: { params: { id: string } 
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <a href="/admin/merchants" className="text-sm text-slate-600 hover:text-slate-700 mb-1 block">
+              <Link href="/admin/merchants" className="text-sm text-slate-600 hover:text-slate-700 mb-1 block">
                 ← Back to Merchants
-              </a>
+              </Link>
               <h1 className="text-2xl font-bold text-slate-900">{profile.business_name}</h1>
               <p className="text-slate-600">{profile.full_name}</p>
             </div>

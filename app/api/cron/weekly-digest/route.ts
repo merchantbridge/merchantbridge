@@ -34,7 +34,7 @@ export async function GET(request: Request) {
 
       const { data: opportunities } = await admin
         .from("marketplace_opportunities")
-        .select("title, opportunity_type")
+        .select("title, opportunity_type:category")
         .eq("status", "live")
         .contains("matching_categories", [merchant.product_category])
         .order("added_at", { ascending: false })
@@ -44,7 +44,7 @@ export async function GET(request: Request) {
         userData.email,
         merchant.full_name,
         "weekly_digest",
-        { opportunities: opportunities || [] }
+        { opportunities: (opportunities || []).map((row) => ({ title: row.title, category: row.opportunity_type })) }
       );
       sent++;
     } catch (err) {

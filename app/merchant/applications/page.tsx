@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
@@ -9,10 +10,6 @@ export default function MerchantApplicationsPage() {
   const [showTestimonialModal, setShowTestimonialModal] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState<any>(null);
   const [testimonialText, setTestimonialText] = useState('');
-
-  useEffect(() => {
-    loadApplications();
-  }, []);
 
   const loadApplications = async () => {
     const supabase = createClient();
@@ -36,6 +33,11 @@ export default function MerchantApplicationsPage() {
     setApplications(apps || []);
     setLoading(false);
   };
+
+
+  useEffect(() => {
+    loadApplications();
+  }, []);
 
   const handleStatusUpdate = async (applicationId: string, newStatus: string) => {
     const res = await fetch(`/api/merchant/applications/${applicationId}/status`, {
@@ -78,7 +80,7 @@ export default function MerchantApplicationsPage() {
 
     const { data: profile } = await supabase
       .from('marketplace_merchant_profiles')
-      .select('id, business_name')
+      .select('id, business_name, full_name')
       .eq('user_id', user.id)
       .single();
 
@@ -99,7 +101,7 @@ export default function MerchantApplicationsPage() {
     } else {
       await supabase
         .from('marketplace_applications')
-        .update({ testimonial_submitted: true, testimonial_text })
+        .update({ testimonial_submitted: true, testimonial_text: testimonialText })
         .eq('id', selectedApplication.id);
       
       setShowTestimonialModal(false);
@@ -134,12 +136,12 @@ export default function MerchantApplicationsPage() {
             <p className="text-slate-600 mb-4">
               Start applying to opportunities to track them here.
             </p>
-            <a
+            <Link
               href="/merchant/opportunities"
               className="inline-block px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
             >
               Browse Opportunities
-            </a>
+            </Link>
           </div>
         ) : (
           <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">

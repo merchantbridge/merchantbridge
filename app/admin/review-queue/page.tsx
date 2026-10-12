@@ -6,15 +6,13 @@ import { createClient } from '@/lib/supabase/client';
 export default function ReviewQueuePage() {
   const [pendingProfiles, setPendingProfiles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  // Captured when the queue loads so the "waiting" label stays stable between renders.
+  const [loadedAt, setLoadedAt] = useState(0);
   const [rejectModal, setRejectModal] = useState<{ open: boolean; profileId: string | null; reason: string }>({
     open: false,
     profileId: null,
     reason: '',
   });
-
-  useEffect(() => {
-    loadPendingProfiles();
-  }, []);
 
   const loadPendingProfiles = async () => {
     const supabase = createClient();
@@ -28,9 +26,14 @@ export default function ReviewQueuePage() {
       .order('submitted_at', { ascending: true });
 
     setPendingProfiles(data || []);
+    setLoadedAt(Date.now());
     setLoading(false);
   };
 
+
+  useEffect(() => {
+    loadPendingProfiles();
+  }, []);
   const handleResubmit = async (e: React.FormEvent<HTMLFormElement>, profileId: string) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -99,7 +102,7 @@ export default function ReviewQueuePage() {
                   <div className="text-right">
                     <p className="text-sm text-slate-500">Category: {profile.product_category}</p>
                     <p className="text-sm text-slate-500">
-                      Waiting: {Math.round((Date.now() - new Date(profile.submitted_at).getTime()) / (1000 * 60 * 60 * 24))} days
+                      Waiting: {Math.round((loadedAt - new Date(profile.submitted_at).getTime()) / (1000 * 60 * 60 * 24))} days
                     </p>
                   </div>
                 </div>
