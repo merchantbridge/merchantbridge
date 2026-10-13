@@ -1,12 +1,14 @@
 ﻿"use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AuthShell from "@/components/auth/AuthShell";
 import AuthField from "@/components/auth/AuthField";
+import AuthProviders from "@/components/auth/AuthProviders";
 import { createClient } from "@/lib/supabase/client";
 import { signInDestination } from "@/lib/auth/destination";
+import { googleAuthEnabled, startGoogleAuth } from "@/lib/auth/google-auth";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -14,7 +16,29 @@ export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [shopDomain, setShopDomain] = useState("");
+
+  // /auth/callback sends people here when their Google account has no
+  // Merchant Bridge profile, with the reason in ?error or ?google_not_linked.
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const reason = searchParams.get("error");
+    const googleNotLinked = searchParams.get("google_not_linked");
+    
+    if (reason) {
+      setError(reason);
+    } else if (googleNotLinked === "true") {
+      // Show a popup notification for unlinked Google accounts
+      alert(
+        "Your Google account is not linked to a Merchant Bridge account yet.\n\n" +
+        "To continue with Google, please:\n" +
+        "1. Click 'Create an account' below\n" +
+        "2. Sign up with your email first\n" +
+        "3. Then you can sign in with Google on future visits"
+      );
+      // Clean up the URL
+      window.history.replaceState({}, "", "/auth/sign-in");
+    }
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -29,7 +53,10 @@ export default function SignInPage() {
         setError("Enter your email and password.");
         return;
       }
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
       if (error) {
         setError(error.message);
         return;
@@ -44,7 +71,9 @@ export default function SignInPage() {
         .eq("id", data.user.id)
         .single();
       if (profileError) {
-        setError("You're signed in, but your workspace could not be loaded. Please try again.");
+        setError(
+          "You're signed in, but your workspace could not be loaded. Please try again."
+        );
         return;
       }
       router.replace(
@@ -61,9 +90,18 @@ export default function SignInPage() {
     }
   }
 
-  function handleShopifyAuth() {
-    const domain = shopDomain.trim().toLowerCase().replace(/^https:\/\//, "").replace(/\.myshopify\.com$/, "") + ".myshopify.com";
-    window.location.href = `/api/shopify/auth?shop=${encodeURIComponent(domain)}`;
+  async function handleGoogle() {
+    setError(null);
+    try {
+      const next = new URLSearchParams(window.location.search).get("next") ?? "";
+      await startGoogleAuth(supabase, next);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Could not start Google sign in. Please try again."
+      );
+    }
   }
 
   return (
@@ -73,79 +111,75 @@ export default function SignInPage() {
       footer={
         <>
           New to Merchant Bridge?{" "}
-          <Link href="/auth/sign-up" className="font-semibold text-blue-700 underline underline-offset-4">
+          <Link
+            href="/auth/sign-up"
+            className="font-semibold text-white underline underline-offset-4"
+          >
             Create an account
           </Link>
         </>
       }
     >
       <div className="space-y-5">
-        <div>
-          <label htmlFor="shopify-domain" className="mb-2 block text-sm font-medium text-slate-700">
-            Your Shopify store
-          </label>
-          <div className="flex gap-2">
-            <input
-              id="shopify-domain"
-              type="text"
-              value={shopDomain}
-              onChange={(e) => setShopDomain(e.target.value)}
-              placeholder="your-store"
-              className="min-w-0 flex-1 rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none focus:border-indigo-500"
-            />
-            <span className="flex items-center rounded-lg border border-slate-300 bg-slate-50 px-3 text-sm text-slate-500">
-              .myshopify.com
-            </span>
-          </div>
-        </div>
+        <AuthProviders
+          googleEnabled={googleAuthEnabled}
+          onGoogle={handleGoogle}
+        />
 
-        <button
-          type="button"
-          onClick={handleShopifyAuth}
-          disabled={!shopDomain.trim()}
-          className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#95BF47] px-6 py-4 text-sm font-bold text-white transition hover:bg-[#7BA434] disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500"
+        <form
+          id="sign-in-form"
+          onSubmit={handleSubmit}
+          className="space-y-4"
+          aria-busy={loading}
         >
-          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M15.5 2.5c-.3 0-.6.1-.8.4-.2.2-.3.5-.3.8v.3c-.8.2-1.6.5-2.3.9-.7-1.2-1.6-1.9-2.6-1.9h-.1c-.4-.5-1-.8-1.7-.8-.6 0-1.1.3-1.5.7-.4.4-.7.9-.8 1.5-.1.6 0 1.2.3 1.7l.9.2c.9.2 1.9.5 2.9.8-.9.8-1.7 1.9-2 3.2-.3 1.3-.2 2.6.3 3.8.5 1.2 1.3 2.2 2.4 2.9 1.1.7 2.3 1 3.6.8 1.3-.2 2.5-.8 3.5-1.7.9-.9 1.6-2 2-3.2.4-1.2.5-2.5.2-3.7-.3-1.2-1-2.3-2-3.2-.3-.2-.6-.3-.9-.3-1-.1-2 .2-2.9.8-.7-.4-1.4-.7-2.1-.9-.1-.3-.2-.6-.2-.9 0-.3.1-.6.3-.8.2-.2.4-.4.6-.5-.3-.1-.6-.1-.9-.1z"/>
-          </svg>
-          Continue with Shopify
-        </button>
-
-        <div className="flex items-center gap-3">
-          <div className="h-px flex-1 bg-slate-200" />
-          <span className="text-xs font-medium text-slate-500">or sign in with email</span>
-          <div className="h-px flex-1 bg-slate-200" />
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-5" aria-busy={loading}>
-          <AuthField label="Email address" name="email" type="email" required autoComplete="email" />
+          <AuthField
+            label="Email address"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+          />
           <div>
-            <AuthField label="Password" name="password" type={showPassword ? "text" : "password"} required autoComplete="current-password" />
-            <div className="mt-2 flex items-center justify-between">
+            <AuthField
+              label="Password"
+              name="password"
+              type={showPassword ? "text" : "password"}
+              required
+              autoComplete="current-password"
+            />
+            <div className="mt-2 flex items-center justify-between px-2">
               <button
                 type="button"
                 onClick={() => setShowPassword((value) => !value)}
                 aria-pressed={showPassword}
-                className="py-2 text-xs font-medium text-slate-600"
+                className="py-2 text-[13px] font-semibold text-white/85 hover:text-white"
               >
                 {showPassword ? "Hide password" : "Show password"}
               </button>
-              <Link href="/auth/forgot-password" className="py-2 text-xs font-semibold text-blue-700">
+              <Link
+                href="/auth/forgot-password"
+                className="py-2 text-[13px] font-semibold text-white underline underline-offset-4"
+              >
                 Forgot password?
               </Link>
             </div>
           </div>
+
           {error && (
-            <p role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+            <p
+              role="alert"
+              className="rounded-2xl bg-white/15 p-4 text-center text-[14px] font-medium text-white"
+            >
               {error}
             </p>
           )}
+
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-blue-600 px-6 py-4 text-sm font-bold text-white transition hover:bg-blue-700 disabled:opacity-60"
+            className="flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-[15px] font-bold text-slate-900 shadow-sm transition hover:bg-orange-50 disabled:opacity-70"
           >
-            {loading ? "Signing in..." : "Sign in"}
+            {loading ? "Signing in..." : "Sign in with Email"}
           </button>
         </form>
       </div>

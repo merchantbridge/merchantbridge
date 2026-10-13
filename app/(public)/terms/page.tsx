@@ -18,13 +18,13 @@ export default function TermsOfUsePage() {
       <h2>Eligibility</h2>
       <p>
         You must be authorized to represent the business you register, and the store you submit must be a live,
-        functioning e-commerce store that you own or are authorized to act on behalf of.
+        functioning ecommerce store that you own or are authorized to act on behalf of.
       </p>
 
       <h2>The service</h2>
       <p>
         {siteConfig.name} reviews merchant stores and, where a store is deemed ready, works to connect merchants
-        with relevant corporate gifting, wholesale, bulk-buyer, and related commercial opportunities. Being
+        with relevant corporate gifting, wholesale, bulk buyer, and related commercial opportunities. Being
         reviewed or listed does not guarantee acceptance into any specific opportunity — final decisions rest with
         the opportunity partner.
       </p>

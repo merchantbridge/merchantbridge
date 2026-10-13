@@ -58,7 +58,7 @@ export default async function HomePage() {
 
               <p className="mt-7 text-sm leading-6 text-textSecondary">
                 <span className="font-semibold text-textPrimary">Merchant Bridge</span> is a digital agency for
-                e-commerce brands. You keep every deal you make.
+                ecommerce brands. You keep every deal you make.
               </p>
             </div>
 
@@ -95,11 +95,11 @@ export default async function HomePage() {
               Connect the store you already run
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-textSecondary sm:text-lg">
-              Connect Shopify in a few clicks. If you sell on WooCommerce, BigCommerce, Magento, Wix, or your own
+              Connect Shopify in a few clicks. If you sell on Woo Commerce, Big Commerce, Magento, Wix, or your own
               site, add your details by hand instead.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4 md:gap-6">
-              {["Shopify", "WooCommerce", "BigCommerce", "Magento", "Wix"].map((platform) => (
+              {["Shopify", "Woo Commerce", "Big Commerce", "Magento", "Wix"].map((platform) => (
                 <div
                   key={platform}
                   className="flex h-14 min-w-[7.5rem] items-center justify-center rounded-2xl border border-slate-200 bg-white px-6 text-sm font-semibold text-textPrimary shadow-[0_8px_24px_-12px_rgba(15,23,42,.12)]"
@@ -214,16 +214,16 @@ export default async function HomePage() {
 
             <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { n: "1", title: "Apply.", body: "Tell us about your business and connect your store." },
+                { n: "1", title: "Get matched.", body: "Tell us about your business and what you sell. We'll match you with opportunities that fit your store." },
                 {
                   n: "2",
-                  title: "Build your profile.",
-                  body: "Add your products, capacity, and fulfilment details. Need a supplier profile written? Our team will help at no cost.",
+                  title: "Apply.",
+                  body: "Apply for access to Merchant Bridge. Our team reviews your application and responds within 48 hours.",
                 },
-                { n: "3", title: "Wait for review.", body: "We check each profile and reply within 48 hours." },
+                { n: "3", title: "Build your profile.", body: "Add your products, capacity, and fulfilment details. Need a supplier profile written? Our team will help at no cost." },
                 {
                   n: "4",
-                  title: "Get matched.",
+                  title: "Connect to your opportunity.",
                   body: "Approved merchants see opportunities that fit. More detail gets more relevant matches.",
                 },
               ].map((step) => (
