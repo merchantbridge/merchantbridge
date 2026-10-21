@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/branding";
 
-const COMMUNITY_URL = "https://community.demerchantbridge.com/";
+const COMMUNITY_URL = "https://app.demerchantbridge.com/";
 const groups = [
-  ["Product", [["/how-it-works", "How It Works"], ["/blog", "Merchant Bridge Blog"], [COMMUNITY_URL, "Community"]]],
+  ["Product", [["/how-it-works", "How It Works"], ["/blog", "MerchantBridge Blog"], [COMMUNITY_URL, "Community"]]],
 
-  ["Company", [["/merchantbridge", "About Merchant Bridge"], ["/about", "Our Company"], ["/faq", "FAQ"], ["/contact", "Contact"]]],
+  ["Company", [["/merchantbridge", "About MerchantBridge"], ["/about", "Our Company"], ["/faq", "FAQ"], ["/contact", "Contact"]]],
   ["Legal", [["/privacy", "Privacy"], ["/terms", "Terms"], ["/cookies", "Cookies"]]],
 ] as const;
 
@@ -17,29 +17,19 @@ export default function SiteFooter() {
           <div>
             <Link href="/" className="inline-flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/logo-horizontal.png" alt="Merchant Bridge" className="h-9 w-auto object-contain" />
+              <img src="/images/logo-horizontal.png" alt="MerchantBridge" className="h-9 w-auto object-contain" />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-6 text-textSecondary">
               A practical community for brands, gifting teams, and partners building better commercial relationships.
             </p>
-            <address className="mt-4 not-italic">
-              <span className="block font-semibold text-textPrimary">{siteConfig.address.name}</span>
-              <span className="mt-1 block text-sm leading-6 text-textSecondary">
-                {siteConfig.address.street}
-                <br />
-                {siteConfig.address.locality}, {siteConfig.address.region} {siteConfig.address.postalCode}
-                <br />
-                {siteConfig.address.country}
-              </span>
-              <span className="mt-3 flex flex-col gap-1.5">
-                <a href={`tel:${siteConfig.phoneHref}`} className="text-sm font-semibold text-accentDim hover:text-accentDeep">
-                  {siteConfig.phone}
-                </a>
-                <a href={`mailto:${siteConfig.supportEmail}`} className="text-sm font-semibold text-accentDim hover:text-accentDeep">
-                  {siteConfig.supportEmail}
-                </a>
-              </span>
-            </address>
+            <div className="mt-4 flex flex-col gap-1.5">
+              <a href={`tel:${siteConfig.phoneHref}`} className="text-sm font-semibold text-accentDim hover:text-accentDeep">
+                {siteConfig.phone}
+              </a>
+              <a href={`mailto:${siteConfig.supportEmail}`} className="text-sm font-semibold text-accentDim hover:text-accentDeep">
+                {siteConfig.supportEmail}
+              </a>
+            </div>
           </div>
 
           {groups.map(([heading, links]) => (
@@ -60,10 +50,10 @@ export default function SiteFooter() {
 
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-slate-200 pt-6 sm:flex-row sm:items-center">
           <p className="text-xs text-textSecondary">
-            © {new Date().getFullYear()} Merchant Bridge. All rights reserved.
+            © {new Date().getFullYear()} MerchantBridge. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <a href={COMMUNITY_URL} className="text-xs text-textSecondary hover:text-accentDim">community.demerchantbridge.com</a>
+            <a href={COMMUNITY_URL} className="text-xs text-textSecondary hover:text-accentDim">app.demerchantbridge.com</a>
             <Link href="/console" className="text-xs text-textSecondary hover:text-accentDim">developers</Link>
           </div>
         </div>
