@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { siteConfig } from "@/config/branding";
-import PwaRegistrar from "@/components/app/PwaRegistrar";
+import PwaRegistrar from "@/components/pwa/PwaRegistrar";
 import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 import WebSiteJsonLd from "@/components/seo/WebSiteJsonLd";
 import { createClient } from "@/lib/supabase/server";

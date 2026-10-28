@@ -1,7 +1,7 @@
 import Link from "next/link";
 import QRCode from "qrcode";
 import { APP_DOWNLOAD_URL, getAndroidRelease } from "@/lib/mobile/release";
-import PwaInstallButton from "@/components/app/PwaInstallButton";
+import PwaInstallButton from "@/components/pwa/PwaInstallButton";
 
 export const dynamic = "force-dynamic";
 export const metadata = {
