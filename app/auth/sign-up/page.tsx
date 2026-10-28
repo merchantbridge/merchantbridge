@@ -93,7 +93,7 @@ function SignUpForm() {
        */
 
       if (data.session) {
-        router.replace("/merchant/setup");
+        router.replace("/merchant/onboarding");
         router.refresh();
         return;
       }

@@ -6,8 +6,14 @@ export async function POST(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "Authentication required." }, { status: 401 });
+
+  // Check if user has a merchant profile (either through role or marketplace_merchant_profiles)
   const { data: profile } = await supabase.from("profiles").select("role").eq("id", user.id).single();
-  if (profile?.role !== "merchant") return NextResponse.json({ error: "A merchant account is required." }, { status: 403 });
+  const { data: merchantProfile } = await supabase.from("marketplace_merchant_profiles").select("id").eq("user_id", user.id).maybeSingle();
+
+  if (profile?.role !== "merchant" && !merchantProfile) {
+    return NextResponse.json({ error: "A merchant account is required." }, { status: 403 });
+  }
 
   let form: FormData;
   try { form = await request.formData(); } catch { return NextResponse.json({ error: "Upload a trade deck file." }, { status: 400 }); }
@@ -17,7 +23,7 @@ export async function POST(request: Request) {
   if (!allowed.includes(file.type)) return NextResponse.json({ error: "Upload a PDF, image, or office document." }, { status: 400 });
   if (file.size > 10 * 1024 * 1024) return NextResponse.json({ error: "Trade decks must be 10MB or smaller." }, { status: 400 });
 
-  const { data: merchant } = await supabase.from("merchant_profiles").select("id").eq("user_id", user.id).single();
+  const { data: merchant } = await supabase.from("marketplace_merchant_profiles").select("id").eq("user_id", user.id).single();
   if (!merchant) return NextResponse.json({ error: "Merchant profile not found." }, { status: 404 });
 
   const admin = createAdminClient();

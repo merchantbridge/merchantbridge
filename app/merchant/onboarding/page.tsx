@@ -102,6 +102,49 @@ export default function MerchantOnboardingPage() {
     }));
   };
 
+  const handleNext = () => {
+    // Validation for each step
+    switch (step) {
+      case 1:
+        if (!formData.fullName || !formData.businessName || !formData.productCategory || !formData.businessDescription) {
+          alert('Please fill in all required fields marked with *');
+          return;
+        }
+        break;
+      case 2:
+        // Step 2 is optional - no required fields
+        break;
+      case 3:
+        if (formData.shippingMarkets.length === 0) {
+          alert('Please select at least one shipping market');
+          return;
+        }
+        break;
+      case 4:
+        if (!formData.monthlyRevenueRange) {
+          alert('Please select your monthly revenue range');
+          return;
+        }
+        break;
+      case 5:
+        if (formData.salesChannels.length === 0) {
+          alert('Please select at least one sales channel');
+          return;
+        }
+        break;
+      case 6:
+        if (!formData.storeUrl) {
+          alert('Please enter your store URL');
+          return;
+        }
+        break;
+      case 7:
+        // Step 7 is optional - document upload is not required
+        break;
+    }
+    setStep(step + 1);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -213,10 +256,11 @@ export default function MerchantOnboardingPage() {
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-semibold">Step 2: Capacity</h2>
-            
+            <p className="text-sm text-slate-500">All fields in this step are optional. You can skip and come back later.</p>
+
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                Average Order Value
+                Average Order Value (optional)
               </label>
               <select
                 value={formData.averageOrderValue}
@@ -232,7 +276,7 @@ export default function MerchantOnboardingPage() {
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                Monthly Order Volume (approximate)
+                Monthly Order Volume (approximate, optional)
               </label>
               <select
                 value={formData.monthlyOrderVolume}
@@ -443,7 +487,7 @@ export default function MerchantOnboardingPage() {
               {step < 7 ? (
                 <button
                   type="button"
-                  onClick={() => setStep(step + 1)}
+                  onClick={handleNext}
                   className="px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
                 >
                   Next

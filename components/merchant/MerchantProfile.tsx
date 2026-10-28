@@ -65,7 +65,7 @@ export default function ProfilePage() {
             .limit(1),
 
           supabase
-            .from("merchant_profiles")
+            .from("marketplace_merchant_profiles")
             .select(`
               id,
               user_id,
@@ -76,8 +76,8 @@ export default function ProfilePage() {
               store_url,
               business_category,
               product_category,
-              business_description
-              ,avatar_url
+              business_description,
+              avatar_url
             `)
             .eq("user_id", user.id)
             .limit(1),
@@ -195,7 +195,7 @@ export default function ProfilePage() {
       if (!response.ok) throw new Error(result.error || "Unable to save your profile.");
 
       setMessage("Profile saved successfully.");
-      router.push("/dashboard");
+      router.push("/merchant/dashboard");
       router.refresh();
     } catch (err) {
       setError(

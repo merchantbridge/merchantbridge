@@ -16,6 +16,7 @@ export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
 
   // /auth/callback sends people here when their Google account has no
   // Merchant Bridge profile, with the reason in ?error or ?google_not_linked.
@@ -23,7 +24,26 @@ export default function SignInPage() {
     const searchParams = new URLSearchParams(window.location.search);
     const reason = searchParams.get("error");
     const googleNotLinked = searchParams.get("google_not_linked");
-    
+
+    // Check if user is already signed in
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        // User is already signed in, redirect to appropriate dashboard
+        supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", user.id)
+          .single()
+          .then(({ data: profile }) => {
+            const next = searchParams.get("next") || "";
+            router.replace(signInDestination(profile?.role, next));
+            router.refresh();
+          });
+      } else {
+        setCheckingSession(false);
+      }
+    });
+
     if (reason) {
       setError(reason);
     } else if (googleNotLinked === "true") {
@@ -120,69 +140,75 @@ export default function SignInPage() {
         </>
       }
     >
-      <div className="space-y-5">
-        <AuthProviders
-          googleEnabled={googleAuthEnabled}
-          onGoogle={handleGoogle}
-        />
-
-        <form
-          id="sign-in-form"
-          onSubmit={handleSubmit}
-          className="space-y-4"
-          aria-busy={loading}
-        >
-          <AuthField
-            label="Email address"
-            name="email"
-            type="email"
-            required
-            autoComplete="email"
+      {checkingSession ? (
+        <div className="flex items-center justify-center py-12">
+          <div className="text-center text-white/90">Checking your session...</div>
+        </div>
+      ) : (
+        <div className="space-y-5">
+          <AuthProviders
+            googleEnabled={googleAuthEnabled}
+            onGoogle={handleGoogle}
           />
-          <div>
-            <AuthField
-              label="Password"
-              name="password"
-              type={showPassword ? "text" : "password"}
-              required
-              autoComplete="current-password"
-            />
-            <div className="mt-2 flex items-center justify-between px-2">
-              <button
-                type="button"
-                onClick={() => setShowPassword((value) => !value)}
-                aria-pressed={showPassword}
-                className="py-2 text-[13px] font-semibold text-white/85 hover:text-white"
-              >
-                {showPassword ? "Hide password" : "Show password"}
-              </button>
-              <Link
-                href="/auth/forgot-password"
-                className="py-2 text-[13px] font-semibold text-white underline underline-offset-4"
-              >
-                Forgot password?
-              </Link>
-            </div>
-          </div>
 
-          {error && (
-            <p
-              role="alert"
-              className="rounded-2xl bg-white/15 p-4 text-center text-[14px] font-medium text-white"
-            >
-              {error}
-            </p>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-[15px] font-bold text-slate-900 shadow-sm transition hover:bg-orange-50 disabled:opacity-70"
+          <form
+            id="sign-in-form"
+            onSubmit={handleSubmit}
+            className="space-y-4"
+            aria-busy={loading}
           >
-            {loading ? "Signing in..." : "Sign in with Email"}
-          </button>
-        </form>
-      </div>
+            <AuthField
+              label="Email address"
+              name="email"
+              type="email"
+              required
+              autoComplete="email"
+            />
+            <div>
+              <AuthField
+                label="Password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                required
+                autoComplete="current-password"
+              />
+              <div className="mt-2 flex items-center justify-between px-2">
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((value) => !value)}
+                  aria-pressed={showPassword}
+                  className="py-2 text-[13px] font-semibold text-white/85 hover:text-white"
+                >
+                  {showPassword ? "Hide password" : "Show password"}
+                </button>
+                <Link
+                  href="/auth/forgot-password"
+                  className="py-2 text-[13px] font-semibold text-white underline underline-offset-4"
+                >
+                  Forgot password?
+                </Link>
+              </div>
+            </div>
+
+            {error && (
+              <p
+                role="alert"
+                className="rounded-2xl bg-white/15 p-4 text-center text-[14px] font-medium text-white"
+              >
+                {error}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-[15px] font-bold text-slate-900 shadow-sm transition hover:bg-orange-50 disabled:opacity-70"
+            >
+              {loading ? "Signing in..." : "Sign in with Email"}
+            </button>
+          </form>
+        </div>
+      )}
     </AuthShell>
   );
 }

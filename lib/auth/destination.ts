@@ -1,5 +1,5 @@
 export function signInDestination(role: string | null | undefined, requested: string) {
-  const fallback = role === "admin" || role === "super_admin" ? "/admin" : role === "developer" ? "/console" : "/dashboard";
+  const fallback = role === "admin" || role === "super_admin" ? "/admin" : role === "developer" ? "/console" : role === "merchant" ? "/merchant/dashboard" : "/dashboard";
   if (!requested.startsWith("/") || requested.startsWith("//") || /[\\\u0000-\u0020]/.test(requested)) return fallback;
   try {
     const decoded = decodeURIComponent(requested);
