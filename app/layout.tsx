@@ -15,7 +15,7 @@ import type { CSSProperties } from "react";
 
 export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
-  metadataBase: new URL("https://www.demerchantbridge.com"),
+  metadataBase: new URL("https://demerchantbridge.com"),
   title: {
     default: "Merchant Bridge | Opportunities for independent e-commerce brands",
     template: "%s | Merchant Bridge",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   description:
     "Merchant Bridge finds wholesale, retail, partnership, and sourcing opportunities and matches them to your store. Free to join.",
   alternates: {
-    canonical: "https://www.demerchantbridge.com/",
+    canonical: "https://demerchantbridge.com/",
   },
   icons: {
     icon: [
